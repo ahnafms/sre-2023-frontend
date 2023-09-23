@@ -10,12 +10,12 @@ const config: Config = {
     extend: {
       //TODO: add font family based on design system
       fontFamily: {},
-    
+
       //TODO: add font size based on design system
       fontSize: {},
 
       //TODO: add font weight based on design system
-      fontWeight:{},
+      fontWeight: {},
 
       //TODO: add colors based on design system
       colors: {},
