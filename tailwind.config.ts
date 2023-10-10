@@ -8,16 +8,34 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      //TODO: add font family based on design system
-      fontFamily: {},
+      fontFamily: {
+        epliogue: ['var(--font-epilogue)'],
+        anton: ['var(--font-anton)'],
+      },
 
-      //TODO: add font size based on design system
-      fontSize: {},
+      fontSize: {
+        c1: ['12px', '24px'],
+        c2: ['14px', '24px'],
+        btn: ['16px', '24px'],
+        bt: ['16px', '24px'],
+        p: ['18px', '24px'],
+        t: ['20px', '24px'],
+        h6: ['24px', '32px'],
+        h5: ['32px', '48px'],
+        h4: ['48px', '64px'],
+        h3: ['64px', '84px'],
+        h2: ['72px', '90px'],
+        h1: ['80px', '96px'],
+      },
 
-      //TODO: add font weight based on design system
-      fontWeight: {},
+      fontWeight: {
+        normal: '400',
+        medium: '500',
+        semibold: '600',
+        bold: '700',
+        extrabold: '800',
+      },
 
-      //TODO: add colors based on design system
       colors: {
         primary: {
           10: '#FFFEC1',
