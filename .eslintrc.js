@@ -2,31 +2,39 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    node: true,
   },
   extends: [
     'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-    'prettier',
+    'next',
     'next/core-web-vitals',
-    'eslint-config-next',
+    'prettier',
+    'plugin:@typescript-eslint/recommended',
   ],
-  plugins: ['simple-import-sort', 'unused-imports'],
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 13,
-    sourceType: 'module',
-  },
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'simple-import-sort', 'unused-imports'],
   rules: {
+    'no-unused-vars': 'off',
+    'no-console': 'warn',
+    'react/display-name': 'off',
     'simple-import-sort/imports': 'warn',
     'simple-import-sort/exports': 'warn',
-    'unused-imports/no-unused-imports': 'error',
-    'no-unused-vars': 'warn',
-    'no-console': 'warn',
-    'no-undef': 'off',
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
+    // Unused imports
+    '@typescript-eslint/no-unused-vars': 'off',
+    'unused-imports/no-unused-imports': 'warn',
+    'unused-imports/no-unused-vars': [
+      'warn',
+      {
+        vars: 'all',
+        varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_',
+      },
+    ],
   },
+  globals: {
+    React: true,
+    JSX: true,
+  },
+  root: true,
 };
