@@ -1,10 +1,20 @@
-import type { Config } from 'tailwindcss';
+const plugin = require('tailwindcss/plugin');
 
-const config: Config = {
+const config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  safelist: [
+    {
+      pattern: /_(cols|rows)-(.+)/,
+      variants: ['sm', 'md', 'lg', 'xl'],
+    },
+    {
+      pattern: /grid-(rows|cols)-(.+)/,
+      variants: ['sm', 'md', 'lg', 'xl'],
+    },
   ],
   theme: {
     extend: {
@@ -116,6 +126,28 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({ addComponents }) => {
+      const [_, ...values] = [...Array(13).keys(), 'full', 'auto'];
+      const gridRowCol = {};
+
+      for (let start of values) {
+        for (let span of values) {
+          gridRowCol[`._cols-${start}_${span}`] = {
+            gridColumnStart: `${start}`,
+            gridColumnEnd: `span ${span}`,
+          };
+
+          gridRowCol[`._rows-${start}_${span}`] = {
+            gridRowStart: `${start}`,
+            gridRowEnd: `span ${span}`,
+          };
+        }
+      }
+
+      addComponents(gridRowCol);
+    }),
+  ],
 };
+
 export default config;
