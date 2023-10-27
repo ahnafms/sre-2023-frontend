@@ -2,6 +2,7 @@
 import {
   ColumnDef,
   getCoreRowModel,
+  getFacetedUniqueValues,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
@@ -18,6 +19,7 @@ import {
 import TBody from '@/components/table/TBody';
 import THead from '@/components/table/THead';
 import clsxm from '@/lib/clsxm';
+import MultiFilter from './MultiFilter';
 
 type TableProps<T extends object> = {
   data: T[];
@@ -25,6 +27,7 @@ type TableProps<T extends object> = {
   omitSort?: boolean;
   withFilter?: boolean;
   withPagination?: boolean;
+  filter?: string[];
 } & React.ComponentPropsWithoutRef<'div'>;
 
 export default function Table<T extends object>({
@@ -34,6 +37,7 @@ export default function Table<T extends object>({
   omitSort = false,
   withFilter = false,
   withPagination = false,
+  filter = [],
   ...rest
 }: TableProps<T>) {
   const [globalFilter, setGlobalFilter] = React.useState('');
@@ -51,6 +55,7 @@ export default function Table<T extends object>({
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getFacetedUniqueValues: getFacetedUniqueValues(),
     getPaginationRowModel: getPaginationRowModel(),
   });
 
@@ -58,6 +63,21 @@ export default function Table<T extends object>({
     <div className={clsxm('flex flex-col', className)} {...rest}>
       <div className='flex flex-col gap-y-3 sm:flex-row sm:justify-between'>
         <div>{withFilter && <Filter table={table} />}</div>
+        {filter.length &&
+          filter.map((col, idx) => {
+            const column = table.getColumn(col);
+            const lowerCase = col.toLowerCase()
+            const title = lowerCase.charAt(0).toUpperCase() + lowerCase.slice(1);
+            if (col) {
+              return (
+                <MultiFilter
+                  key={idx}
+                  column={column}
+                  title={title}
+                />
+              );
+            } else null;
+          })}
         {withPagination && <PaginationCount table={table} />}
       </div>
       <div className='-my-2 mt-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
