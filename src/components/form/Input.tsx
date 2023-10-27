@@ -44,21 +44,21 @@ export default function Input({
   const error = get(errors, id);
 
   return (
-    <div className="w-full space-y-1">
+    <div className='w-full space-y-1'>
       {label && (
         <Typography
-          as="label"
+          as='label'
           htmlFor={id}
-          variant="c2"
-          weight="semibold"
-          color="input"
-          className="w-full"
+          variant='c2'
+          weight='semibold'
+          color='input'
+          className='w-full'
         >
           {label}
         </Typography>
       )}
 
-      <div className="relative w-full">
+      <div className='relative w-full'>
         {LeftIcon && (
           <div
             className={clsxm(
@@ -136,9 +136,9 @@ export default function Input({
 
       {helperText && !(error && !hideError) && (
         <Typography
-          as="p"
-          variant="c1"
-          color="input"
+          as='p'
+          variant='c1'
+          color='input'
           className={clsxm('w-full', disabled && 'text-typo-icon')}
         >
           {helperText}
@@ -146,7 +146,7 @@ export default function Input({
       )}
 
       {error && !hideError && (
-        <Typography as="p" variant="c1" className="w-full text-critical-60">
+        <Typography as='p' variant='c1' className='w-full text-critical-60'>
           {error.message}
         </Typography>
       )}

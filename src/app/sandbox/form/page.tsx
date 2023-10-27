@@ -28,59 +28,59 @@ export default function InputPage() {
   };
 
   return (
-    <div className="p-4 w-full min-h-screen bg-white">
+    <div className='p-4 w-full min-h-screen bg-white'>
       <FormProvider {...methods}>
-        <form className="max-w-sm space-y-4" onSubmit={handleSubmit(onSubmit)}>
+        <form className='max-w-sm space-y-4' onSubmit={handleSubmit(onSubmit)}>
           <Input
-            label="Username"
-            id="username"
-            placeholder="Your username"
+            label='Username'
+            id='username'
+            placeholder='Your username'
             validation={{ required: 'This field is required!' }}
-            helperText="Input your username"
+            helperText='Input your username'
           />
           <Input
-            type="password"
-            label="Password"
-            id="password"
-            placeholder="Your password"
+            type='password'
+            label='Password'
+            id='password'
+            placeholder='Your password'
           />
           <Input
-            label="Left Icon"
-            id="leftIcon"
-            placeholder="Left Icon"
+            label='Left Icon'
+            id='leftIcon'
+            placeholder='Left Icon'
             leftIcon={HiAcademicCap}
           />
           <Input
-            label="Right Icon"
-            id="rightIcon"
-            placeholder="Right Icon"
+            label='Right Icon'
+            id='rightIcon'
+            placeholder='Right Icon'
             rightIcon={HiAcademicCap}
           />
           <Input
-            label="Both Icon"
-            id="bothIcon"
-            placeholder="Both Icon"
+            label='Both Icon'
+            id='bothIcon'
+            placeholder='Both Icon'
             leftIcon={HiAcademicCap}
             rightIcon={HiAcademicCap}
           />
-          <Input label="Read Only" id="readOnly" value="Read Only" readOnly />
+          <Input label='Read Only' id='readOnly' value='Read Only' readOnly />
           <Input
-            label="Disabled"
-            id="disabled"
-            placeholder="Disabled"
-            helperText="This is helper"
+            label='Disabled'
+            id='disabled'
+            placeholder='Disabled'
+            helperText='This is helper'
             disabled
           />
           <Input
-            label="Disabled Both Icon"
-            id="bothIconDisabled"
-            placeholder="Disabled Both Icon"
-            helperText="This is helper"
+            label='Disabled Both Icon'
+            id='bothIconDisabled'
+            placeholder='Disabled Both Icon'
+            helperText='This is helper'
             leftIcon={HiAcademicCap}
             rightIcon={HiAcademicCap}
             disabled
           />
-          <Button type="submit" className="w-full">
+          <Button type='submit' className='w-full'>
             Submit
           </Button>
         </form>

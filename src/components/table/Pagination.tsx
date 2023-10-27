@@ -20,11 +20,11 @@ export function PaginationCount<T extends RowData>({
       <select
         className='w-full rounded-lg'
         value={table.getState().pagination.pageSize}
-        onChange={(e) => {
+        onChange={e => {
           table.setPageSize(Number(e.target.value));
         }}
       >
-        {[5, 10, 15, 20, 25].map((pageSize) => (
+        {[5, 10, 15, 20, 25].map(pageSize => (
           <option key={pageSize} value={pageSize}>
             Show {pageSize}
           </option>

@@ -23,7 +23,7 @@ export default function TBody<T extends RowData>({
           key={row.id}
           className={clsxm(index % 2 === 0 ? 'bg-white' : 'bg-gray-50')}
         >
-          {row.getVisibleCells().map((cell) => (
+          {row.getVisibleCells().map(cell => (
             <td
               key={cell.id}
               className='truncate whitespace-nowrap py-4 pl-[30px] pr-3'

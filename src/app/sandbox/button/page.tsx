@@ -8,23 +8,23 @@ import IconButton from '@/components/IconButton';
 
 export default function ButtonPage() {
   return (
-    <div className="flex flex-col px-2">
+    <div className='flex flex-col px-2'>
       <h1>Primary asd</h1>
-      <div className="flex flex-row gap-2 mt-4">
+      <div className='flex flex-row gap-2 mt-4'>
         {/* Primary w/o icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
-            <Button variant="primary" size="lg">
+            <Button variant='primary' size='lg'>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="primary" size="base">
+            <Button variant='primary' size='base'>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="primary" size="sm">
+            <Button variant='primary' size='sm'>
               <h1>Button</h1>
             </Button>
           </div>
@@ -32,39 +32,39 @@ export default function ButtonPage() {
         {/* Primary w/o icon End*/}
 
         {/* Primary w/ icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
             <Button
-              variant="primary"
-              size="lg"
+              variant='primary'
+              size='lg'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3.5"
-              rightIconClassName="w-3.5"
+              leftIconClassName='w-3.5'
+              rightIconClassName='w-3.5'
             >
               <h1>Button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="primary"
-              size="base"
+              variant='primary'
+              size='base'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3"
-              rightIconClassName="w-3"
+              leftIconClassName='w-3'
+              rightIconClassName='w-3'
             >
               <h1>Button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="primary"
-              size="sm"
+              variant='primary'
+              size='sm'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-2.5"
-              rightIconClassName="w-2.5"
+              leftIconClassName='w-2.5'
+              rightIconClassName='w-2.5'
             >
               <h1>Button</h1>
             </Button>
@@ -73,48 +73,48 @@ export default function ButtonPage() {
         {/* Primary w/ icon End*/}
 
         {/* Primary Icon */}
-        <div className="flex flex-col gap-2 items-center">
+        <div className='flex flex-col gap-2 items-center'>
           <div>
             <IconButton
-              variant="primary"
-              size="lg"
+              variant='primary'
+              size='lg'
               icon={BsHeartFill}
-              iconClassName="w-3.5"
+              iconClassName='w-3.5'
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="primary"
-              size="base"
+              variant='primary'
+              size='base'
               icon={BsHeartFill}
-              iconClassName="w-3"
+              iconClassName='w-3'
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="primary"
-              size="sm"
+              variant='primary'
+              size='sm'
               icon={BsHeartFill}
-              iconClassName="w-2.5"
+              iconClassName='w-2.5'
             ></IconButton>
           </div>
         </div>
         {/* Primary Icon End*/}
 
         {/* Success w/o icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
-            <Button variant="success" size="lg">
+            <Button variant='success' size='lg'>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="success" size="base">
+            <Button variant='success' size='base'>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="success" size="sm">
+            <Button variant='success' size='sm'>
               <h1>Button</h1>
             </Button>
           </div>
@@ -122,39 +122,39 @@ export default function ButtonPage() {
         {/* Success w/o icon End*/}
 
         {/* Success w/ icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
             <Button
-              variant="success"
-              size="lg"
+              variant='success'
+              size='lg'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3.5"
-              rightIconClassName="w-3.5"
+              leftIconClassName='w-3.5'
+              rightIconClassName='w-3.5'
             >
               <h1>Button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="success"
-              size="base"
+              variant='success'
+              size='base'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3"
-              rightIconClassName="w-3"
+              leftIconClassName='w-3'
+              rightIconClassName='w-3'
             >
               <h1>Button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="success"
-              size="sm"
+              variant='success'
+              size='sm'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-2.5"
-              rightIconClassName="w-2.5"
+              leftIconClassName='w-2.5'
+              rightIconClassName='w-2.5'
             >
               <h1>Button</h1>
             </Button>
@@ -163,48 +163,48 @@ export default function ButtonPage() {
         {/* Success w/ icon End*/}
 
         {/* Success Icon */}
-        <div className="flex flex-col gap-2 items-center">
+        <div className='flex flex-col gap-2 items-center'>
           <div>
             <IconButton
-              variant="success"
-              size="lg"
+              variant='success'
+              size='lg'
               icon={BsHeartFill}
-              iconClassName="w-3.5"
+              iconClassName='w-3.5'
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="success"
-              size="base"
+              variant='success'
+              size='base'
               icon={BsHeartFill}
-              iconClassName="w-3"
+              iconClassName='w-3'
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="success"
-              size="sm"
+              variant='success'
+              size='sm'
               icon={BsHeartFill}
-              iconClassName="w-2.5"
+              iconClassName='w-2.5'
             ></IconButton>
           </div>
         </div>
         {/* Success Icon End*/}
 
         {/* Danger w/o icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
-            <Button variant="danger" size="lg">
+            <Button variant='danger' size='lg'>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="danger" size="base">
+            <Button variant='danger' size='base'>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="danger" size="sm">
+            <Button variant='danger' size='sm'>
               <h1>Button</h1>
             </Button>
           </div>
@@ -212,39 +212,39 @@ export default function ButtonPage() {
         {/* Danger w/o icon End*/}
 
         {/* Danger w/ icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
             <Button
-              variant="danger"
-              size="lg"
+              variant='danger'
+              size='lg'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3.5"
-              rightIconClassName="w-3.5"
+              leftIconClassName='w-3.5'
+              rightIconClassName='w-3.5'
             >
               <h1>Button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="danger"
-              size="base"
+              variant='danger'
+              size='base'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3"
-              rightIconClassName="w-3"
+              leftIconClassName='w-3'
+              rightIconClassName='w-3'
             >
               <h1>Button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="danger"
-              size="sm"
+              variant='danger'
+              size='sm'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-2.5"
-              rightIconClassName="w-2.5"
+              leftIconClassName='w-2.5'
+              rightIconClassName='w-2.5'
             >
               <h1>Button</h1>
             </Button>
@@ -253,48 +253,48 @@ export default function ButtonPage() {
         {/* Danger w/ icon End*/}
 
         {/* Danger Icon */}
-        <div className="flex flex-col gap-2 items-center">
+        <div className='flex flex-col gap-2 items-center'>
           <div>
             <IconButton
-              variant="danger"
-              size="lg"
+              variant='danger'
+              size='lg'
               icon={BsHeartFill}
-              iconClassName="w-3.5"
+              iconClassName='w-3.5'
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="danger"
-              size="base"
+              variant='danger'
+              size='base'
               icon={BsHeartFill}
-              iconClassName="w-3"
+              iconClassName='w-3'
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="danger"
-              size="sm"
+              variant='danger'
+              size='sm'
               icon={BsHeartFill}
-              iconClassName="w-2.5"
+              iconClassName='w-2.5'
             ></IconButton>
           </div>
         </div>
         {/* Danger Icon End*/}
 
         {/* Warning w/o icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
-            <Button variant="warning" size="lg">
+            <Button variant='warning' size='lg'>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="warning" size="base">
+            <Button variant='warning' size='base'>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="warning" size="sm">
+            <Button variant='warning' size='sm'>
               <h1>Button</h1>
             </Button>
           </div>
@@ -302,39 +302,39 @@ export default function ButtonPage() {
         {/* Warning w/o icon End*/}
 
         {/* Warning w/ icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
             <Button
-              variant="warning"
-              size="lg"
+              variant='warning'
+              size='lg'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3.5"
-              rightIconClassName="w-3.5"
+              leftIconClassName='w-3.5'
+              rightIconClassName='w-3.5'
             >
               <h1>Button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="warning"
-              size="base"
+              variant='warning'
+              size='base'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3"
-              rightIconClassName="w-3"
+              leftIconClassName='w-3'
+              rightIconClassName='w-3'
             >
               <h1>Button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="warning"
-              size="sm"
+              variant='warning'
+              size='sm'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-2.5"
-              rightIconClassName="w-2.5"
+              leftIconClassName='w-2.5'
+              rightIconClassName='w-2.5'
             >
               <h1>Button</h1>
             </Button>
@@ -343,50 +343,50 @@ export default function ButtonPage() {
         {/* Warning w/ icon End*/}
 
         {/* Warning Icon */}
-        <div className="flex flex-col gap-2 items-center">
+        <div className='flex flex-col gap-2 items-center'>
           <div>
             <IconButton
-              variant="warning"
-              size="lg"
+              variant='warning'
+              size='lg'
               icon={BsHeartFill}
-              iconClassName="w-3.5"
+              iconClassName='w-3.5'
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="warning"
-              size="base"
+              variant='warning'
+              size='base'
               icon={BsHeartFill}
-              iconClassName="w-3"
+              iconClassName='w-3'
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="warning"
-              size="sm"
+              variant='warning'
+              size='sm'
               icon={BsHeartFill}
-              iconClassName="w-2.5"
+              iconClassName='w-2.5'
             ></IconButton>
           </div>
         </div>
         {/* Warning Icon End*/}
       </div>
 
-      <div className="flex flex-row gap-2 mt-4">
+      <div className='flex flex-row gap-2 mt-4'>
         {/* Primary w/o icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
-            <Button variant="primary" size="lg">
+            <Button variant='primary' size='lg'>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="primary" size="base">
+            <Button variant='primary' size='base'>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="primary" size="sm">
+            <Button variant='primary' size='sm'>
               <h1>Button</h1>
             </Button>
           </div>
@@ -394,39 +394,39 @@ export default function ButtonPage() {
         {/* Primary w/o icon End*/}
 
         {/* Primary w/ icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
             <Button
-              variant="primary"
-              size="lg"
+              variant='primary'
+              size='lg'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3.5"
-              rightIconClassName="w-3.5"
+              leftIconClassName='w-3.5'
+              rightIconClassName='w-3.5'
             >
               <h1>Button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="primary"
-              size="base"
+              variant='primary'
+              size='base'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3"
-              rightIconClassName="w-3"
+              leftIconClassName='w-3'
+              rightIconClassName='w-3'
             >
               <h1>Button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="primary"
-              size="sm"
+              variant='primary'
+              size='sm'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-2.5"
-              rightIconClassName="w-2.5"
+              leftIconClassName='w-2.5'
+              rightIconClassName='w-2.5'
             >
               <h1>Button</h1>
             </Button>
@@ -435,48 +435,48 @@ export default function ButtonPage() {
         {/* Primary w/ icon End*/}
 
         {/* Primary Icon */}
-        <div className="flex flex-col gap-2 items-center">
+        <div className='flex flex-col gap-2 items-center'>
           <div>
             <IconButton
-              variant="primary"
-              size="lg"
+              variant='primary'
+              size='lg'
               icon={BsHeartFill}
-              iconClassName="w-3.5"
+              iconClassName='w-3.5'
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="primary"
-              size="base"
+              variant='primary'
+              size='base'
               icon={BsHeartFill}
-              iconClassName="w-3"
+              iconClassName='w-3'
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="primary"
-              size="sm"
+              variant='primary'
+              size='sm'
               icon={BsHeartFill}
-              iconClassName="w-2.5"
+              iconClassName='w-2.5'
             ></IconButton>
           </div>
         </div>
         {/* Primary Icon End*/}
 
         {/* Success w/o icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
-            <Button variant="success" size="lg">
+            <Button variant='success' size='lg'>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="success" size="base">
+            <Button variant='success' size='base'>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="success" size="sm">
+            <Button variant='success' size='sm'>
               <h1>Button</h1>
             </Button>
           </div>
@@ -484,39 +484,39 @@ export default function ButtonPage() {
         {/* Success w/o icon End*/}
 
         {/* Success w/ icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
             <Button
-              variant="success"
-              size="lg"
+              variant='success'
+              size='lg'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3.5"
-              rightIconClassName="w-3.5"
+              leftIconClassName='w-3.5'
+              rightIconClassName='w-3.5'
             >
               <h1>Button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="success"
-              size="base"
+              variant='success'
+              size='base'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3"
-              rightIconClassName="w-3"
+              leftIconClassName='w-3'
+              rightIconClassName='w-3'
             >
               <h1>Button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="success"
-              size="sm"
+              variant='success'
+              size='sm'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-2.5"
-              rightIconClassName="w-2.5"
+              leftIconClassName='w-2.5'
+              rightIconClassName='w-2.5'
             >
               <h1>Button</h1>
             </Button>
@@ -525,48 +525,48 @@ export default function ButtonPage() {
         {/* Success w/ icon End*/}
 
         {/* Success Icon */}
-        <div className="flex flex-col gap-2 items-center">
+        <div className='flex flex-col gap-2 items-center'>
           <div>
             <IconButton
-              variant="success"
-              size="lg"
+              variant='success'
+              size='lg'
               icon={BsHeartFill}
-              iconClassName="w-3.5"
+              iconClassName='w-3.5'
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="success"
-              size="base"
+              variant='success'
+              size='base'
               icon={BsHeartFill}
-              iconClassName="w-3"
+              iconClassName='w-3'
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="success"
-              size="sm"
+              variant='success'
+              size='sm'
               icon={BsHeartFill}
-              iconClassName="w-2.5"
+              iconClassName='w-2.5'
             ></IconButton>
           </div>
         </div>
         {/* Success Icon End*/}
 
         {/* Danger w/o icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
-            <Button variant="danger" size="lg">
+            <Button variant='danger' size='lg'>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="danger" size="base">
+            <Button variant='danger' size='base'>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="danger" size="sm">
+            <Button variant='danger' size='sm'>
               <h1>Button</h1>
             </Button>
           </div>
@@ -574,39 +574,39 @@ export default function ButtonPage() {
         {/* Danger w/o icon End*/}
 
         {/* Danger w/ icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
             <Button
-              variant="danger"
-              size="lg"
+              variant='danger'
+              size='lg'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3.5"
-              rightIconClassName="w-3.5"
+              leftIconClassName='w-3.5'
+              rightIconClassName='w-3.5'
             >
               <h1>Button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="danger"
-              size="base"
+              variant='danger'
+              size='base'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3"
-              rightIconClassName="w-3"
+              leftIconClassName='w-3'
+              rightIconClassName='w-3'
             >
               <h1>Button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="danger"
-              size="sm"
+              variant='danger'
+              size='sm'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-2.5"
-              rightIconClassName="w-2.5"
+              leftIconClassName='w-2.5'
+              rightIconClassName='w-2.5'
             >
               <h1>Button</h1>
             </Button>
@@ -615,48 +615,48 @@ export default function ButtonPage() {
         {/* Danger w/ icon End*/}
 
         {/* Danger Icon */}
-        <div className="flex flex-col gap-2 items-center">
+        <div className='flex flex-col gap-2 items-center'>
           <div>
             <IconButton
-              variant="danger"
-              size="lg"
+              variant='danger'
+              size='lg'
               icon={BsHeartFill}
-              iconClassName="w-3.5"
+              iconClassName='w-3.5'
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="danger"
-              size="base"
+              variant='danger'
+              size='base'
               icon={BsHeartFill}
-              iconClassName="w-3"
+              iconClassName='w-3'
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="danger"
-              size="sm"
+              variant='danger'
+              size='sm'
               icon={BsHeartFill}
-              iconClassName="w-2.5"
+              iconClassName='w-2.5'
             ></IconButton>
           </div>
         </div>
         {/* Danger Icon End*/}
 
         {/* Warning w/o icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
-            <Button variant="warning" size="lg">
+            <Button variant='warning' size='lg'>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="warning" size="base">
+            <Button variant='warning' size='base'>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="warning" size="sm">
+            <Button variant='warning' size='sm'>
               <h1>Button</h1>
             </Button>
           </div>
@@ -664,39 +664,39 @@ export default function ButtonPage() {
         {/* Warning w/o icon End*/}
 
         {/* Warning w/ icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
             <Button
-              variant="warning"
-              size="lg"
+              variant='warning'
+              size='lg'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3.5"
-              rightIconClassName="w-3.5"
+              leftIconClassName='w-3.5'
+              rightIconClassName='w-3.5'
             >
               <h1>Button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="warning"
-              size="base"
+              variant='warning'
+              size='base'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3"
-              rightIconClassName="w-3"
+              leftIconClassName='w-3'
+              rightIconClassName='w-3'
             >
               <h1>Button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="warning"
-              size="sm"
+              variant='warning'
+              size='sm'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-2.5"
-              rightIconClassName="w-2.5"
+              leftIconClassName='w-2.5'
+              rightIconClassName='w-2.5'
             >
               <h1>Button</h1>
             </Button>
@@ -705,52 +705,52 @@ export default function ButtonPage() {
         {/* Warning w/ icon End*/}
 
         {/* Warning Icon */}
-        <div className="flex flex-col gap-2 items-center">
+        <div className='flex flex-col gap-2 items-center'>
           <div>
             <IconButton
-              variant="warning"
-              size="lg"
+              variant='warning'
+              size='lg'
               icon={BsHeartFill}
-              iconClassName="w-3.5"
+              iconClassName='w-3.5'
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="warning"
-              size="base"
+              variant='warning'
+              size='base'
               icon={BsHeartFill}
-              iconClassName="w-3"
+              iconClassName='w-3'
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="warning"
-              size="sm"
+              variant='warning'
+              size='sm'
               icon={BsHeartFill}
-              iconClassName="w-2.5"
+              iconClassName='w-2.5'
             ></IconButton>
           </div>
         </div>
         {/* Warning Icon End*/}
       </div>
 
-      <h1 className="mt-10">Outline/Secondary</h1>
+      <h1 className='mt-10'>Outline/Secondary</h1>
 
-      <div className="flex flex-row gap-2 mt-4 mb-4">
+      <div className='flex flex-row gap-2 mt-4 mb-4'>
         {/* Primary w/o icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
-            <Button variant="outline-primary" size="lg">
+            <Button variant='outline-primary' size='lg'>
               <h1>outline button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="outline-primary" size="base">
+            <Button variant='outline-primary' size='base'>
               <h1>outline button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="outline-primary" size="sm">
+            <Button variant='outline-primary' size='sm'>
               <h1>outline button</h1>
             </Button>
           </div>
@@ -758,36 +758,36 @@ export default function ButtonPage() {
         {/* Primary w/o icon End*/}
 
         {/* Primary w/ icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
             <Button
-              variant="outline-primary"
-              size="lg"
+              variant='outline-primary'
+              size='lg'
               leftIcon={BsPlusLg}
               rightIcon={BsArrowRightShort}
-              leftIconClassName="w-3.5 text-primary"
+              leftIconClassName='w-3.5 text-primary'
             >
               <h1>outline button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="outline-primary"
-              size="base"
+              variant='outline-primary'
+              size='base'
               leftIcon={BsPlusLg}
               rightIcon={BsArrowRightShort}
-              leftIconClassName="w-3 text-primary"
+              leftIconClassName='w-3 text-primary'
             >
               <h1>outline button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="outline-primary"
-              size="sm"
+              variant='outline-primary'
+              size='sm'
               leftIcon={BsPlusLg}
               rightIcon={BsArrowRightShort}
-              leftIconClassName="w-2.5 text-primary"
+              leftIconClassName='w-2.5 text-primary'
             >
               <h1>outline button</h1>
             </Button>
@@ -796,19 +796,19 @@ export default function ButtonPage() {
         {/* Primary w/ icon End*/}
 
         {/* Success w/o icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
-            <Button variant="outline-success" size="lg">
+            <Button variant='outline-success' size='lg'>
               <h1>outline button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="outline-success" size="base">
+            <Button variant='outline-success' size='base'>
               <h1>outline button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="outline-success" size="sm">
+            <Button variant='outline-success' size='sm'>
               <h1>outline button</h1>
             </Button>
           </div>
@@ -816,39 +816,39 @@ export default function ButtonPage() {
         {/* Success w/o icon End*/}
 
         {/* Success w/ icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
             <Button
-              variant="outline-success"
-              size="lg"
+              variant='outline-success'
+              size='lg'
               leftIcon={BsPlusLg}
               rightIcon={BsArrowRightShort}
-              leftIconClassName="w-3.5"
-              rightIconClassName="w-3.5"
+              leftIconClassName='w-3.5'
+              rightIconClassName='w-3.5'
             >
               <h1>outline button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="outline-success"
-              size="base"
+              variant='outline-success'
+              size='base'
               leftIcon={BsPlusLg}
               rightIcon={BsArrowRightShort}
-              leftIconClassName="w-3"
-              rightIconClassName="w-3"
+              leftIconClassName='w-3'
+              rightIconClassName='w-3'
             >
               <h1>outline button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="outline-success"
-              size="sm"
+              variant='outline-success'
+              size='sm'
               leftIcon={BsPlusLg}
               rightIcon={BsArrowRightShort}
-              leftIconClassName="w-2.5"
-              rightIconClassName="w-2.5"
+              leftIconClassName='w-2.5'
+              rightIconClassName='w-2.5'
             >
               <h1>outline button</h1>
             </Button>
@@ -857,19 +857,19 @@ export default function ButtonPage() {
         {/* Success w/ icon End*/}
 
         {/* Danger w/o icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
-            <Button variant="outline-danger" size="lg">
+            <Button variant='outline-danger' size='lg'>
               <h1>outline button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="outline-danger" size="base">
+            <Button variant='outline-danger' size='base'>
               <h1>outline button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="outline-danger" size="sm">
+            <Button variant='outline-danger' size='sm'>
               <h1>outline button</h1>
             </Button>
           </div>
@@ -877,39 +877,39 @@ export default function ButtonPage() {
         {/* Danger w/o icon End*/}
 
         {/* Danger w/ icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
             <Button
-              variant="outline-danger"
-              size="lg"
+              variant='outline-danger'
+              size='lg'
               leftIcon={BsPlusLg}
               rightIcon={BsArrowRightShort}
-              leftIconClassName="w-3.5"
-              rightIconClassName="w-3.5"
+              leftIconClassName='w-3.5'
+              rightIconClassName='w-3.5'
             >
               <h1>outline button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="outline-danger"
-              size="base"
+              variant='outline-danger'
+              size='base'
               leftIcon={BsPlusLg}
               rightIcon={BsArrowRightShort}
-              leftIconClassName="w-3"
-              rightIconClassName="w-3"
+              leftIconClassName='w-3'
+              rightIconClassName='w-3'
             >
               <h1>outline button</h1>
             </Button>
           </div>
           <div>
             <Button
-              variant="outline-danger"
-              size="sm"
+              variant='outline-danger'
+              size='sm'
               leftIcon={BsPlusLg}
               rightIcon={BsArrowRightShort}
-              leftIconClassName="w-2.5"
-              rightIconClassName="w-2.5"
+              leftIconClassName='w-2.5'
+              rightIconClassName='w-2.5'
             >
               <h1>outline button</h1>
             </Button>
@@ -918,23 +918,23 @@ export default function ButtonPage() {
         {/* Danger w/ icon End*/}
       </div>
 
-      <h1 className="mt-10">Others</h1>
+      <h1 className='mt-10'>Others</h1>
 
-      <div className="flex flex-row gap-2 mt-4 mb-4">
+      <div className='flex flex-row gap-2 mt-4 mb-4'>
         {/* Primary w/o icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
-            <Button variant="primary" size="lg" disabled>
+            <Button variant='primary' size='lg' disabled>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="primary" size="base" disabled>
+            <Button variant='primary' size='base' disabled>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="primary" size="sm" disabled>
+            <Button variant='primary' size='sm' disabled>
               <h1>Button</h1>
             </Button>
           </div>
@@ -942,15 +942,15 @@ export default function ButtonPage() {
         {/* Primary w/o icon End*/}
 
         {/* Primary w/ icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
             <Button
-              variant="primary"
-              size="lg"
+              variant='primary'
+              size='lg'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3.5"
-              rightIconClassName="w-3.5"
+              leftIconClassName='w-3.5'
+              rightIconClassName='w-3.5'
               disabled
             >
               <h1>Button</h1>
@@ -958,12 +958,12 @@ export default function ButtonPage() {
           </div>
           <div>
             <Button
-              variant="primary"
-              size="base"
+              variant='primary'
+              size='base'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3"
-              rightIconClassName="w-3"
+              leftIconClassName='w-3'
+              rightIconClassName='w-3'
               disabled
             >
               <h1>Button</h1>
@@ -971,12 +971,12 @@ export default function ButtonPage() {
           </div>
           <div>
             <Button
-              variant="primary"
-              size="sm"
+              variant='primary'
+              size='sm'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-2.5"
-              rightIconClassName="w-2.5"
+              leftIconClassName='w-2.5'
+              rightIconClassName='w-2.5'
               disabled
             >
               <h1>Button</h1>
@@ -986,31 +986,31 @@ export default function ButtonPage() {
         {/* Primary w/ icon End*/}
 
         {/* Primary Icon */}
-        <div className="flex flex-col gap-2 items-center">
+        <div className='flex flex-col gap-2 items-center'>
           <div>
             <IconButton
-              variant="primary"
-              size="lg"
+              variant='primary'
+              size='lg'
               icon={BsHeartFill}
-              iconClassName="w-3.5"
+              iconClassName='w-3.5'
               disabled
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="primary"
-              size="base"
+              variant='primary'
+              size='base'
               icon={BsHeartFill}
-              iconClassName="w-3"
+              iconClassName='w-3'
               disabled
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="primary"
-              size="sm"
+              variant='primary'
+              size='sm'
               icon={BsHeartFill}
-              iconClassName="w-2.5"
+              iconClassName='w-2.5'
               disabled
             ></IconButton>
           </div>
@@ -1018,19 +1018,19 @@ export default function ButtonPage() {
         {/* Primary Icon End*/}
 
         {/* Success w/o icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
-            <Button variant="success" size="lg" disabled>
+            <Button variant='success' size='lg' disabled>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="success" size="base" disabled>
+            <Button variant='success' size='base' disabled>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="success" size="sm" disabled>
+            <Button variant='success' size='sm' disabled>
               <h1>Button</h1>
             </Button>
           </div>
@@ -1038,15 +1038,15 @@ export default function ButtonPage() {
         {/* Success w/o icon End*/}
 
         {/* Success w/ icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
             <Button
-              variant="success"
-              size="lg"
+              variant='success'
+              size='lg'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3.5"
-              rightIconClassName="w-3.5"
+              leftIconClassName='w-3.5'
+              rightIconClassName='w-3.5'
               disabled
             >
               <h1>Button</h1>
@@ -1054,12 +1054,12 @@ export default function ButtonPage() {
           </div>
           <div>
             <Button
-              variant="success"
-              size="base"
+              variant='success'
+              size='base'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3"
-              rightIconClassName="w-3"
+              leftIconClassName='w-3'
+              rightIconClassName='w-3'
               disabled
             >
               <h1>Button</h1>
@@ -1067,12 +1067,12 @@ export default function ButtonPage() {
           </div>
           <div>
             <Button
-              variant="success"
-              size="sm"
+              variant='success'
+              size='sm'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-2.5"
-              rightIconClassName="w-2.5"
+              leftIconClassName='w-2.5'
+              rightIconClassName='w-2.5'
               disabled
             >
               <h1>Button</h1>
@@ -1082,31 +1082,31 @@ export default function ButtonPage() {
         {/* Success w/ icon End*/}
 
         {/* Success Icon */}
-        <div className="flex flex-col gap-2 items-center">
+        <div className='flex flex-col gap-2 items-center'>
           <div>
             <IconButton
-              variant="success"
-              size="lg"
+              variant='success'
+              size='lg'
               icon={BsHeartFill}
-              iconClassName="w-3.5"
+              iconClassName='w-3.5'
               disabled
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="success"
-              size="base"
+              variant='success'
+              size='base'
               icon={BsHeartFill}
-              iconClassName="w-3"
+              iconClassName='w-3'
               disabled
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="success"
-              size="sm"
+              variant='success'
+              size='sm'
               icon={BsHeartFill}
-              iconClassName="w-2.5"
+              iconClassName='w-2.5'
               disabled
             ></IconButton>
           </div>
@@ -1114,19 +1114,19 @@ export default function ButtonPage() {
         {/* Success Icon End*/}
 
         {/* Danger w/o icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
-            <Button variant="danger" size="lg" disabled>
+            <Button variant='danger' size='lg' disabled>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="danger" size="base" disabled>
+            <Button variant='danger' size='base' disabled>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="danger" size="sm" disabled>
+            <Button variant='danger' size='sm' disabled>
               <h1>Button</h1>
             </Button>
           </div>
@@ -1134,15 +1134,15 @@ export default function ButtonPage() {
         {/* Danger w/o icon End*/}
 
         {/* Danger w/ icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
             <Button
-              variant="danger"
-              size="lg"
+              variant='danger'
+              size='lg'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3.5"
-              rightIconClassName="w-3.5"
+              leftIconClassName='w-3.5'
+              rightIconClassName='w-3.5'
               disabled
             >
               <h1>Button</h1>
@@ -1150,12 +1150,12 @@ export default function ButtonPage() {
           </div>
           <div>
             <Button
-              variant="danger"
-              size="base"
+              variant='danger'
+              size='base'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3"
-              rightIconClassName="w-3"
+              leftIconClassName='w-3'
+              rightIconClassName='w-3'
               disabled
             >
               <h1>Button</h1>
@@ -1163,12 +1163,12 @@ export default function ButtonPage() {
           </div>
           <div>
             <Button
-              variant="danger"
-              size="sm"
+              variant='danger'
+              size='sm'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-2.5"
-              rightIconClassName="w-2.5"
+              leftIconClassName='w-2.5'
+              rightIconClassName='w-2.5'
               disabled
             >
               <h1>Button</h1>
@@ -1178,31 +1178,31 @@ export default function ButtonPage() {
         {/* Danger w/ icon End*/}
 
         {/* Danger Icon */}
-        <div className="flex flex-col gap-2 items-center">
+        <div className='flex flex-col gap-2 items-center'>
           <div>
             <IconButton
-              variant="danger"
-              size="lg"
+              variant='danger'
+              size='lg'
               icon={BsHeartFill}
-              iconClassName="w-3.5"
+              iconClassName='w-3.5'
               disabled
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="danger"
-              size="base"
+              variant='danger'
+              size='base'
               icon={BsHeartFill}
-              iconClassName="w-3"
+              iconClassName='w-3'
               disabled
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="danger"
-              size="sm"
+              variant='danger'
+              size='sm'
               icon={BsHeartFill}
-              iconClassName="w-2.5"
+              iconClassName='w-2.5'
               disabled
             ></IconButton>
           </div>
@@ -1210,19 +1210,19 @@ export default function ButtonPage() {
         {/* Danger Icon End*/}
 
         {/* Warning w/o icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
-            <Button variant="warning" size="lg" disabled>
+            <Button variant='warning' size='lg' disabled>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="warning" size="base" disabled>
+            <Button variant='warning' size='base' disabled>
               <h1>Button</h1>
             </Button>
           </div>
           <div>
-            <Button variant="warning" size="sm" disabled>
+            <Button variant='warning' size='sm' disabled>
               <h1>Button</h1>
             </Button>
           </div>
@@ -1230,15 +1230,15 @@ export default function ButtonPage() {
         {/* Warning w/o icon End*/}
 
         {/* Warning w/ icon */}
-        <div className="flex flex-col gap-2">
+        <div className='flex flex-col gap-2'>
           <div>
             <Button
-              variant="warning"
-              size="lg"
+              variant='warning'
+              size='lg'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3.5"
-              rightIconClassName="w-3.5"
+              leftIconClassName='w-3.5'
+              rightIconClassName='w-3.5'
               disabled
             >
               <h1>Button</h1>
@@ -1246,12 +1246,12 @@ export default function ButtonPage() {
           </div>
           <div>
             <Button
-              variant="warning"
-              size="base"
+              variant='warning'
+              size='base'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-3"
-              rightIconClassName="w-3"
+              leftIconClassName='w-3'
+              rightIconClassName='w-3'
               disabled
             >
               <h1>Button</h1>
@@ -1259,12 +1259,12 @@ export default function ButtonPage() {
           </div>
           <div>
             <Button
-              variant="warning"
-              size="sm"
+              variant='warning'
+              size='sm'
               leftIcon={BsHeartFill}
               rightIcon={BsHeartFill}
-              leftIconClassName="w-2.5"
-              rightIconClassName="w-2.5"
+              leftIconClassName='w-2.5'
+              rightIconClassName='w-2.5'
               disabled
             >
               <h1>Button</h1>
@@ -1274,31 +1274,31 @@ export default function ButtonPage() {
         {/* Warning w/ icon End*/}
 
         {/* Warning Icon */}
-        <div className="flex flex-col gap-2 items-center">
+        <div className='flex flex-col gap-2 items-center'>
           <div>
             <IconButton
-              variant="warning"
-              size="lg"
+              variant='warning'
+              size='lg'
               icon={BsHeartFill}
-              iconClassName="w-3.5"
+              iconClassName='w-3.5'
               disabled
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="warning"
-              size="base"
+              variant='warning'
+              size='base'
               icon={BsHeartFill}
-              iconClassName="w-3"
+              iconClassName='w-3'
               disabled
             ></IconButton>
           </div>
           <div>
             <IconButton
-              variant="warning"
-              size="sm"
+              variant='warning'
+              size='sm'
               icon={BsHeartFill}
-              iconClassName="w-2.5"
+              iconClassName='w-2.5'
               disabled
             ></IconButton>
           </div>

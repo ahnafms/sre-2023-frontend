@@ -51,7 +51,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       textClassName,
       ...rest
     },
-    ref
+    ref,
   ) => {
     const disabled = isLoading || buttonDisabled;
 
@@ -168,12 +168,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               'disabled:bg-black-50 disabled:brightness-90 disabled:hover:bg-transparent',
             ],
           ],
-           //*======== Variants ===========
+          //*======== Variants ===========
           'disabled:cursor-not-allowed',
           // 'hover:bg-typo-label',
           isLoading &&
             'relative text-transparent transition-none hover:text-transparent disabled:cursor-wait',
-          className
+          className,
         )}
         {...rest}
       >
@@ -184,7 +184,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               [
                 ['primary', 'danger'].includes(variant) && 'text-white-500',
                 ['warning', 'label'].includes(variant) && 'text-gray-500',
-              ]
+              ],
             )}
           >
             <ImSpinner2 className='animate-spin' />
@@ -202,7 +202,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             <LeftIcon
               className={clsxm(
                 'text-sm md:text-2xl font-semibold',
-                leftIconClassName
+                leftIconClassName,
               )}
             />
           </div>
@@ -220,14 +220,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             <RightIcon
               className={clsxm(
                 'text-sm md:text-2xl font-semibold',
-                rightIconClassName
+                rightIconClassName,
               )}
             />
           </div>
         )}
       </button>
     );
-  }
+  },
 );
 
 export default Button;

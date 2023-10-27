@@ -38,13 +38,13 @@ export default function Filter<T extends RowData>({
       <input
         type='text'
         value={filter ?? ''}
-        onChange={(e) => {
+        onChange={e => {
           setFilter(String(e.target.value));
         }}
         className={clsxm(
           'flex w-full rounded-lg shadow-sm',
           'min-h-[2.25rem] py-0 pl-9 md:min-h-[2.5rem]',
-          'border-gray-300 focus:border-cblue focus:ring-cblue'
+          'border-gray-300 focus:border-cblue focus:ring-cblue',
         )}
         placeholder='Search...'
       />

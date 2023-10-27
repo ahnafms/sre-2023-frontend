@@ -21,15 +21,15 @@ export default function THead<T extends RowData>({
       className={clsxm('border-b border-gray-200 bg-cwhite', className)}
       {...rest}
     >
-      {table.getHeaderGroups().map((headerGroup) => (
+      {table.getHeaderGroups().map(headerGroup => (
         <tr key={headerGroup.id}>
-          {headerGroup.headers.map((header) => (
+          {headerGroup.headers.map(header => (
             <th
               key={header.id}
               scope='col'
               className={clsxm(
                 'group py-3 pr-3 text-left text-sm font-semibold sm:text-base',
-                !omitSort && header.column.getCanSort() ? 'pl-4' : 'pl-[30px]'
+                !omitSort && header.column.getCanSort() ? 'pl-4' : 'pl-[30px]',
               )}
             >
               {header.isPlaceholder ? null : (
@@ -38,7 +38,7 @@ export default function THead<T extends RowData>({
                     'relative flex items-center gap-2 py-1',
                     !omitSort && header.column.getCanSort()
                       ? 'cursor-pointer select-none'
-                      : ''
+                      : '',
                   )}
                   onClick={
                     omitSort
@@ -61,7 +61,7 @@ export default function THead<T extends RowData>({
                   <p>
                     {flexRender(
                       header.column.columnDef.header,
-                      header.getContext()
+                      header.getContext(),
                     )}
                   </p>
                 </div>

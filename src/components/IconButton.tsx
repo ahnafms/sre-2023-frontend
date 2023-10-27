@@ -39,7 +39,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       size = 'base',
       ...rest
     },
-    ref
+    ref,
   ) => {
     return (
       <button
@@ -145,14 +145,14 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
           ],
           //*======== Variant ===========
           'disabled:cursor-not-allowed',
-          className
+          className,
         )}
         {...rest}
       >
         {Icon && <Icon className={clsxm('text-white-500', iconClassName)} />}
       </button>
     );
-  }
+  },
 );
 
 export default IconButton;

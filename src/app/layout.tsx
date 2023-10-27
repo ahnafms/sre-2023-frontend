@@ -1,9 +1,11 @@
 import './globals.css';
+import 'react-toastify/ReactToastify.css';
 
 import type { Metadata } from 'next';
 import { Anton, Epilogue } from 'next/font/google';
 
 import clsxm from '@/lib/clsxm';
+import ToastProvider from '@/providers/ToastProvider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -29,9 +31,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body className={clsxm(epilogue.variable, anton.variable)}>
-        {children}
+        <ToastProvider>{children}</ToastProvider>
       </body>
     </html>
   );
