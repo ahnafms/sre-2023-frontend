@@ -9,6 +9,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import * as React from 'react';
+
 import Filter from '@/components/table/Filter';
 import {
   PaginationControl,
@@ -16,7 +17,6 @@ import {
 } from '@/components/table/Pagination';
 import TBody from '@/components/table/TBody';
 import THead from '@/components/table/THead';
-
 import clsxm from '@/lib/clsxm';
 
 type TableProps<T extends object> = {
@@ -56,14 +56,14 @@ export default function Table<T extends object>({
 
   return (
     <div className={clsxm('flex flex-col', className)} {...rest}>
-      <div className="flex flex-col gap-y-3 sm:flex-row sm:justify-between">
+      <div className='flex flex-col gap-y-3 sm:flex-row sm:justify-between'>
         <div>{withFilter && <Filter table={table} />}</div>
         {withPagination && <PaginationCount table={table} />}
       </div>
-      <div className="-my-2 mt-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-          <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-            <table className="min-w-full divide-y divide-gray-300">
+      <div className='-my-2 mt-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
+        <div className='inline-block min-w-full py-2 align-middle md:px-6 lg:px-8'>
+          <div className='overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg'>
+            <table className='min-w-full divide-y divide-gray-300'>
               <THead table={table} omitSort={omitSort} />
               <TBody table={table} />
             </table>

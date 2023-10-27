@@ -1,7 +1,8 @@
 'use client';
 
-import Table from '@/components/table/Table';
 import { ColumnDef } from '@tanstack/react-table';
+
+import Table from '@/components/table/Table';
 
 type Ttable = {
   id: string;
@@ -98,10 +99,10 @@ export default function TableTest() {
   ];
 
   return (
-    <div className="w-full overflow-hidden items-center justify-center flex h-full min-h-screen">
-      <div className=" bg-white w-1/2">
+    <div className='w-full overflow-hidden items-center justify-center flex h-full min-h-screen'>
+      <div className=' bg-white w-1/2'>
         <Table
-          className="text-black"
+          className='text-black'
           data={data}
           columns={columns}
           withFilter
