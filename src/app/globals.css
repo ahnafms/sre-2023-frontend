@@ -26,6 +26,10 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-li {
+ul > li {
   list-style: disc;
+}
+
+ol > li {
+  list-style: decimal;
 }
