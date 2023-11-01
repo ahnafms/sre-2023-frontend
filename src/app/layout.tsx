@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 import { Anton, Epilogue } from 'next/font/google';
 
 import clsxm from '@/lib/clsxm';
-import ToastProvider from '@/providers/ToastProvider';
+import Providers from '@/providers';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={clsxm(epilogue.variable, anton.variable)}>
-        <ToastProvider>{children}</ToastProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
