@@ -19,6 +19,7 @@ import {
 import TBody from '@/components/table/TBody';
 import THead from '@/components/table/THead';
 import clsxm from '@/lib/clsxm';
+
 import MultiFilter from './MultiFilter';
 
 type TableProps<T extends object> = {
@@ -66,16 +67,11 @@ export default function Table<T extends object>({
         {filter.length &&
           filter.map((col, idx) => {
             const column = table.getColumn(col);
-            const lowerCase = col.toLowerCase()
-            const title = lowerCase.charAt(0).toUpperCase() + lowerCase.slice(1);
+            const lowerCase = col.toLowerCase();
+            const title =
+              lowerCase.charAt(0).toUpperCase() + lowerCase.slice(1);
             if (col) {
-              return (
-                <MultiFilter
-                  key={idx}
-                  column={column}
-                  title={title}
-                />
-              );
+              return <MultiFilter key={idx} column={column} title={title} />;
             } else null;
           })}
         {withPagination && <PaginationCount table={table} />}
