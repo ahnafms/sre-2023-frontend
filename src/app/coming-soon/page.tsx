@@ -1,17 +1,18 @@
-import ClipArt from '~/images/coming-soon/clip-art.png';
+import Image from 'next/image';
+import Link from 'next/link';
+import { AiFillHome } from 'react-icons/ai';
+
+import Button from '@/components/Button';
+import Cell from '@/components/Cell';
+import Grid from '@/components/Grid';
+import Typography from '@/components/Typography';
+import clsxm from '@/lib/clsxm';
 import BgDesktop from '~/images/coming-soon/bg-desktop.png';
 import BgMobile from '~/images/coming-soon/bg-mobile.png';
+import ClipArt from '~/images/coming-soon/clip-art.png';
 import Overlay from '~/images/coming-soon/overlay.png';
 import ThunderOrnamentLeft from '~/images/coming-soon/thunder-ornament-left.png';
 import ThunderOrnamentRight from '~/images/coming-soon/thunder-ornament-right.png';
-import Image from 'next/image';
-import Button from '@/components/Button';
-import Typography from '@/components/Typography';
-import Grid from '@/components/Grid';
-import Cell from '@/components/Cell';
-import clsxm from '@/lib/clsxm';
-import { AiFillHome } from 'react-icons/ai';
-import Link from 'next/link';
 
 export default function ComingSoon() {
   return (
