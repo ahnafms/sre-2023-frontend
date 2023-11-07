@@ -8,7 +8,8 @@ import api from '@/lib/api';
 import { getToken } from '@/lib/cookies';
 import useAuthStore from '@/stores/useAuthStore';
 import { ApiResponse } from '@/types/api';
-import { Permission, User } from '@/types/user';
+import { PermissionList } from '@/types/entities/permission-list';
+import { User } from '@/types/entities/user';
 
 import Loading from '../Loading';
 
@@ -23,7 +24,7 @@ type WithAuthProps = {
 
 export default function withAuth<T>(
   Component: React.ComponentType<T>,
-  permissions: Permission[],
+  permissions: PermissionList,
 ) {
   function ComponentWithAuth(props: Omit<T, keyof WithAuthProps>) {
     const router = useRouter();

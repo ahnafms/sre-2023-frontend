@@ -1,4 +1,4 @@
-'use client';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { Slide, ToastContainer } from 'react-toastify';
 

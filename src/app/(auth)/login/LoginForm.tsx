@@ -15,17 +15,8 @@ import api from '@/lib/api';
 import { setToken } from '@/lib/cookies';
 import useAuthStore from '@/stores/useAuthStore';
 import { ApiResponse } from '@/types/api';
-import { User } from '@/types/user';
-
-export type LoginRequest = {
-  email: string;
-  password: string;
-};
-
-export type LoginResponse = ApiResponse<{
-  token: string;
-  role: string;
-}>;
+import { LoginRequest, LoginResponse } from '@/types/entities/login';
+import { User } from '@/types/entities/user';
 
 export default function LoginForm() {
   const router = useRouter();

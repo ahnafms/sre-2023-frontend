@@ -2,9 +2,9 @@ const plugin = require('tailwindcss/plugin');
 
 const config = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/layouts/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   safelist: [
     {
@@ -84,6 +84,7 @@ const config = {
           100: '#11221F',
         },
         typo: {
+          primary: '#092540',
           white: '#FCFCFC',
           surface: '#F1F2F6',
           outline: '#E4E7EB',

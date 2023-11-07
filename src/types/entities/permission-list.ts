@@ -18,16 +18,4 @@ enum PermissionEnum {
   'admin_sponsor.update',
 }
 
-export type Permission = keyof typeof PermissionEnum;
-
-export type User = {
-  id: string;
-  name: string;
-  token?: string;
-  telp_number: string;
-  email: string;
-  role_id: number;
-  role: string;
-  is_verified: boolean;
-  permission: Permission[];
-};
+export type PermissionList = Array<keyof typeof PermissionEnum>;

@@ -2,7 +2,7 @@ import { produce } from 'immer';
 import { create } from 'zustand';
 
 import { removeToken, setToken } from '@/lib/cookies';
-import { User } from '@/types/user';
+import { User } from '@/types/entities/user';
 
 export type useAuthStoreType = {
   user: User | null;

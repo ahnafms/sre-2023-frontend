@@ -1,5 +1,4 @@
-import './globals.css';
-import 'react-toastify/ReactToastify.css';
+import '../styles/globals.css';
 
 import type { Metadata } from 'next';
 import { Anton, Epilogue } from 'next/font/google';

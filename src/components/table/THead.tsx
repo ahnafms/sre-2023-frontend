@@ -5,6 +5,8 @@ import { VscTriangleDown } from 'react-icons/vsc';
 
 import clsxm from '@/lib/clsxm';
 
+import Typography from '../Typography';
+
 type THeadProps<T extends RowData> = {
   omitSort: boolean;
   table: Table<T>;
@@ -18,7 +20,10 @@ export default function THead<T extends RowData>({
 }: THeadProps<T>) {
   return (
     <thead
-      className={clsxm('border-b border-gray-200 bg-cwhite', className)}
+      className={clsxm(
+        'border-b text-typo-white border-gray-200 bg-secondary-80',
+        className,
+      )}
       {...rest}
     >
       {table.getHeaderGroups().map(headerGroup => (
@@ -58,12 +63,12 @@ export default function THead<T extends RowData>({
                       desc: <VscTriangleDown className='fill-typo w-2' />,
                     }[header.column.getIsSorted() as string] ?? null
                   )}
-                  <p>
+                  <Typography variant='c2' color='white'>
                     {flexRender(
                       header.column.columnDef.header,
                       header.getContext(),
                     )}
-                  </p>
+                  </Typography>
                 </div>
               )}
             </th>

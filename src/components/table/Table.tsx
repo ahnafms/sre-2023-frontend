@@ -25,6 +25,7 @@ import MultiFilter from './MultiFilter';
 type TableProps<T extends object> = {
   data: T[];
   columns: ColumnDef<T>[];
+  isLoading?: boolean;
   omitSort?: boolean;
   withFilter?: boolean;
   withPagination?: boolean;
@@ -35,6 +36,7 @@ export default function Table<T extends object>({
   className,
   columns,
   data,
+  isLoading,
   omitSort = false,
   withFilter = false,
   withPagination = false,
@@ -81,7 +83,7 @@ export default function Table<T extends object>({
           <div className='overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg'>
             <table className='min-w-full divide-y divide-gray-300'>
               <THead table={table} omitSort={omitSort} />
-              <TBody table={table} />
+              <TBody table={table} isLoading={isLoading} />
             </table>
           </div>
         </div>
