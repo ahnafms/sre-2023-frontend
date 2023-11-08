@@ -89,7 +89,7 @@ export default function Input({
             'w-full px-3 py-1.5 rounded-lg flex',
             [LeftIcon && 'pl-9', RightIcon && 'pr-9'],
             'outline-none ring-1 ring-inset ring-typo-inline',
-            '!text-c2 text-typo-input placeholder:text-typo-icon',
+            'text-c2 text-typo-input placeholder:text-typo-icon',
             'focus:ring-1 focus:ring-inset focus:ring-success-40',
             readOnly && 'cursor-default',
             error && [
