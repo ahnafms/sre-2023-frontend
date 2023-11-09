@@ -1,4 +1,5 @@
 import { RowData, Table } from '@tanstack/react-table';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 import Button from '@/components/Button';
 
@@ -37,31 +38,47 @@ export function PaginationCount<T extends RowData>({
 export function PaginationControl<T extends RowData>({
   table,
 }: PaginationProps<T>) {
+  const pageIndex = table.getState().pagination.pageIndex;
+  const pageCount = table.getPageCount();
+
+  const getButtonClass = (buttonIndex: number) => {
+    let baseClass =
+      'bg-white border-[1px] border-[#E4E7EB] drop-shadow active:border-[#E4E7EB] hover:bg-success-40 hover:text-white active:bg-success-40 disabled:brightness-100';
+    if (pageIndex === buttonIndex) {
+      baseClass += ' bg-success-40 text-white ';
+    }
+    if (buttonIndex >= pageCount) {
+      baseClass +=
+        ' disabled:bg-white disabled:hover:bg-white disabled:text-[#D1D5DC] disabled:hover:text-[#D1D5DC]';
+    }
+    return baseClass;
+  };
+
   return (
-    <div className='flex items-center justify-center gap-x-2 py-10'>
-      <Button
-        onClick={() => table.setPageIndex(0)}
-        disabled={!table.getCanPreviousPage()}
-      >
-        {'<<'}
-      </Button>
+    <div className='flex items-center justify-end gap-x-2 py-6 font-epliogue text-base font-medium text-[#687083]'>
       <Button
         onClick={() => table.previousPage()}
         disabled={!table.getCanPreviousPage()}
+        className='w-[40px] h-[40px] bg-white border-[1px] border-[#E4E7EB] active:border-[#E4E7EB] drop-shadow hover:bg-success-40 hover:text-white disabled:text-[#D1D5DC] active:bg-success-40 disabled:bg-white disabled:hover:bg-white disabled:brightness-100'
       >
-        {'<'}
+        <FaChevronLeft />
       </Button>
+      {Array.from({ length: pageCount }, (_, index) => (
+        <Button
+          key={index}
+          onClick={() => table.setPageIndex(index)}
+          disabled={index >= pageCount}
+          className={getButtonClass(index)}
+        >
+          {index + 1}
+        </Button>
+      ))}
       <Button
         onClick={() => table.nextPage()}
         disabled={!table.getCanNextPage()}
+        className='w-[40px] h-[40px] bg-white border-[1px] border-[#E4E7EB] drop-shadow active:border-[#E4E7EB] hover:bg-success-40 hover:text-white disabled:text-[#D1D5DC] active:bg-success-40 disabled:bg-white disabled:hover:bg-white disabled:brightness-100'
       >
-        {'>'}
-      </Button>
-      <Button
-        onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-        disabled={!table.getCanNextPage()}
-      >
-        {'>>'}
+        <FaChevronRight />
       </Button>
     </div>
   );
