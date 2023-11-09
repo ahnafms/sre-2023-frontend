@@ -235,7 +235,8 @@ export default function TableTest() {
           data={data}
           columns={columns}
           withFilter
-          withPagination
+          withPaginationControl
+          withPaginationCount
           filter={['departemen', 'angkatan']}
         />
       </div>

@@ -28,7 +28,8 @@ type TableProps<T extends object> = {
   isLoading?: boolean;
   omitSort?: boolean;
   withFilter?: boolean;
-  withPagination?: boolean;
+  withPaginationControl?: boolean;
+  withPaginationCount?: boolean;
   filter?: string[];
 } & React.ComponentPropsWithoutRef<'div'>;
 
@@ -39,7 +40,8 @@ export default function Table<T extends object>({
   isLoading,
   omitSort = false,
   withFilter = false,
-  withPagination = false,
+  withPaginationCount = false,
+  withPaginationControl = false,
   filter = [],
   ...rest
 }: TableProps<T>) {
@@ -76,7 +78,7 @@ export default function Table<T extends object>({
               return <MultiFilter key={idx} column={column} title={title} />;
             } else null;
           })}
-        {withPagination && <PaginationCount table={table} />}
+        {withPaginationCount && <PaginationCount table={table} />}
       </div>
       <div className='-my-2 mt-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
         <div className='inline-block min-w-full py-2 align-middle md:px-6 lg:px-8'>
@@ -88,7 +90,7 @@ export default function Table<T extends object>({
           </div>
         </div>
       </div>
-      {withPagination && <PaginationControl table={table} />}
+      {withPaginationControl && <PaginationControl table={table} />}
     </div>
   );
 }
