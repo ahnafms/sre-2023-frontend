@@ -4,12 +4,12 @@ import { Dialog, Menu, Transition } from '@headlessui/react';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
 import * as React from 'react';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { FiChevronDown, FiLogOut } from 'react-icons/fi';
 import { HiOutlineMenu } from 'react-icons/hi';
 
 import Button from '@/components/Button';
 import UnstyledLink from '@/components/links/UnstyledLink';
-import Logo from '@/components/Logo';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 import Navigation from '@/layouts/dashboard/Navigation';
@@ -26,23 +26,23 @@ export default function MobileNavigation() {
 
   return (
     <>
-      <div className='sticky h-20 top-0 bg-white z-10 flex flex-shrink-0 md:justify-end justify-between'>
+      <div className='sticky px-4 h-20 top-0 bg-white shadow-md z-10 flex flex-shrink-0 lg:justify-end justify-between'>
         <button
           type='button'
-          className='text-typo-icons focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-main md:hidden'
+          className='lg:hidden text-typo-icons  focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-main'
           onClick={() => setSidebarOpen(true)}
         >
           <HiOutlineMenu
-            className='h-6 w-6 text-typo-white'
+            className='h-6 w-6 text-secondary-60'
             aria-hidden='true'
           />
         </button>
-        <div className='flex items-center px-2'>
+        <div className='flex items-center'>
           {/* Profile dropdown */}
           <Menu as='div' className='relative'>
             <div>
-              <Menu.Button className='group max-w-[200px] rounded-md px-2 text-left text-sm font-medium text-gray-700 hover:bg-surface focus:outline-none focus:ring-2 focus:ring-primary-main focus:ring-offset-2 focus:ring-offset-gray-100'>
-                <div className='flex w-full items-center justify-between gap-2 py-4'>
+              <Menu.Button className='group max-w-[200px] rounded-md text-left text-sm font-medium text-gray-700 hover:bg-surface focus:outline-none focus:ring-2 focus:ring-primary-main focus:ring-offset-2 focus:ring-offset-gray-100'>
+                <div className='flex w-full items-center justify-between gap-2 p-2'>
                   <NextImage
                     src='/dashboard/avatar.png'
                     width={40}
@@ -132,7 +132,7 @@ export default function MobileNavigation() {
             leaveFrom='opacity-100'
             leaveTo='opacity-0'
           >
-            <Dialog.Overlay className='fixed inset-0 bg-background-liteCream bg-opacity-75' />
+            <Dialog.Overlay className='fixed inset-0 bg-opacity-75' />
           </Transition.Child>
           <Transition.Child
             as={React.Fragment}
@@ -143,7 +143,20 @@ export default function MobileNavigation() {
             leaveFrom='translate-x-0'
             leaveTo='-translate-x-full'
           >
-            <div className='relative flex w-full max-w-full flex-1 flex-col pt-5 pb-4'>
+            <div className='relative flex max-w-full flex-1 flex-col justify-start pb-4'>
+              <NextImage
+                src='/dashboard/sidebar.png'
+                className='absolute w-full h-full -z-10'
+                width='1000'
+                height='500'
+                alt='sidebar-background'
+              />
+              <div className='h-fit flex justify-center pt-7 md:pt-10'>
+                <Navigation
+                  onClick={() => setSidebarOpen(false)}
+                  className='h-fit'
+                />
+              </div>
               <Transition.Child
                 as={React.Fragment}
                 enter='ease-in-out duration-300'
@@ -153,22 +166,50 @@ export default function MobileNavigation() {
                 leaveFrom='opacity-100'
                 leaveTo='opacity-0'
               >
-                <div className='absolute top-0 right-0 mr-0 pt-8'>
-                  <Button
-                    variant='primary'
-                    className='hover:bg-transparent active:bg-transparent'
-                    onClick={() => setSidebarOpen(false)}
-                  >
-                    <FiChevronDown className='text-xl text-typo-white -rotate-90' />
-                    <span className='sr-only'>Close sidebar</span>
-                  </Button>
-                </div>
+                <Button
+                  className='hover:bg-transparent mt-10 bg-transparent w-fit self-center active:bg-transparent'
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <AiOutlineCloseCircle className='text-5xl text-typo-white' />
+                </Button>
               </Transition.Child>
-              <div className='flex flex-shrink-0 items-center justify-center gap-2 px-4'>
-                <Logo />
-              </div>
-              <div className='mt-5 h-0 flex-1 overflow-y-auto'>
-                <Navigation />
+              <div className='bottom-0 absolute left-1/2 w-full sm:w-64 -translate-x-1/2 -z-10'>
+                <NextImage
+                  src='/dashboard/industry.png'
+                  priority
+                  className='bottom-0 w-full md:w-64'
+                  width='1000'
+                  height='100'
+                  alt='sidebar-industry-ornament'
+                />
+                <NextImage
+                  src='/dashboard/star.png'
+                  className='absolute w-6 left-32 bottom-32 -z-10'
+                  width='400'
+                  height='100'
+                  alt='sidebar-industry-ornament'
+                />
+                <NextImage
+                  src='/dashboard/star.png'
+                  className='absolute w-7 right-6 bottom-28 -z-10'
+                  width='400'
+                  height='100'
+                  alt='sidebar-industry-ornament'
+                />
+                <NextImage
+                  src='/dashboard/star.png'
+                  className='absolute w-6 bottom-72 right-10 -z-10'
+                  width='400'
+                  height='100'
+                  alt='sidebar-industry-ornament'
+                />
+                <NextImage
+                  src='/dashboard/star.png'
+                  className='absolute w-10 left-6 bottom-48 -z-10'
+                  width='400'
+                  height='100'
+                  alt='sidebar-industry-ornament'
+                />
               </div>
             </div>
           </Transition.Child>

@@ -1,30 +1,55 @@
-import { FiFileText, FiUserPlus, FiUsers } from 'react-icons/fi';
+import { BsDatabase } from 'react-icons/bs';
+import {
+  HiOutlineHome,
+  HiOutlineShieldCheck,
+  HiOutlineUsers,
+} from 'react-icons/hi';
+import { TbPaperclip } from 'react-icons/tb';
 
 import { Navigation } from '@/types/navigate';
 
 export const navigations: Navigation[] = [
   {
-    name: 'Dashboard',
+    name: 'Home',
     href: '/dashboard',
     exactMatch: true,
-    icon: FiFileText,
+    icon: HiOutlineHome,
     permissions: ['users.index'],
   },
   {
-    name: 'Manajemen User',
+    name: 'Short Link',
+    href: '/dashboard/short-link',
+    exactMatch: true,
+    icon: TbPaperclip,
+    permissions: ['users.index'],
+  },
+  {
+    name: 'User',
+    href: '/dashboard/user',
+    exactMatch: true,
+    icon: HiOutlineUsers,
+    permissions: ['users.index'],
+  },
+  {
+    name: 'Role and Permission',
+    href: '/dashboard/role-permission',
+    exactMatch: true,
+    icon: HiOutlineShieldCheck,
+    permissions: ['users.index'],
+  },
+  {
+    name: 'CMS',
     href: '#',
-    icon: FiUsers,
+    icon: BsDatabase,
     children: [
       {
         name: 'User',
-        href: '/dashboard/admin/user',
-        icon: FiUsers,
+        href: '/dashboard/cms/sponsorship',
         permissions: ['users.index'],
       },
       {
         name: 'Roles',
-        href: '/dashboard/admin/role',
-        icon: FiUserPlus,
+        href: '/dashboard/cms/staff',
         permissions: [
           'admin_role.update',
           'admin_role.delete',

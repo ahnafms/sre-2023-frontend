@@ -18,9 +18,15 @@ type NavigationProps = React.ComponentPropsWithoutRef<'nav'>;
 
 export default function Navigation({ className, ...rest }: NavigationProps) {
   return (
-    <nav className={clsxm('px-2 md:px-5', className)} {...rest}>
-      <Logo className='w-20 self-center' />
-      <div className='space-y-4'>
+    <nav
+      className={clsxm(
+        'h-screen w-full flex flex-col gap-2 items-center md:px-5',
+        className,
+      )}
+      {...rest}
+    >
+      <Logo className='w-32 md:pt-3 py-8 self-center' />
+      <div className='space-y-5 w-[85%] sm:px-0 px-10 sm:w-[40%] md:w-64 lg:w-full'>
         {navigations.map(nav =>
           nav.children ? (
             <NestedNavigation navigation={nav} key={nav.name} />
@@ -90,18 +96,20 @@ function NestedNavigation({
             className={clsx(
               'hover:bg-white/10',
               'text-typo-white gap-2',
-              'group flex w-full items-center rounded-md px-2 py-4 text-sm font-medium',
+              'group flex w-full items-center rounded-md px-4 py-3 text-sm font-medium',
               'focus-visible:ring-offset-secondary-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500',
             )}
           >
-            <navChildren.icon
-              className={clsx(
-                'mr-1.5 flex-shrink-0',
-                'text-typo-white text-lg',
-                open && 'mt-[1px] self-start',
-              )}
-              aria-hidden='true'
-            />
+            {navChildren.icon && (
+              <navChildren.icon
+                className={clsx(
+                  'mr-1.5 flex-shrink-0',
+                  'text-typo-white text-lg',
+                  open && 'mt-[1px] self-start',
+                )}
+                aria-hidden='true'
+              />
+            )}
             <span className={clsx('text-left', !open && 'truncate')}>
               {navChildren.name}
             </span>
@@ -113,14 +121,17 @@ function NestedNavigation({
               )}
             />
           </Disclosure.Button>
-          <Disclosure.Panel className='ml-5 mt-0.5'>
-            {navChildren.children?.map(nav =>
-              nav.children ? (
-                <NestedNavigation key={nav.name} navigation={nav} />
-              ) : (
-                <NavigationLink key={nav.name} navigation={nav} />
-              ),
-            )}
+          <Disclosure.Panel className='pl-8 flex mt-0.5'>
+            <div className='border-l-2 border-white my-1' />
+            <div className='w-full'>
+              {navChildren.children?.map(nav =>
+                nav.children ? (
+                  <NestedNavigation key={nav.name} navigation={nav} />
+                ) : (
+                  <NavigationLink key={nav.name} navigation={nav} />
+                ),
+              )}
+            </div>
           </Disclosure.Panel>
         </div>
       )}
@@ -152,17 +163,27 @@ function NavigationLink({
     <UnstyledLink
       href={navigation.href}
       className={clsxm(
-        isActive ? ' bg-white/20 gap-1 bg-primary-50' : 'hover:bg-white/10',
+        isActive ? 'bg-primary-50' : 'hover:bg-white/10',
         'group my-0.5 flex items-center justify-start py-3 rounded-md px-4 text-sm font-medium',
         className,
       )}
       aria-current={isActive ? 'page' : undefined}
     >
-      <navigation.icon
-        className={clsx('mr-1.5 flex-shrink-0', 'text-black text-lg')}
-        aria-hidden='true'
-      />
-      <span className='truncate text-black font-light pl-2'>
+      {navigation.icon && (
+        <navigation.icon
+          className={clsx(
+            isActive ? 'text-typo-dark' : 'text-white ',
+            'mr-1.5 text-xl flex-shrink-0',
+          )}
+          aria-hidden='true'
+        />
+      )}
+      <span
+        className={clsxm(
+          isActive ? 'text-typo-dark' : 'text-white',
+          'truncate pl-1',
+        )}
+      >
         {navigation.name}
       </span>
     </UnstyledLink>

@@ -15,9 +15,11 @@ export default function DashboardLayout({
     <div className='min-h-full'>
       <DesktopNavigation />
 
-      <div className='bg-secondary-300 flex flex-col lg:pl-64'>
+      <div className='bg-secondary-300 h-screen flex flex-col lg:pl-72'>
         <MobileNavigation />
-        <main tabIndex={-1}>{children}</main>
+        <main className='h-full' tabIndex={-1}>
+          {children}
+        </main>
         <BaseDialog
           onClose={handleClose}
           onSubmit={handleSubmit}
