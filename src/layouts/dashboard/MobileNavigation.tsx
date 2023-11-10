@@ -172,7 +172,7 @@ export default function MobileNavigation() {
                 >
                   <AiOutlineCloseCircle className='text-5xl text-typo-white' />
                 </Button>
-              </Transition.Child>
+              </Transition.Child >
               <div className='bottom-0 absolute left-1/2 w-full sm:w-64 -translate-x-1/2 -z-10'>
                 <NextImage
                   src='/dashboard/industry.png'
@@ -211,10 +211,10 @@ export default function MobileNavigation() {
                   alt='sidebar-industry-ornament'
                 />
               </div>
-            </div>
-          </Transition.Child>
-        </Dialog>
-      </Transition.Root>
+            </div >
+          </Transition.Child >
+        </Dialog >
+      </Transition.Root >
     </>
   );
 }

@@ -15,7 +15,7 @@ export default function DashboardLayout({
     <div className='min-h-full'>
       <DesktopNavigation />
 
-      <div className='bg-secondary-300 h-screen flex flex-col lg:pl-72'>
+      <div className='bg-secondary-300 h-full flex flex-col lg:pl-72'>
         <MobileNavigation />
         <main className='h-full' tabIndex={-1}>
           {children}

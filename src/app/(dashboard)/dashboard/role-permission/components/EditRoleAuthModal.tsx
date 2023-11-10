@@ -6,21 +6,26 @@ import { HiPencilAlt } from 'react-icons/hi';
 
 import Button from '@/components/Button';
 import Input from '@/components/form/Input';
+import SelectInput from '@/components/form/SelectInput';
 import Modal from '@/components/modal/Modal';
 import Typography from '@/components/Typography';
 import api from '@/lib/api';
+import useDialogStore from '@/stores/useDialogStore';
 import { ApiResponse } from '@/types/api';
+import { Permission } from '@/types/entities/permission';
 
 type DefaultForm = {
   id: number;
-  permission_id: number;
-  role_id: number;
+  permission_id: string;
+  role_name: string;
+  role_id: string;
 };
 
 type EditRoleHasPermissionState = {
   id: number;
-  permission_id: number;
-  role_id: number;
+  permission_id: string;
+  role_name: string;
+  role_id: string;
 };
 
 export default function EditRoleAuthModal({
@@ -28,11 +33,13 @@ export default function EditRoleAuthModal({
   onSuccess,
   setOpen,
   open,
+  queryDataPermission,
 }: {
   defaultValues: DefaultForm;
   onSuccess: () => void;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   open: boolean;
+  queryDataPermission: Array<Permission>;
 }) {
   return (
     <>
@@ -58,6 +65,7 @@ export default function EditRoleAuthModal({
               roleHasPermission={defaultValues}
               setOpen={setOpen}
               onSuccess={onSuccess}
+              queryDataPermission={queryDataPermission}
             />
           )}
         </Modal.Body>
@@ -70,10 +78,12 @@ function EditRoleAuthForm({
   roleHasPermission,
   setOpen,
   onSuccess,
+  queryDataPermission,
 }: {
   roleHasPermission: EditRoleHasPermissionState;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   onSuccess: () => void;
+  queryDataPermission: Array<Permission>;
 }) {
   const { mutate: updateRoleHasPermission } = useMutation<
     unknown,
@@ -81,11 +91,20 @@ function EditRoleAuthForm({
     EditRoleHasPermissionState
   >({
     mutationFn: async data => {
-      await api.patch<ApiResponse<undefined>>(`role-has-permission`, data, {
-        toastify: true,
-      });
-      onSuccess();
+      const updatedData = {
+        ...data,
+        permission_id: parseInt(data.permission_id as string),
+      };
+
+      await api.patch<ApiResponse<undefined>>(
+        `role-has-permission`,
+        updatedData,
+        {
+          toastify: true,
+        },
+      );
     },
+    onSuccess: () => onSuccess(),
   });
 
   //#region  //*=========== Form ===========
@@ -100,28 +119,35 @@ function EditRoleAuthForm({
   } = methods;
   //#region  //*======== Form ===========
 
+  const { dialog } = useDialogStore();
+
   //#region  //*=========== On Submit ===========
   const onSubmit = (data: EditRoleHasPermissionState) => {
-    updateRoleHasPermission(data);
+    setOpen(false);
+    dialog({
+      title: 'Update Changes',
+      description: `This data will be updated. You’ll be able to edit this data and update new changes.`,
+      submitText: 'Confirm',
+      variant: 'success',
+    }).then(() => updateRoleHasPermission(data));
   };
 
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)} className='space-y-3'>
-        <Input
-          id='role_id'
-          label='Role'
-          placeholder='Masukan Role Baru'
-          validation={{ required: 'Role Wajib Diisi' }}
-          disabled={true}
-        />
-
-        <Input
+        <Input id='role_name' label='Role' disabled={true} />
+        <SelectInput
           id='permission_id'
           label='Permission Baru'
           placeholder='Masukan Permission Baru'
           validation={{ required: 'Permission Wajib Diisi' }}
-        />
+        >
+          {queryDataPermission.map(value => (
+            <option key={value.id} value={value.id}>
+              {value.routes}
+            </option>
+          ))}
+        </SelectInput>
 
         <div className='!mt-6 flex items-center gap-3'>
           <Button

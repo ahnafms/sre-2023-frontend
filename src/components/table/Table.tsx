@@ -69,7 +69,7 @@ export default function Table<T extends object>({
     <div className={clsxm('flex flex-col', className)} {...rest}>
       <div className='flex flex-col gap-y-3 sm:flex-row sm:justify-between'>
         <div>{withFilter && <Filter table={table} />}</div>
-        {filter.length &&
+        {filter.length > 0 &&
           filter.map((col, idx) => {
             const column = table.getColumn(col);
             const lowerCase = col.toLowerCase();

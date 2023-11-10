@@ -14,6 +14,7 @@ import api from '@/lib/api';
 import useDialogStore from '@/stores/useDialogStore';
 import { ApiError } from '@/types/api';
 import { ApiResponse } from '@/types/api';
+import { Permission } from '@/types/entities/permission';
 import { RoleAuthColumn } from '@/types/entities/role';
 import { RoleHasPermission } from '@/types/entities/role';
 
@@ -25,9 +26,17 @@ function RolePermissionPage() {
   const [editModalOpen, setEditModalOpen] = React.useState(false);
   const [selectedData, setSelectedData] = React.useState<{
     id: number;
-    permission_id: number;
-    role_id: number;
+    permission_id: string;
+    role_name: string;
+    role_id: string;
   }>();
+
+  // Query for Permissions
+  const { data: queryDataPermissions } = useQuery<
+    ApiResponse<Array<Permission>>
+  >({
+    queryKey: ['/permission'],
+  });
 
   const {
     data: queryData,
@@ -70,8 +79,9 @@ function RolePermissionPage() {
       cell: info => {
         const value = {
           id: info.row.original.id,
-          permission_id: info.row.original.permission_id,
+          role_name: info.row.original.role_name,
           role_id: info.row.original.role_id,
+          permission_id: info.row.original.permission_id,
         };
         return (
           <div className='flex gap-3'>
@@ -128,7 +138,7 @@ function RolePermissionPage() {
   }
 
   return (
-    <div className='w-full h-full bg-typo-surface px-10 py-10 flex flex-col gap-4 items-start'>
+    <section className='w-full h-full bg-typo-surface px-10 py-10 flex flex-col gap-4 items-start'>
       <div>
         <Typography variant='h6' className='text-typo-primary font-light'>
           SRE ITS 2023
@@ -141,6 +151,8 @@ function RolePermissionPage() {
         className='text-black w-full'
         isLoading={isLoading}
         data={queryData?.data ?? []}
+        withFilter
+        withPaginationControl
         columns={columns}
       />
       {selectedData && (
@@ -149,8 +161,9 @@ function RolePermissionPage() {
           setOpen={setEditModalOpen}
           defaultValues={selectedData}
           onSuccess={refetchData}
+          queryDataPermission={queryDataPermissions?.data ?? []}
         />
       )}
-    </div>
+    </section>
   );
 }
