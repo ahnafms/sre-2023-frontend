@@ -38,6 +38,13 @@ export const navigations: Navigation[] = [
     permissions: ['users.index'],
   },
   {
+    name: 'Staff',
+    href: '/dashboard/staff',
+    exactMatch: true,
+    icon: HiOutlineUsers,
+    permissions: ['users.index'],
+  },
+  {
     name: 'CMS',
     href: '#',
     icon: BsDatabase,
