@@ -6,6 +6,7 @@ import clsxm from '@/lib/clsxm';
 type NextImageProps = {
   useSkeleton?: boolean;
   imgClassName?: string;
+  serverStaticImg?: boolean;
   blurClassName?: string;
   alt: string;
   width: string | number;
@@ -22,6 +23,7 @@ type NextImageProps = {
  */
 export default function NextImage({
   useSkeleton = false,
+  serverStaticImg = false,
   src,
   width,
   height,
@@ -46,7 +48,7 @@ export default function NextImage({
           imgClassName,
           status === 'loading' && clsxm('animate-pulse', blurClassName),
         )}
-        src={'/images' + src}
+        src={serverStaticImg ? src : '/images' + src}
         width={width}
         height={height}
         alt={alt}
