@@ -134,9 +134,8 @@ function NestedNavigation({
             </div>
           </Disclosure.Panel>
         </div>
-      )
-      }
-    </Disclosure >
+      )}
+    </Disclosure>
   );
 }
 
@@ -170,17 +169,15 @@ function NavigationLink({
       )}
       aria-current={isActive ? 'page' : undefined}
     >
-      {
-        navigation.icon && (
-          <navigation.icon
-            className={clsx(
-              isActive ? 'text-typo-dark' : 'text-white ',
-              'mr-1.5 text-xl flex-shrink-0',
-            )}
-            aria-hidden='true'
-          />
-        )
-      }
+      {navigation.icon && (
+        <navigation.icon
+          className={clsx(
+            isActive ? 'text-typo-dark' : 'text-white ',
+            'mr-1.5 text-xl flex-shrink-0',
+          )}
+          aria-hidden='true'
+        />
+      )}
       <span
         className={clsxm(
           isActive ? 'text-typo-dark' : 'text-white',
