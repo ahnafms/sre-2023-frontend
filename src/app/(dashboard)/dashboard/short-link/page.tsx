@@ -202,7 +202,7 @@ function ShortLink() {
                     weight='medium'
                     className={clsxm('md:text-[16px] md:leading-[24px]')}
                   >
-                    {path + watchAlias}
+                    {path + (watchAlias ?? '')}
                   </Typography>
                 </div>
                 <Button
