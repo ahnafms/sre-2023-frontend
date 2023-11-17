@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { AiFillHome } from 'react-icons/ai';
+import { BiSolidLogIn } from 'react-icons/bi';
 
 import Button from '@/components/Button';
 import Cell from '@/components/Cell';
@@ -13,7 +14,13 @@ import Overlay from '~/images/coming-soon/overlay.png';
 import ThunderOrnamentLeft from '~/images/coming-soon/thunder-ornament-left.png';
 import ThunderOrnamentRight from '~/images/coming-soon/thunder-ornament-right.png';
 
-const CommingSoon = ({ homeButton = false }: { homeButton?: boolean }) => {
+const CommingSoon = ({
+  homeButton = false,
+  loginButton = false,
+}: {
+  homeButton?: boolean;
+  loginButton?: boolean;
+}) => {
   return (
     <section className='h-screen max-h-full min-w-fit overflow-hidden items-center relative flex flex-col w-full bg-secondary-50'>
       <Image
@@ -86,7 +93,7 @@ const CommingSoon = ({ homeButton = false }: { homeButton?: boolean }) => {
           cols='1_full'
           colsMd='3_8'
           colsXl='4_6'
-          className='z-0 flex flex-col justify-center relative'
+          className='z-50 flex flex-col justify-center relative'
         >
           <Typography
             as='p'
@@ -113,6 +120,21 @@ const CommingSoon = ({ homeButton = false }: { homeButton?: boolean }) => {
               >
                 <Typography className={clsxm('text-secondary-50')}>
                   Home Page
+                </Typography>
+              </Button>
+            </Link>
+          )}
+          {loginButton && (
+            <Link className='mx-auto' href={'/login'}>
+              <Button
+                variant='outline-primary'
+                size='lg'
+                leftIcon={BiSolidLogIn}
+                leftIconClassName='w-5 h-5 text-secondary-50'
+                className={clsxm('w-fit mx-auto mt-6 xl:mt-7 py-2 px-4')}
+              >
+                <Typography className={clsxm('text-secondary-50')}>
+                  Login
                 </Typography>
               </Button>
             </Link>
