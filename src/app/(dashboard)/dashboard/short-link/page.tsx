@@ -31,6 +31,10 @@ function ShortLink() {
 
   const { handleSubmit } = methods;
 
+  const path = location.protocol + '//' + location.host + '/go/';
+
+  const watchAlias = methods.watch('alias');
+
   const onSubmit = (data: FormValues) => {
     api
       .post<ApiResponse<string | null>>('/url_shortener', data, {
@@ -38,7 +42,7 @@ function ShortLink() {
         loadingMessage: 'Shorting your url...',
       })
       .then(() => {
-        setShortenedUrl('https://sre-its.com/' + data.alias);
+        setShortenedUrl(path + data.alias);
       });
   };
 
@@ -107,7 +111,13 @@ function ShortLink() {
                   <Input
                     id='url'
                     placeholder='Link Panjang'
-                    validation={{ required: 'This field is required!' }}
+                    validation={{
+                      required: 'This field is required!',
+                      pattern: {
+                        value: /^(https?:\/\/[^\s]+)+$/,
+                        message: 'Must start with http:// or https://',
+                      },
+                    }}
                     className={clsxm(
                       'placeholder:text-xs md:placeholder:text-base placeholder:leading-6',
                       'text-xs md:text-base leading-6 font-epliogue text-[#092540] font-medium',
@@ -166,22 +176,34 @@ function ShortLink() {
                       className={clsxm(
                         'placeholder:text-xs placeholder:font-medium md:placeholder:text-base placeholder:leading-6',
                         'text-xs md:text-base leading-6 font-epliogue text-[#092540] font-medium',
-                        'py-3 pl-[137px] md:pl-[11.1rem] pr-4 bg-[#F0F2F5] outline-none ring-0 focus:ring-0',
+                        // 'py-3 pl-[137px] md:pl-[11.1rem] pr-4 bg-[#F0F2F5] outline-none ring-0 focus:ring-0',
+                        'py-3 pr-4 bg-[#F0F2F5] outline-none ring-0 focus:ring-0',
                         'md:rounded-l-none md:rounded-r-lg focus:bg-[#F9FAFB]',
                       )}
                     />
-                    <Typography
-                      color='white'
-                      weight='medium'
-                      font='epilogue'
-                      variant='bt'
-                      className={clsxm(
-                        'text-xs text-[#092540] md:text-base font-medium absolute top-[16px] md:top-[11px] left-4',
-                      )}
-                    >
-                      https://sre-its.com/
-                    </Typography>
+                    {/* <Typography */}
+                    {/*   color='white' */}
+                    {/*   weight='medium' */}
+                    {/*   font='epilogue' */}
+                    {/*   variant='bt' */}
+                    {/*   className={clsxm( */}
+                    {/*     'text-xs text-[#092540] md:text-base font-medium absolute top-[16px] md:top-[11px] left-4', */}
+                    {/*   )} */}
+                    {/* > */}
+
+                    {/* </Typography> */}
                   </div>
+                </div>
+                <div className='text-center'>
+                  <Typography
+                    font='epilogue'
+                    color='dark'
+                    variant='c1'
+                    weight='medium'
+                    className={clsxm('md:text-[16px] md:leading-[24px]')}
+                  >
+                    {path + watchAlias}
+                  </Typography>
                 </div>
                 <Button
                   leftIcon={IoLinkSharp}

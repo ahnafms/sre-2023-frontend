@@ -173,44 +173,44 @@ export default function MobileNavigation() {
                   <AiOutlineCloseCircle className='text-5xl text-typo-white' />
                 </Button>
               </Transition.Child>
-              <div className='bottom-0 absolute left-1/2 w-full sm:w-64 -translate-x-1/2 -z-10'>
-                <NextImage
-                  src='/dashboard/industry.png'
-                  priority
-                  className='bottom-0 w-full md:w-64'
-                  width='1000'
-                  height='100'
-                  alt='sidebar-industry-ornament'
-                />
-                <NextImage
-                  src='/dashboard/star.png'
-                  className='absolute w-6 left-32 bottom-32 -z-10'
-                  width='400'
-                  height='100'
-                  alt='sidebar-industry-ornament'
-                />
-                <NextImage
-                  src='/dashboard/star.png'
-                  className='absolute w-7 right-6 bottom-28 -z-10'
-                  width='400'
-                  height='100'
-                  alt='sidebar-industry-ornament'
-                />
-                <NextImage
-                  src='/dashboard/star.png'
-                  className='absolute w-6 bottom-72 right-10 -z-10'
-                  width='400'
-                  height='100'
-                  alt='sidebar-industry-ornament'
-                />
-                <NextImage
-                  src='/dashboard/star.png'
-                  className='absolute w-10 left-6 bottom-48 -z-10'
-                  width='400'
-                  height='100'
-                  alt='sidebar-industry-ornament'
-                />
-              </div>
+              {/* <div className='bottom-0 absolute left-1/2 w-full sm:w-64 -translate-x-1/2 -z-10'> */}
+              {/*   <NextImage */}
+              {/*     src='/dashboard/industry.png' */}
+              {/*     priority */}
+              {/*     className='bottom-0 w-full md:w-64' */}
+              {/*     width='1000' */}
+              {/*     height='100' */}
+              {/*     alt='sidebar-industry-ornament' */}
+              {/*   /> */}
+              {/*   <NextImage */}
+              {/*     src='/dashboard/star.png' */}
+              {/*     className='absolute w-6 left-32 bottom-32 -z-10' */}
+              {/*     width='400' */}
+              {/*     height='100' */}
+              {/*     alt='sidebar-industry-ornament' */}
+              {/*   /> */}
+              {/*   <NextImage */}
+              {/*     src='/dashboard/star.png' */}
+              {/*     className='absolute w-7 right-6 bottom-28 -z-10' */}
+              {/*     width='400' */}
+              {/*     height='100' */}
+              {/*     alt='sidebar-industry-ornament' */}
+              {/*   /> */}
+              {/*   <NextImage */}
+              {/*     src='/dashboard/star.png' */}
+              {/*     className='absolute w-6 bottom-72 right-10 -z-10' */}
+              {/*     width='400' */}
+              {/*     height='100' */}
+              {/*     alt='sidebar-industry-ornament' */}
+              {/*   /> */}
+              {/*   <NextImage */}
+              {/*     src='/dashboard/star.png' */}
+              {/*     className='absolute w-10 left-6 bottom-48 -z-10' */}
+              {/*     width='400' */}
+              {/*     height='100' */}
+              {/*     alt='sidebar-industry-ornament' */}
+              {/*   /> */}
+              {/* </div> */}
             </div>
           </Transition.Child>
         </Dialog>

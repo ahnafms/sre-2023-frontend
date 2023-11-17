@@ -28,7 +28,7 @@ export default function RedirectLink({ params }: RedirectLinkProps) {
       return res.data;
     },
     onSuccess: data => {
-      setTimeout(() => router.push(data.data.url), 3000);
+      setTimeout(() => router.push(data.data.url), 1000);
     },
     onError: () => router.replace('/'),
   });

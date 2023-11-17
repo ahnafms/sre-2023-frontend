@@ -16,44 +16,44 @@ export default function DesktopNavigation() {
           height='100'
           alt='sidebar-background'
         />
-        <div className='absolute w-full bottom-0 -z-10'>
-          <NextImage
-            src='/dashboard/industry.png'
-            priority
-            className='w-full absolute scale-150 bottom-20 -left-10'
-            width='1000'
-            height='100'
-            alt='sidebar-industry-ornament'
-          />
-          <NextImage
-            src='/dashboard/star.png'
-            className='absolute w-10 left-10 bottom-40 -z-10'
-            width='400'
-            height='100'
-            alt='sidebar-industry-ornament'
-          />
-          <NextImage
-            src='/dashboard/star.png'
-            className='absolute w-7 right-8 bottom-40 -z-10'
-            width='400'
-            height='100'
-            alt='sidebar-industry-ornament'
-          />
-          <NextImage
-            src='/dashboard/star.png'
-            className='absolute w-6 bottom-72 right-10 -z-10'
-            width='400'
-            height='100'
-            alt='sidebar-industry-ornament'
-          />
-          <NextImage
-            src='/dashboard/star.png'
-            className='absolute w-10 bottom-40 md:hidden -z-10'
-            width='400'
-            height='100'
-            alt='sidebar-industry-ornament'
-          />
-        </div>
+        {/* <div className='absolute w-full bottom-0 -z-10'> */}
+        {/*   <NextImage */}
+        {/*     src='/dashboard/industry.png' */}
+        {/*     priority */}
+        {/*     className='w-full absolute scale-150 bottom-20 -left-10' */}
+        {/*     width='1000' */}
+        {/*     height='100' */}
+        {/*     alt='sidebar-industry-ornament' */}
+        {/*   /> */}
+        {/*   <NextImage */}
+        {/*     src='/dashboard/star.png' */}
+        {/*     className='absolute w-10 left-10 bottom-40 -z-10' */}
+        {/*     width='400' */}
+        {/*     height='100' */}
+        {/*     alt='sidebar-industry-ornament' */}
+        {/*   /> */}
+        {/*   <NextImage */}
+        {/*     src='/dashboard/star.png' */}
+        {/*     className='absolute w-7 right-8 bottom-40 -z-10' */}
+        {/*     width='400' */}
+        {/*     height='100' */}
+        {/*     alt='sidebar-industry-ornament' */}
+        {/*   /> */}
+        {/*   <NextImage */}
+        {/*     src='/dashboard/star.png' */}
+        {/*     className='absolute w-6 bottom-72 right-10 -z-10' */}
+        {/*     width='400' */}
+        {/*     height='100' */}
+        {/*     alt='sidebar-industry-ornament' */}
+        {/*   /> */}
+        {/*   <NextImage */}
+        {/*     src='/dashboard/star.png' */}
+        {/*     className='absolute w-10 bottom-40 md:hidden -z-10' */}
+        {/*     width='400' */}
+        {/*     height='100' */}
+        {/*     alt='sidebar-industry-ornament' */}
+        {/*   /> */}
+        {/* </div> */}
         {/* Navigation */}
         <Navigation className='mt-6 flex w-full flex-col gap-6' />
       </div>

@@ -9,8 +9,9 @@ export default withAuth(DashboardHomePage, ['authed']);
 function DashboardHomePage() {
   const { user } = useAuthStore();
   return (
-    <div className='flex w-full h-full text-center justify-center items-center'>
-      <Typography>Welcome {user?.name ?? 'user'}</Typography>
+    <div className='flex flex-col w-full h-full text-center justify-center items-center mt-24'>
+      <Typography className='text-bold'>Welcome back</Typography>
+      <Typography>{user?.name ?? 'user'}</Typography>
     </div>
   );
 }
