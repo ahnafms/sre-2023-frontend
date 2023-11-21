@@ -1,105 +1,112 @@
 import Image from 'next/image';
 import React from 'react';
 
+import LogoVertical from '@/components/logo/LogoVertical';
+import DoubleStrip from '@/components/ornament/DoubleStrip';
+import DoubleYellowSquare from '@/components/ornament/DoubleYellowSquare';
 import Typography from '@/components/Typography';
 
 export default function Redirect() {
   return (
-    <section className='w-full min-h-screen xl:min-h-screen sm:h-full overflow-hidden relative bg-secondary-50'>
-      <div className='flex justify-between w-full absolute'>
-        <Image
-          width={161.7}
-          height={157.86}
-          src={'/images/redirect/left_star.svg'}
-          alt='star'
-          className='left-[-6%] sm:left-0 relative lg:w-[15%] lg:left-32 lg:top-10'
-        />
-        <Image
-          width={161.7}
-          height={157.86}
-          src={'/images/redirect/right_star.svg'}
-          alt='star'
-          className='right-[-5%] sm:right-0 relative lg:w-[15%] lg:right-32 lg:top-10'
-        />
-      </div>
-
-      <div className='relative flex flex-col items-center mt-48 sm:mt-44 sm:mb-68'>
-        <Image
-          width={260}
-          height={196.32}
-          src={'/images/redirect/logos.svg'}
-          alt='logo'
-          className='sm:w-[350px]'
-        />
-        <div>
-          <Typography
-            variant='h6'
-            color='white'
-            font='anton'
-            className='text-center sm:text-[32px]'
-          >
-            You are being redirected
-            <span className='loading'>...</span>
-          </Typography>
-        </div>
-        <div className='absolute bottom-0 flex justify-center'>
+    <section className='w-full h-screen overflow-hidden relative bg-secondary-50'>
+      <div className='absolute -left-5 md:left-8 md:top-8 lg:left-16'>
+        <div className='relative w-32 lg:w-40 aspect-square'>
           <Image
-            width={206.82}
-            height={50.57}
-            src={'/images/redirect/underline.svg'}
-            alt='quot'
-            className='relative top-10 sm:top-16 sm:w-[320px] md:w-[206.82px] md:top-10 lg:w-[300px] lg:top-[52px]'
+            fill
+            sizes='(max-width: 768px) 130px, 160px'
+            src={'/images/redirect/right_star.svg'}
+            alt='star'
+            className='scale-x-flip object-contain'
+          />
+        </div>
+      </div>
+      <div className='absolute -right-5 md:right-8 md:top-8 lg:right-16'>
+        <div className='relative w-32 lg:w-40 aspect-square'>
+          <Image
+            fill
+            sizes='(max-width: 768px) 130px, 160px'
+            src={'/images/redirect/right_star.svg'}
+            alt='star'
+            className='object-contain'
           />
         </div>
       </div>
 
-      <div className='flex justify-between w-full absolute bottom-0'>
+      <div className='w-full h-full flex items-center'>
+        <div className='relative flex flex-col items-center w-full'>
+          <div className='relative w-fit'>
+            <DoubleYellowSquare className='scale-x-flip absolute -top-10 -left-14' />
+            <LogoVertical className='w-36 md:w-40 lg:w-44 h-auto' />
+          </div>
+          <div>
+            <Typography
+              variant='h6'
+              color='white'
+              font='anton'
+              className='text-center text-h6 mt-12 lg:text-h5 text-white'
+            >
+              You are being redirected
+              <span className='dot one'>.</span>
+              <span className='dot two'>.</span>
+              <span className='dot three'>.</span>
+            </Typography>
+          </div>
+          <DoubleStrip className='mt-3 lg:w-72 lg:h-auto' />
+        </div>
+      </div>
+
+      <div className='absolute flex justify-between w-full bottom-0'>
         <div className='flex items-end'>
           <Image
-            width={164.25}
-            height={220.48}
+            width={260}
+            height={349}
             src={'/images/redirect/turbine.svg'}
-            alt='star'
-            className='left-[-6%] sm:w-[80%] sm:-left-10 sm:-bottom-5 relative md:w-[220px] md:h-[300px] lg:w-[400px] lg:h-[400px]'
+            alt='turbine'
+            className='relative -left-10 -bottom-11 w-40 md:w-52 lg:w-60'
           />
           <Image
             width={164.25}
             height={220.48}
             src={'/images/redirect/turbine.svg'}
             alt='star'
-            className='left-[-6%] hidden md:inline sm:-left-[26%] sm:-bottom-3 relative lg:w-[280px] lg:h-[280px] '
+            className='relative hidden lg:block -left-12 -bottom-11 w-40'
           />
         </div>
         <div className='flex items-end'>
           <Image
             width={250}
             height={250}
-            src={'/images/redirect/panels.svg'}
-            alt='star'
-            className='right-[-5%] hidden md:inline sm:top-24 sm:-right-24 relative lg:w-[350px] lg:h-[350px] lg:-right-56 lg:top-32'
+            src={'/images/redirect/panel.png'}
+            alt='panel'
+            className='relative hidden lg:block w-72 rotate-12 -right-48 -bottom-20'
           />
           <Image
             width={250}
             height={250}
-            src={'/images/redirect/panel.svg'}
-            alt='star'
-            className='right-[-5%] sm:h-[299px] sm:w-[299px] sm:right-5 relative sm:min-[920px]:-right-5 md:w-[299px] lg:-bottom-5 lg:w-[450px] lg:h-[450px] left-0'
+            src={'/images/redirect/panel.png'}
+            alt='panel'
+            className='relative w-72 md:w-96 lg:w-[400px] rotate-2 -right-24 -bottom-12 lg:rotate-0 lg:-bottom-4'
           />
         </div>
       </div>
 
       <style>{`
-              .loading {
-                clip-path: inset(0 3ch 0 0);
-                animation: l 2s steps(4, end) infinite;
-              }
+        .dot {
+          animation: showHideDot 1.5s linear infinite;
+        }
 
-              @keyframes l {
-                to {
-                  clip-path: inset(0 -1ch 0 0)
-                }
-              }
-            `}</style>
+        .one { animation-delay: 0.2s; }
+        .two { animation-delay: 0.4s; }
+        .three { animation-delay: 0.6s; }
+
+        @keyframes showHideDot {
+          0% { opacity: 0; }
+          50% { opacity: 1; }
+          60% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+
+      `}</style>
     </section>
   );
 }

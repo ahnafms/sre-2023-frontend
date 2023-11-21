@@ -119,7 +119,9 @@ const config = {
           100: '#3E1112',
         },
       },
-
+      scale: {
+        flip: '-1',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
