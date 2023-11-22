@@ -7,15 +7,24 @@ const config: Metadata = {
   description:
     'SRE ITS exist to develop innovation, exchange ideas, and facilitate students as active learners in the Renewable Energy field.',
   openGraph: {
+    url: 'https://sre-its.com',
+    title:
+      'SRE ITS exist to develop innovation, exchange ideas, and facilitate students as active learners in the Renewable Energy field.',
+    description:
+      'SRE ITS exist to develop innovation, exchange ideas, and facilitate students as active learners in the Renewable Energy field.',
+    siteName: 'SRE ITS 2023',
+    images: ['https://www.sre-its.com/images/og.jpeg'],
     type: 'website',
     locale: 'in_ID',
-    url: 'https://sre-its.com',
-    siteName: 'SRE ITS 2023',
   },
   twitter: {
-    creator: '@sre_its',
-    site: 'https://twitter.com/sre_its',
     card: 'summary_large_image',
+    creator: '@sre_its',
+    title: 'SRE ITS 2023',
+    description:
+      'SRE ITS exist to develop innovation, exchange ideas, and facilitate students as active learners in the Renewable Energy field.',
+    site: 'https://twitter.com/sre_its',
+    images: ['https://www.sre-its.com/images/og.jpeg'],
   },
   keywords: ['sre', 'sre its', 'sre its 2023'],
   robots: 'index, follow',
