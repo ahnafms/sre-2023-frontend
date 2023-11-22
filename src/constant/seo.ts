@@ -9,8 +9,7 @@ const config: Metadata = {
     'SRE ITS exist to develop innovation, exchange ideas, and facilitate students as active learners in the Renewable Energy field.',
   openGraph: {
     url: 'https://sre-its.com',
-    title:
-      'SRE ITS exist to develop innovation, exchange ideas, and facilitate students as active learners in the Renewable Energy field.',
+    title: 'SRE ITS 2023',
     description:
       'SRE ITS exist to develop innovation, exchange ideas, and facilitate students as active learners in the Renewable Energy field.',
     siteName: 'SRE ITS 2023',
