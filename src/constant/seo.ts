@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 // TODO: ADJUST CONFIGURATION FOR PRODUCTION
 
 const config: Metadata = {
+  metadataBase: new URL('https://www.sre-its.com'),
   title: { default: 'SRE ITS 2023', template: '%s | SRE ITS 2023' },
   description:
     'SRE ITS exist to develop innovation, exchange ideas, and facilitate students as active learners in the Renewable Energy field.',
@@ -13,7 +14,7 @@ const config: Metadata = {
     description:
       'SRE ITS exist to develop innovation, exchange ideas, and facilitate students as active learners in the Renewable Energy field.',
     siteName: 'SRE ITS 2023',
-    images: ['https://www.sre-its.com/images/og.jpeg'],
+    images: [{ url: '/images/og.jpeg' }],
     type: 'website',
     locale: 'in_ID',
   },
@@ -24,7 +25,7 @@ const config: Metadata = {
     description:
       'SRE ITS exist to develop innovation, exchange ideas, and facilitate students as active learners in the Renewable Energy field.',
     site: 'https://twitter.com/sre_its',
-    images: ['https://www.sre-its.com/images/og.jpeg'],
+    images: [{ url: '/images/og.jpeg' }],
   },
   keywords: ['sre', 'sre its', 'sre its 2023'],
   robots: 'index, follow',
@@ -40,7 +41,6 @@ const config: Metadata = {
       type: 'image/x-icon',
     },
   ],
-  metadataBase: new URL('https://sre-its.com'),
 };
 
 export default config;
