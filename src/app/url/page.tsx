@@ -39,7 +39,7 @@ function ShortLink() {
 
   const host =
     typeof window !== 'undefined' && window.location.host
-      ? window.location.host
+      ? window.location.host.replace(/^www\./, '')
       : '';
 
   const path = host + '/go/';
