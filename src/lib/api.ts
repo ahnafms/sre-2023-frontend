@@ -59,7 +59,10 @@ api.interceptors.response.use(
   (error: AxiosError<ApiError>) => {
     if (isBrowser && error.config?.toastify) {
       toast.update(toastId, {
-        render: error.response?.data.message || error.message,
+        render:
+          error.response?.data.error ||
+          error.response?.data.message ||
+          error.message,
         type: 'error',
         isLoading: false,
         autoClose: 5000,
