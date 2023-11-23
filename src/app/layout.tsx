@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 
+import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import { Anton, Epilogue } from 'next/font/google';
 
@@ -31,6 +32,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={clsxm(epilogue.variable, anton.variable)}>
         <Providers>{children}</Providers>
+        <Analytics />
       </body>
     </html>
   );
