@@ -10,9 +10,12 @@ import Typography from '@/components/Typography';
 import clsxm from '@/lib/clsxm';
 import Background from '~/images/coming-soon/bg.png';
 import ClipArt from '~/images/coming-soon/clip-art.png';
-import Overlay from '~/images/coming-soon/overlay.png';
-import ThunderOrnamentLeft from '~/images/coming-soon/thunder-ornament-left.png';
-import ThunderOrnamentRight from '~/images/coming-soon/thunder-ornament-right.png';
+
+// import Overlay from '~/images/coming-soon/overlay.png';
+import {
+  YellowThunderLeft,
+  YellowThunderRight,
+} from './ornament/YellowThunder';
 
 const CommingSoon = ({
   homeButton = false,
@@ -23,22 +26,8 @@ const CommingSoon = ({
 }) => {
   return (
     <section className='h-screen max-h-full min-w-fit overflow-hidden items-center relative flex flex-col w-full bg-secondary-50'>
-      <Image
-        src={ThunderOrnamentLeft}
-        alt='Thunder Ornament'
-        className='absolute -left-4 sm:-left-6 md:left-16 md:top-10 lg:left-20 xl:left-24 xl:top-14 2xl:left-32 top-2 sm:w-24'
-        width={70}
-        height={40}
-        placeholder='blur'
-      />
-      <Image
-        src={ThunderOrnamentRight}
-        alt='Thunder Ornament'
-        className='absolute -right-3 sm:-right-5 md:top-10 md:right-16 lg:right-20 xl:right-24 xl:top-14 2xl:right-32 top-2 sm:w-20'
-        width={60}
-        height={40}
-        placeholder='blur'
-      />
+      <YellowThunderLeft className='absolute w-20 -left-4 sm:-left-6 md:left-10 md:top-10 lg:left-20 xl:left-24 xl:top-14 2xl:left-32 top-2 sm:w-24 aspect-square' />
+      <YellowThunderRight className='absolute w-20 -right-4 sm:-right-6 md:top-10 md:right-10 lg:right-20 xl:right-24 xl:top-14 2xl:right-32 top-2 sm:w-24 aspect-square' />
       <div className='absolute z-10 bottom-0 w-full h-[40vh]'>
         <div className='relative w-full h-full'>
           <Image
@@ -46,42 +35,42 @@ const CommingSoon = ({
             alt='Bottom Ornament'
             fill
             className='object-cover object-top'
-            placeholder='blur'
+            // placeholder='blur'
           />
         </div>
       </div>
-      <Image
-        src={Overlay}
-        alt='Paper Overlay'
-        className='absolute z-0 bottom-72 md:bottom-0 lg:-bottom-16 xl:-bottom-32 2xl:-bottom-40 sm:w-full mix-blend-darken	'
-        width={600}
-        height={40}
-        placeholder='blur'
-      />
-      <Grid>
+      {/* <Image */}
+      {/*   src={Overlay} */}
+      {/*   alt='Paper Overlay' */}
+      {/*   className='absolute z-0 bottom-56 md:bottom-0 lg:-bottom-16 xl:-bottom-32 2xl:-bottom-40 sm:w-full mix-blend-darken' */}
+      {/*   width={600} */}
+      {/*   height={40} */}
+      {/* placeholder='blur' */}
+      {/* /> */}
+      <Grid className='h-screen'>
         <Cell
           cols='1_full'
           className='z-0 flex flex-col justify-center relative mt-32 md:mt-44'
         >
           <div className='relative h-full w-full mx-auto'>
-            <Image
-              src={ClipArt}
-              alt='Title Clip Art'
-              className={clsxm(
-                'absolute transform -translate-x-1/2 left-1/2 z-10',
-                '-top-14 md:-top-[4.7rem] lg:-top-[5.3rem] xl:-top-[5.7rem] 2xl:-top-24',
-                'md:w-[450px] lg:w-[500px] xl:w-[530px] 2xl:w-[550px]',
-              )}
-              width={327}
-              height={135}
-              placeholder='blur'
-            />
+            <div className='absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2'>
+              <div className='relative w-96 h-32 md:w-[500px] md:h-48'>
+                <Image
+                  src={ClipArt}
+                  alt='Title Clip Art'
+                  className={clsxm('object-contain')}
+                  fill
+                  sizes='(max-width: 768px) 400px, 600px'
+                  // placeholder='blur'
+                />
+              </div>
+            </div>
             <Typography
               as='h1'
               variant='h1'
               font='anton'
               className={clsxm(
-                'text-secondary-50 text-center md:mx-auto z-20 relative',
+                'text-secondary-50 text-center md:mx-auto z-20 relative mt-4',
                 'text-[32px] leading-[48px] md:text-[48px] md:leading-[64px]',
               )}
             >
