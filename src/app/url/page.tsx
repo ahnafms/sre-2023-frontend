@@ -53,6 +53,7 @@ function ShortLink() {
       .then(() => {
         setShortenedUrl(path + data.alias);
         setOpen(true);
+        methods.reset();
       });
   };
 
@@ -85,7 +86,7 @@ function ShortLink() {
       <div className='absolute h-screen w-screen'>
         <div className='relative h-full w-full'>
           <Image
-            className='brightness-50 mix-blend-overlay object-cover'
+            className='brightness-[.60] mix-blend-overlay object-cover'
             fill
             sizes='100vh'
             src={PaperOverlay}
