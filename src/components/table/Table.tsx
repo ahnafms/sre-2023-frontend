@@ -32,6 +32,7 @@ type TableProps<T extends object> = {
   withPaginationControl?: boolean;
   withPaginationCount?: boolean;
   filter?: string[];
+  extraContent?: React.ReactNode;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 export default function Table<T extends object>({
@@ -44,6 +45,7 @@ export default function Table<T extends object>({
   withPaginationCount = false,
   withPaginationControl = false,
   filter = [],
+  extraContent,
   ...rest
 }: TableProps<T>) {
   const [globalFilter, setGlobalFilter] = React.useState('');
@@ -68,7 +70,10 @@ export default function Table<T extends object>({
   return (
     <div className={clsxm('flex flex-col', className)} {...rest}>
       <div className='flex flex-col gap-y-3 sm:flex-row sm:justify-between'>
-        <div>{withFilter && <Filter table={table} />}</div>
+        <div className='flex flex-col gap-x-6 items-center sm:flex-row'>
+          <div>{withFilter && <Filter table={table} />}</div>
+          {extraContent}
+        </div>
         {filter.length > 0 &&
           filter.map((col, idx) => {
             const column = table.getColumn(col);

@@ -50,7 +50,7 @@ export const navigations: Navigation[] = [
     icon: BsDatabase,
     children: [
       {
-        name: 'User',
+        name: 'Sponsorship',
         href: '/dashboard/cms/sponsorship',
         permissions: ['users.index'],
       },

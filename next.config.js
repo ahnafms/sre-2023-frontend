@@ -3,9 +3,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: '34.101.112.192',
-        port: '',
+        protocol: 'https',
+        hostname: 'api.sre-its.com',
         pathname: '/static/**/*',
       },
     ],
