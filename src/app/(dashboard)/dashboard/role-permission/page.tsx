@@ -5,6 +5,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { AxiosError } from 'axios';
 import { format } from 'date-fns';
 import React from 'react';
+import { BiPlusCircle } from 'react-icons/bi';
 
 import Button from '@/components/Button';
 import withAuth from '@/components/hoc/withAuth';
@@ -12,18 +13,18 @@ import Table from '@/components/table/Table';
 import Typography from '@/components/Typography';
 import api from '@/lib/api';
 import useDialogStore from '@/stores/useDialogStore';
-import { ApiError } from '@/types/api';
-import { ApiResponse } from '@/types/api';
+import { ApiError, ApiResponse } from '@/types/api';
 import { Permission } from '@/types/entities/permission';
-import { RoleAuthColumn } from '@/types/entities/role';
-import { RoleHasPermission } from '@/types/entities/role';
+import { RoleAuthColumn, RoleHasPermission } from '@/types/entities/role';
 
 import EditRoleAuthModal from './components/EditRoleAuthModal';
+import RegisterRoleModal from './components/RegisterRoleModal';
 
 export default withAuth(RolePermissionPage, ['authed']);
 
 function RolePermissionPage() {
   const [editModalOpen, setEditModalOpen] = React.useState(false);
+  const [registerModalOpen, setRegisterModalOpen] = React.useState(false);
   const [selectedData, setSelectedData] = React.useState<{
     id: number;
     permission_id: string;
@@ -86,20 +87,34 @@ function RolePermissionPage() {
         return (
           <div className='flex gap-3'>
             <Button
-              className='relative'
+              className='relative border-typo-inline'
               variant='outline-primary'
               onClick={() => {
                 setSelectedData(value), setEditModalOpen(true);
               }}
             >
-              Edit
+              <Typography
+                variant='c2'
+                weight='semibold'
+                font='epilogue'
+                className='text-typo-icon '
+              >
+                Edit
+              </Typography>
             </Button>
             <Button
               className='relative'
               variant='danger'
               onClick={() => openWarningDelete(info.row.original)}
             >
-              Hapus
+              <Typography
+                variant='c2'
+                weight='semibold'
+                font='epilogue'
+                className='text-white'
+              >
+                Hapus
+              </Typography>
             </Button>
           </div>
         );
@@ -127,10 +142,10 @@ function RolePermissionPage() {
 
   function openWarningDelete({ id }: { id: number }) {
     dialog({
-      title: 'Apakah Anda Yakin!!!',
+      title: 'Delete Data',
       description: `Hapus role dengan ID: ${id} ?`,
       submitText: 'Delete',
-      variant: 'warning',
+      variant: 'danger',
       catchOnCancel: true,
     })
       .then(() => deleteRoles({ id: id }))
@@ -154,6 +169,25 @@ function RolePermissionPage() {
         withFilter
         withPaginationControl
         columns={columns}
+        extraContent={
+          <>
+            <Button
+              leftIcon={BiPlusCircle}
+              variant='outline-primary'
+              onClick={() => setRegisterModalOpen(true)}
+              className='z-40'
+            >
+              Tambah Role
+            </Button>
+            {
+              <RegisterRoleModal
+                onSuccess={refetchData}
+                setOpen={setRegisterModalOpen}
+                open={registerModalOpen}
+              />
+            }
+          </>
+        }
       />
       {selectedData && (
         <EditRoleAuthModal

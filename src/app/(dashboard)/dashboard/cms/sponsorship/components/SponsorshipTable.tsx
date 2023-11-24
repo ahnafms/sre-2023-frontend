@@ -22,7 +22,6 @@ import RegisterSponsorshipModal from './RegisterSponsorshipModal';
 export default function SponsorshipTable() {
   const [registerModalOpen, setRegisterModalOpen] = React.useState(false);
   const [editModalOpen, setEditModalOpen] = React.useState(false);
-  const [showLogo, setShowLogo] = React.useState<boolean>(false);
   const [selectedData, setSelectedData] = React.useState<{
     id: number;
     name: string;
@@ -56,10 +55,10 @@ export default function SponsorshipTable() {
 
   function openWarningDelete({ id }: { id: number }) {
     dialog({
-      title: 'Apakah Anda Yakin!!!',
+      title: 'Delete Data',
       description: `Hapus role dengan ID: ${id} ?`,
       submitText: 'Delete',
-      variant: 'warning',
+      variant: 'danger',
       catchOnCancel: true,
     })
       .then(() => deleteSponsor({ id: id }))
@@ -88,22 +87,8 @@ export default function SponsorshipTable() {
       cell: info => {
         return (
           <>
-            <Button
-              leftIcon={HiDocument}
-              leftIconClassName='text-secondary-50'
-              className='relative'
-              variant='outline-primary'
-              onClick={() => {
-                setShowLogo(true);
-              }}
-            >
-              <Typography font='epilogue' variant='c2'>
-                {info.row.original.file_name}
-              </Typography>
-            </Button>
             <ImagePreview
-              open={showLogo}
-              setOpen={setShowLogo}
+              leftIcon={HiDocument}
               imgPath={info.row.original.file_path}
               imgFileName={info.row.original.file_name}
               imgDetail={info.row.original.detail}

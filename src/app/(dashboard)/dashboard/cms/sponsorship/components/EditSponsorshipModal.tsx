@@ -132,7 +132,7 @@ function EditSponsorForm({
         <Input id='detail' label='Detail' />
         <div className='!mt-6 flex flex-col-reverse sm:flex-row items-center gap-3'>
           <Button
-            className='relative w-full'
+            className='relative w-full py-2.5 md:py-2'
             variant='outline-primary'
             onClick={() => setOpen(false)}
           >
@@ -147,7 +147,7 @@ function EditSponsorForm({
           </Button>
           <Button
             type='submit'
-            className='relative bg-secondary-60 w-full'
+            className='relative bg-secondary-60 w-full py-2.5 md:py-2'
             variant='success'
             disabled={!isDirty}
           >

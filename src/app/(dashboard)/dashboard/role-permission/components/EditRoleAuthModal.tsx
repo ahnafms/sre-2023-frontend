@@ -46,10 +46,8 @@ export default function EditRoleAuthModal({
       <Modal open={open} setOpen={setOpen}>
         <Modal.Title className='font-semibold flex flex-col gap-4'>
           <div className='relative'>
-            <div className='w-13 h-13 p-3 rounded-full bg-secondary-10 w-fit'>
-              <div className='w-10 h-10 rounded-full bg-secondary-20 flex items-center justify-center'>
-                <HiPencilAlt className='text-2xl text-secondary-60' />
-              </div>
+            <div className='w-10 h-10 rounded-full bg-secondary-10 flex items-center justify-center'>
+              <HiPencilAlt className='text-2xl text-secondary-60' />
             </div>
           </div>
           <div className='flex flex-col gap-1'>
@@ -149,16 +147,31 @@ function EditRoleAuthForm({
           ))}
         </SelectInput>
 
-        <div className='!mt-6 flex items-center gap-3'>
+        <div className='!mt-6 flex md:flex-row flex-col-reverse items-center gap-3'>
           <Button
-            className='w-1/2'
+            className='md:w-1/2 md:py-2 py-2.5 w-full'
+            variant='outline-primary'
             type='button'
             onClick={() => setOpen(false)}
           >
-            Cancel
+            <Typography variant='c2' weight='semibold' font='epilogue'>
+              Cancel
+            </Typography>
           </Button>
-          <Button type='submit' className='w-1/2' disabled={!isDirty}>
-            Confirm
+          <Button
+            type='submit'
+            className='md:w-1/2 md:py-2 py-2.5 w-full text-typo-white relative bg-secondary-60'
+            variant='success'
+            disabled={!isDirty}
+          >
+            <Typography
+              variant='c2'
+              weight='semibold'
+              font='epilogue'
+              className='text-white'
+            >
+              Confirm
+            </Typography>
           </Button>
         </div>
       </form>

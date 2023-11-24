@@ -1,14 +1,13 @@
 import { Dialog, Transition } from '@headlessui/react';
 import clsx from 'clsx';
 import * as React from 'react';
-import {
-  HiExclamationCircle,
-  HiOutlineCheck,
-  HiOutlineExclamation,
-  HiOutlineX,
-} from 'react-icons/hi';
+import { FiTrash2 } from 'react-icons/fi';
+import { HiOutlineExclamation, HiOutlineX } from 'react-icons/hi';
+import { TbDownload } from 'react-icons/tb';
 
 import Button from '@/components/Button';
+
+import Typography from '../Typography';
 
 type BaseDialogProps = {
   /** Maintained by useDialogStore */
@@ -95,7 +94,7 @@ export default function BaseDialog({
                   className={clsx(
                     'flex flex-shrink-0 justify-center items-center rounded-full',
                     'mx-auto w-12 h-12 sm:mx-0 sm:w-10 sm:h-10',
-                    current.bg.light,
+                    current.bg.icon,
                   )}
                 >
                   <current.icon
@@ -108,7 +107,7 @@ export default function BaseDialog({
                     as='h3'
                     className='text-lg font-medium leading-6 text-gray-900'
                   >
-                    {title}
+                    <Typography weight='semibold'>{title}</Typography>
                   </Dialog.Title>
                   <div className='mt-2'>
                     <p className='text-sm text-gray-500'>{description}</p>
@@ -117,17 +116,20 @@ export default function BaseDialog({
               </div>
               <div className='mt-5 sm:flex sm:flex-row-reverse sm:mt-4'>
                 <Button
+                  variant={variant}
                   onClick={onSubmit}
                   className={clsx(
-                    '!font-medium justify-center items-center w-full sm:ml-3 sm:w-auto sm:text-sm',
+                    [current.text.primary, current.bg.light],
+                    'py-2.5 font-semibold text-typo-white justify-center items-center w-full sm:ml-3 sm:w-auto sm:text-sm md:py-2',
                   )}
                 >
                   {submitText}
                 </Button>
                 <Button
                   type='button'
+                  variant='outline-primary'
                   onClick={onClose}
-                  className='!font-medium justify-center items-center mt-3 w-full sm:mt-0 sm:w-auto sm:text-sm'
+                  className='justify-center font-semibold items-center mt-3 w-full py-2.5 sm:mt-0 sm:w-auto sm:text-sm md:py-2'
                 >
                   Cancel
                 </Button>
@@ -143,15 +145,17 @@ export default function BaseDialog({
 const colorVariant = {
   success: {
     bg: {
-      light: 'bg-green-100',
+      icon: 'bg-secondary-10',
+      light: 'bg-secondary-60',
     },
     text: {
-      primary: 'text-green-500',
+      primary: 'text-secondary-60',
     },
-    icon: HiOutlineCheck,
+    icon: TbDownload,
   },
   warning: {
     bg: {
+      icon: 'bg-success-100',
       light: 'bg-yellow-100',
     },
     text: {
@@ -161,11 +165,12 @@ const colorVariant = {
   },
   danger: {
     bg: {
+      icon: 'bg-red-200',
       light: 'bg-red-100',
     },
     text: {
       primary: 'text-red-500',
     },
-    icon: HiExclamationCircle,
+    icon: FiTrash2,
   },
 };
