@@ -8,6 +8,8 @@ const effectProperty = {
   slideRight: { x: 100 },
   slideUp: { y: 100 },
   slideDown: { y: -100 },
+  zoomIn: { scale: 1.4 },
+  zoomOut: { scale: 0.6 },
   // add new effect property
 };
 
@@ -19,6 +21,7 @@ type AosProps = {
   debug?: boolean;
   duration?: number;
   delay?: number;
+  scrub?: boolean;
 };
 
 const Aos = ({
@@ -27,6 +30,7 @@ const Aos = ({
   effect = 'fade',
   children,
   debug = false,
+  scrub = false,
 }: AosProps) => {
   gsap.registerPlugin(ScrollTrigger);
   const comp = useRef(null);
@@ -49,11 +53,12 @@ const Aos = ({
           trigger: '.gsap-container',
           toggleActions: 'restart pause reverse pause',
           markers: debug,
+          scrub,
         },
       });
     }, comp);
     return () => ctx.revert();
-  }, [animation, debug, delay, duration]);
+  }, [animation, debug, delay, duration, scrub]);
 
   return (
     <div ref={comp}>

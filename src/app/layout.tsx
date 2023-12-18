@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import { Anton, Epilogue } from 'next/font/google';
 
 import config from '@/constant/seo';
+import LenisScroll from '@/components/animation/LenisScroll';
 import clsxm from '@/lib/clsxm';
 import Providers from '@/providers';
 
@@ -31,7 +32,9 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={clsxm(epilogue.variable, anton.variable)}>
-        <Providers>{children}</Providers>
+        <LenisScroll>
+          <Providers>{children}</Providers>
+        </LenisScroll>
         <Analytics />
       </body>
     </html>
