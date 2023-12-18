@@ -36,6 +36,9 @@ export default function RootLayout({
           <Providers>{children}</Providers>
         </LenisScroll>
         <Analytics />
+        <LenisScroll>
+          <Providers>{children}</Providers>
+        </LenisScroll>
       </body>
     </html>
   );
