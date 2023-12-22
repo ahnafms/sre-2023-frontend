@@ -1,9 +1,12 @@
 import { BsDatabase } from 'react-icons/bs';
+import { BsCalendar2Fill } from 'react-icons/bs';
 import {
   HiOutlineHome,
   HiOutlineShieldCheck,
   HiOutlineUsers,
 } from 'react-icons/hi';
+import { HiLightBulb } from 'react-icons/hi';
+import { ImTrophy } from 'react-icons/im';
 import { TbPaperclip } from 'react-icons/tb';
 
 import { Navigation } from '@/types/navigate';
@@ -65,6 +68,52 @@ export const navigations: Navigation[] = [
           'admin_role_has_permission.update',
           'admin_role_has_permission.delete',
         ],
+      },
+    ],
+  },
+];
+
+export const landingNavigations: Navigation[] = [
+  {
+    name: 'Home',
+    href: '/',
+  },
+  {
+    name: 'middleSections',
+    href: '#',
+    children: [
+      {
+        name: 'About',
+        href: '/about',
+      },
+      {
+        name: 'Contact',
+        href: '/contact',
+      },
+      {
+        name: 'Merchandise',
+        href: '/merchandise',
+      },
+    ],
+  },
+  {
+    name: 'More',
+    href: '#',
+    children: [
+      {
+        name: 'SRE Outlook',
+        href: '/outlook',
+        icon: BsCalendar2Fill,
+      },
+      {
+        name: 'SRE Insight',
+        href: '/insight',
+        icon: HiLightBulb,
+      },
+      {
+        name: 'Achievement',
+        href: '/achievement',
+        icon: ImTrophy,
       },
     ],
   },
