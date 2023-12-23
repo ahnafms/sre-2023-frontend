@@ -1,10 +1,16 @@
+import { ComponentPropsWithoutRef } from 'react';
 import { HiLightningBolt } from 'react-icons/hi';
 
 import Typography from '@/components/Typography';
+import clsxm from '@/lib/clsxm';
 
-export default function HeroCard() {
+export default function HeroCard({
+  className,
+}: ComponentPropsWithoutRef<'div'>) {
   return (
-    <div className='bg-typo-white rounded-3xl'>
+    <div
+      className={clsxm('bg-typo-white rounded-3xl m-auto shadow-xl', className)}
+    >
       <div className='flex flex-col lg:flex-row items-center py-12 px-6 lg:py-9 lg:px-9 gap-5 lg:gap-12'>
         <div>
           <div className='relative flex justify-center items-center md:text-6xl text-[83px] w-[173px] h-[173px] md:w-32 md:h-32 bg-secondary-80 rounded-full text-typo-white'>

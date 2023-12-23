@@ -1,12 +1,10 @@
 'use client';
 
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
 import NextImage from 'next/image';
 import * as React from 'react';
-import { EffectCoverflow } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Button from '@/components/Button';
 import Cell from '@/components/Cell';
@@ -21,9 +19,136 @@ import HeroBackground from './container/HeroBackground';
 import WhatDoBackground from './container/WhatDoBackground';
 
 export default function About() {
+  const comp = React.useRef(null);
+
+  useGSAP(
+    () => {
+      gsap.registerPlugin(ScrollTrigger);
+      const heroCards = gsap.utils.toArray('.hero-card');
+
+      const height = () => {
+        const heroContainer =
+          document.querySelector<HTMLElement>('.hero-container');
+        const heroCard1 = document.querySelector<HTMLElement>('.hero-card-1');
+
+        if (heroContainer && heroCard1) {
+          return -(heroContainer.offsetHeight / 2 - heroCard1.offsetHeight / 2);
+        }
+
+        return 0;
+      };
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.hero-section',
+          start: 'top top',
+          end: `+=${heroCards.length * 550}px bottom`,
+          pin: true,
+          // markers: true,
+          scrub: 1,
+        },
+      });
+
+      heroCards.forEach((_, index) => {
+        if (index === 0) {
+          tl.fromTo(
+            '.hero-card-' + (index + 1),
+            {
+              opacity: '100%',
+              scale: 1,
+              y: 0,
+              ease: 'none',
+            },
+            {
+              opacity: '50%',
+              scale: 0.75,
+              y: () => height(),
+            },
+          );
+          tl.fromTo(
+            '.hero-card-' + (index + 2),
+            {
+              opacity: '50%',
+              scale: 0.75,
+              y: 0,
+              ease: 'none',
+            },
+            {
+              opacity: '100%',
+              scale: 1,
+              y: () => height(),
+            },
+            '<',
+          );
+          tl.fromTo(
+            '.hero-card-' + (index + 3),
+            {
+              opacity: '50%',
+              scale: 0.75,
+              y: 0,
+              ease: 'none',
+            },
+            {
+              scale: 0.75,
+              opacity: '50%',
+              y: () => height(),
+            },
+            '<',
+          );
+        } else if (index === 1) {
+          tl.fromTo(
+            '.hero-card-' + (index + 1),
+            {
+              opacity: '100%',
+              scale: 1,
+              y: height(),
+              ease: 'none',
+            },
+            {
+              opacity: '50%',
+              scale: 0.75,
+              y: height() * 2,
+            },
+          );
+          tl.fromTo(
+            '.hero-card-' + index,
+            {
+              opacity: '50%',
+              scale: 0.75,
+              y: height(),
+              ease: 'none',
+            },
+            {
+              opacity: '100%',
+              scale: 1,
+              y: height() * 2,
+            },
+            '<',
+          );
+          tl.fromTo(
+            '.hero-card-' + (index + 2),
+            {
+              opacity: '50%',
+              scale: 0.75,
+              y: height(),
+              ease: 'none',
+            },
+            {
+              scale: 1,
+              opacity: '100%',
+              y: height() * 2,
+            },
+            '<',
+          );
+        }
+      });
+    },
+    { scope: comp },
+  );
+
   return (
-    <main>
-      <section className='min-h-screen h-full flex flex-col justify-center items-center overflow-hidden relative py-20 md:py-0'>
+    <main ref={comp}>
+      <section className='hero-section min-h-screen h-full flex flex-col justify-center items-center overflow-hidden relative py-20 md:py-0'>
         <HeroBackground />
         <Grid className='z-[5]'>
           <Cell
@@ -45,42 +170,13 @@ export default function About() {
             </Typography>
           </Cell>
         </Grid>
-        <div className='bg-primary-50 mx-auto w-[95%] lg:w-[82%] h-[583px] lg:h-[45vh] flex justify-center items-center overflow-hidden z-[3] mt-9 lg:mt-[5vh] drop-shadow-2xl'>
-          <Swiper
-            effect={'coverflow'}
-            grabCursor={true}
-            centeredSlides={true}
-            loop={false}
-            spaceBetween={55}
-            slidesPerView={'auto'}
-            coverflowEffect={{
-              rotate: 0,
-              stretch: 0,
-              depth: 75,
-              modifier: 2,
-              slideShadows: false,
-            }}
-            modules={[EffectCoverflow]}
-            direction='vertical'
-            className='swiper_container lg:w-[642px] w-[85%] rounded-xl'
-          >
+        <div className='bg-primary-50 mx-auto w-[95%] lg:w-[82%] h-[583px] lg:h-[45vh] flex justify-center items-center overflow-hidden z-[3] mt-9 lg:mt-[5vh] drop-shadow-2xl rounded-2xl'>
+          <div className='hero-container flex flex-col gap-10 lg:w-[642px] w-[85%] rounded-xl self-start mt-[10vh]'>
             {/* kalo udah ada datanya bisa jadiin swiperslidenya template */}
-            <div>
-              <SwiperSlide>
-                <HeroCard />
-              </SwiperSlide>
-            </div>
-            <div>
-              <SwiperSlide>
-                <HeroCard />
-              </SwiperSlide>
-            </div>
-            <div>
-              <SwiperSlide>
-                <HeroCard />
-              </SwiperSlide>
-            </div>
-          </Swiper>
+            <HeroCard className='hero-card hero-card-1' />
+            <HeroCard className='hero-card hero-card-2' />
+            <HeroCard className='hero-card hero-card-3' />
+          </div>
         </div>
       </section>
 
