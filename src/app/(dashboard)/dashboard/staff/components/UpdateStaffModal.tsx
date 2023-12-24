@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosError, AxiosResponse } from 'axios';
+import { serialize } from 'object-to-formdata';
 import * as React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { HiPencilAlt } from 'react-icons/hi';
@@ -44,9 +45,15 @@ export default function UpdateStaffModal({
   const { mutate: registerStaff, isPending } = useMutation<
     AxiosResponse<RegisterStaffResponse>,
     AxiosError<ApiError>,
-    UpdateStaffRequest
+    FormData
   >({
-    mutationFn: data => api.patch('/staff', data, { toastify: true }),
+    mutationFn: data =>
+      api.patch('/staff/' + selectedStaff.id, data, {
+        toastify: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }),
     onSuccess: () => {
       onSuccess();
       setOpen(false);
@@ -54,17 +61,23 @@ export default function UpdateStaffModal({
     },
   });
 
-  const onSubmit = (data: UpdateStaffRequest) => registerStaff(data);
+  const onSubmit = (data: UpdateStaffRequest) => {
+    const body = {
+      ...data,
+      image: data.image?.[0] ?? undefined,
+    };
+    registerStaff(serialize(body));
+  };
 
-  const { data: departmentResponse } = useQuery<
+  const { data: divisionResponse } = useQuery<
     ApiResponse<{ id: string; name: string }[]>
-  >({ queryKey: ['/department'] });
+  >({ queryKey: ['/division'] });
 
   const { data: majorResponse } = useQuery<
     ApiResponse<{ id: string; name: string }[]>
   >({ queryKey: ['/major'] });
 
-  const defaultDepartment = departmentResponse?.data.find(
+  const defaultDepartment = divisionResponse?.data.find(
     ({ name }) => name === selectedStaff.division,
   )?.id;
 
@@ -84,9 +97,9 @@ export default function UpdateStaffModal({
         </div>
         <div className='flex flex-col gap-1'>
           <Typography variant='t' weight='bold'>
-            Tambah Data
+            Edit Data
           </Typography>
-          <Typography variant='c2'>Tambah data staff baru</Typography>
+          <Typography variant='c2'>Edit data staff</Typography>
         </div>
       </Modal.Title>
       <Modal.Body>
@@ -105,7 +118,7 @@ export default function UpdateStaffModal({
               defaultValue={defaultDepartment}
               validation={{ required: 'Departemen wajib diisi' }}
             >
-              {departmentResponse?.data?.map(({ id, name }) => (
+              {divisionResponse?.data?.map(({ id, name }) => (
                 <option key={id} value={id}>
                   {name}
                 </option>

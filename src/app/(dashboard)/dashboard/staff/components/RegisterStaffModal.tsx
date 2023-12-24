@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosError, AxiosResponse } from 'axios';
+import { serialize } from 'object-to-formdata';
 import * as React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { HiPencilAlt } from 'react-icons/hi';
@@ -37,23 +38,35 @@ export default function RegisterStaffModal({
   const { mutate: registerStaff, isPending } = useMutation<
     AxiosResponse<RegisterStaffResponse>,
     AxiosError<ApiError>,
-    RegisterStaffRequest
+    FormData
   >({
-    mutationFn: data => api.post('/staff', data, { toastify: true }),
+    mutationFn: data =>
+      api.post('/staff', data, {
+        toastify: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }),
     onSuccess: () => {
       onSuccess();
       setOpen(false);
     },
   });
 
-  const onSubmit = (data: RegisterStaffRequest) => registerStaff(data);
+  const onSubmit = (data: RegisterStaffRequest) => {
+    const body = {
+      ...data,
+      image: data.image[0],
+    };
+    registerStaff(serialize(body));
+  };
 
-  const { data: departmentResponse } = useQuery<
-    ApiResponse<{ id: string; name: string }[]>
-  >({ queryKey: ['/department'] });
+  const { data: divisionResponse } = useQuery<
+    ApiResponse<{ id: number; name: string }[]>
+  >({ queryKey: ['/division'] });
 
   const { data: MajorResponse } = useQuery<
-    ApiResponse<{ id: string; name: string }[]>
+    ApiResponse<{ id: number; name: string }[]>
   >({ queryKey: ['/major'] });
 
   return (
@@ -86,9 +99,12 @@ export default function RegisterStaffModal({
               id='division_id'
               label='Department'
               placeholder='Pilih Departemen Staff'
-              validation={{ required: 'Departemen wajib diisi' }}
+              validation={{
+                required: 'Departemen wajib diisi',
+                valueAsNumber: true,
+              }}
             >
-              {departmentResponse?.data?.map(({ id, name }) => (
+              {divisionResponse?.data?.map(({ id, name }) => (
                 <option key={id} value={id}>
                   {name}
                 </option>
@@ -104,7 +120,10 @@ export default function RegisterStaffModal({
               id='major_id'
               label='Major'
               placeholder='Pilih Program Studi Staff'
-              validation={{ required: 'Program Studi wajib diisi' }}
+              validation={{
+                required: 'Program Studi wajib diisi',
+                valueAsNumber: true,
+              }}
             >
               {MajorResponse?.data.map(({ id, name }) => (
                 <option key={id} value={id}>

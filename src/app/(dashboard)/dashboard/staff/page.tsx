@@ -13,6 +13,7 @@ import { HiDocument } from 'react-icons/hi';
 import Button from '@/components/Button';
 import withAuth from '@/components/hoc/withAuth';
 import IconButton from '@/components/IconButton';
+import ImagePreview from '@/components/ImagePreview';
 import Table from '@/components/table/Table';
 import Typography from '@/components/Typography';
 import api from '@/lib/api';
@@ -22,21 +23,6 @@ import { Staff } from '@/types/entities/staff';
 
 import RegisterStaffModal from './components/RegisterStaffModal';
 import UpdateStaffModal from './components/UpdateStaffModal';
-
-// !TODO: Delete mockStaff
-const mockStaff: Staff[] = [
-  {
-    id: 'ini-id-staff',
-    full_name: 'Staff Testing',
-    division: 'Web Development',
-    position: 'Staff UI/UX',
-    major: 'Teknik Informatika',
-    image_file_name: 'staff-testing.png',
-    image_path: '/staff/testing.png',
-    linked_in: 'https://linkedin.com/in/testing_in',
-    instagram: 'https://instagram.com/at_testing',
-  },
-];
 
 export default withAuth(DashboardStaffPage, ['authed']);
 
@@ -105,17 +91,14 @@ function DashboardStaffPage() {
       id: 'image',
       header: 'Image',
       cell: info => (
-        <Link href={info.row.original.image_path} target='_blank'>
-          <Button
-            variant='outline-primary'
+        <>
+          <ImagePreview
             leftIcon={HiDocument}
-            leftIconClassName='text-secondary-50'
-            className='w-full'
-            textClassName='w-full truncate'
-          >
-            {info.row.original.image_file_name}
-          </Button>
-        </Link>
+            imgPath={info.row.original.image_path}
+            imgFileName={info.row.original.image_file_name}
+            alt={info.row.original.full_name}
+          />
+        </>
       ),
     },
     {
@@ -180,8 +163,7 @@ function DashboardStaffPage() {
       <Table
         className='text-black w-full'
         isLoading={isLoading}
-        // !TODO: Change mockStaffs with []
-        data={staffsResponse?.data ?? mockStaff}
+        data={staffsResponse?.data ?? []}
         columns={columns}
         withFilter
       />

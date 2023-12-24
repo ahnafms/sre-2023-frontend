@@ -30,6 +30,7 @@
     "immer": "^10.0.2",
     "next": "13.4.19",
     "nextjs-toploader": "^1.6.4",
+    "object-to-formdata": "^4.5.1",
     "postcss": "8.4.28",
     "react": "18.2.0",
     "react-dom": "18.2.0",

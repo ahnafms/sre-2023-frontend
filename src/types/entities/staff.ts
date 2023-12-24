@@ -14,10 +14,10 @@ export type Staff = {
 
 export type RegisterStaffRequest = {
   full_name: string;
-  division_id: string;
+  division_id: number;
   position: string;
-  major_id: string;
-  image: File;
+  major_id: number;
+  image: FileList;
   linked_in: string;
   instagram: string;
 };
@@ -39,7 +39,7 @@ export type UpdateStaffRequest = {
   division_id?: string;
   position?: string;
   major_id?: string;
-  image?: File;
+  image?: FileList;
   linked_in?: string;
   instagram?: string;
 };
