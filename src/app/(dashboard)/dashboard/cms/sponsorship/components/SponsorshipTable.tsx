@@ -161,7 +161,6 @@ export default function SponsorshipTable() {
               leftIcon={BiPlusCircle}
               variant='outline-primary'
               onClick={() => setRegisterModalOpen(true)}
-              className='z-40'
             >
               Tambah Perusahaan
             </Button>

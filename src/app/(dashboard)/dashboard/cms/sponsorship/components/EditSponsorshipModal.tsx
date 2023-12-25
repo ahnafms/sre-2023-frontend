@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+import { serialize } from 'object-to-formdata';
 import { FormProvider, useForm } from 'react-hook-form';
 import { HiPencilAlt } from 'react-icons/hi';
 
@@ -98,23 +99,17 @@ function EditSponsorForm({
 
   //#region  //*=========== On Submit ===========
   const onSubmit = (data: updateSponsor) => {
-    const formData = new FormData();
-    if (data.name) {
-      formData.append('name', data.name);
-    }
-    if (data.detail) {
-      formData.append('detail', data.detail);
-    }
-    if (data.image) {
-      formData.append('image', data.image[0]);
-    }
+    const body = {
+      ...data,
+      image: data.image?.[0] ?? undefined,
+    };
     setOpen(false);
     dialog({
       title: 'Update Changes',
       description: `This data will be updated. You’ll be able to edit this data and update new changes.`,
       submitText: 'Confirm',
       variant: 'success',
-    }).then(() => updateSponsor(formData));
+    }).then(() => updateSponsor(serialize(body)));
   };
 
   return (
@@ -125,7 +120,7 @@ function EditSponsorForm({
           id='image'
           label='Logo'
           type='file'
-          placeholder={sponsorData.file_name}
+          placeholder='Unggah gambar baru'
           accept='.png, .jpg, .jpeg'
           maxSize={1000000}
         />
