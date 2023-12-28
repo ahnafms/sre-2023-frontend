@@ -12,7 +12,7 @@ import Typography from '../Typography';
 
 const Vision = () => {
   return (
-    <Grid className='h-screen'>
+    <Grid className='h-screen relative z-10'>
       <Cell
         cols='1_full'
         colsLg='6_full'
@@ -41,7 +41,7 @@ const Vision = () => {
           variant='c2'
           weight='medium'
           color='white'
-          className='text-center w-[500px]'
+          className='text-center w-full md:w-[500px]'
         >
           SRE ITS SC serves as an international-based renewable energy community
           that unites implementation, professional management competencies,

@@ -21,87 +21,64 @@ export default function Home() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.to('.green-overlay', {
-        opacity: 0,
-      });
-
-      gsap.fromTo(
-        '.animation-container',
-        {},
-        {
-          scrollTrigger: {
-            trigger: '.description',
-            scrub: 0.5,
-            markers,
-            start: '20% bottom',
-            end: '80% bottom',
-          },
-          bottom: '50%',
-          scale: 2.3,
-        },
-      );
-
-      gsap.fromTo(
-        '.green-overlay',
-        {
-          opacity: '0%',
-        },
-        {
-          scrollTrigger: {
-            trigger: '.description',
-            scrub: 0.5,
-            markers,
-            start: '20% bottom',
-            end: '50% bottom',
-          },
-          opacity: '50%',
-        },
-      );
-
-      gsap.fromTo(
-        '.green-overlay',
-        {
-          opacity: '50%',
-        },
-        {
-          scrollTrigger: {
-            trigger: '.description',
-            scrub: 0.5,
-            markers,
-            start: '90% bottom',
-            end: '160% bottom',
-          },
-          opacity: '0%',
-        },
-      );
-
       const mm = gsap.matchMedia();
 
       mm.add(
-        '(max-width: 1024px)',
+        '(min-width: 1024px)',
         () => {
+          gsap.to('.green-overlay', {
+            opacity: 0,
+          });
+
+          gsap.fromTo(
+            '.green-overlay',
+            {
+              opacity: '0%',
+            },
+            {
+              scrollTrigger: {
+                trigger: '.description',
+                scrub: 0.5,
+                markers,
+                start: '20% bottom',
+                end: '50% bottom',
+              },
+              opacity: '50%',
+            },
+          );
+
+          gsap.fromTo(
+            '.green-overlay',
+            {
+              opacity: '50%',
+            },
+            {
+              scrollTrigger: {
+                trigger: '.description',
+                scrub: 0.5,
+                markers,
+                start: '90% bottom',
+                end: '160% bottom',
+              },
+              opacity: '0%',
+            },
+          );
           gsap.fromTo(
             '.animation-container',
             {},
             {
               scrollTrigger: {
-                trigger: '.vision',
+                trigger: '.description',
                 scrub: 0.5,
                 markers,
-                start: '10% bottom',
-                end: '90% bottom',
+                start: '20% bottom',
+                end: '80% bottom',
               },
-              bottom: '200%',
-              opacity: 0,
+              bottom: '50%',
+              scale: 2.3,
             },
           );
-        },
-        mainComp,
-      );
 
-      mm.add(
-        '(min-width: 1024px)',
-        () => {
           gsap.fromTo(
             '.animation-container',
             {},
@@ -169,12 +146,17 @@ export default function Home() {
       return () => ctx.revert();
     }, mainComp);
   }, [mainComp, markers]);
+
   return (
-    <main className='relative bg-secondary-70 ' ref={mainComp}>
-      <Earth
-        className='z-10 -bottom-32 sm:bottom-0'
-        animationClass='animation-container'
-      />
+    <main className='relative bg-secondary-70' ref={mainComp}>
+      <div className='top-0 z-10 w-full h-[300vh] lg:h-screen overflow-x-hidden overflow-y-visible absolute lg:fixed pointer-events-none'>
+        <div className='w-full h-full relative'>
+          <Earth
+            className='z-10 w-[150vh] lg:w-[50vw] bottom-[55%] lg:bottom-0 absolute lg:fixed'
+            animationClass='animation-container'
+          />
+        </div>
+      </div>
       <Earth
         animationClass='animation-container-2'
         className='left-auto -right-[200%] -bottom-4 hidden lg:block'
@@ -198,10 +180,10 @@ export default function Home() {
         <section className='h-screen hero relative z-10'>
           <Hero />
         </section>
-        <section className='h-screen description'>
+        <section className='h-screen description '>
           <Description />
         </section>
-        <section className='h-screen vision'>
+        <section className='min-h-screen vision pt-24'>
           <Vision />
         </section>
         <section className='min-h-screen w-full overflow-hidden mission'>
@@ -230,10 +212,10 @@ const Earth = ({ animationClass, className = '' }: EarthProps) => {
       )}
     >
       <div className='border-[3px] w-full h-full border-dashed border-white rounded-full p-2'>
-        <div className=' relative w-full h-full shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] rounded-full bg-none'>
+        <div className=' relative w-full h-full bg-secondary-70 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] rounded-full bg-none'>
           <Image
             src={EarthImage}
-            className='object-contain animate-spin-96'
+            className='object-contain animate-spin-96 opacity-50 lg:opacity-100'
             sizes='1200px'
             fill
             alt='earth animation sre its'

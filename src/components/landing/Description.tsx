@@ -13,7 +13,7 @@ import Typography from '../Typography';
 
 const Description = () => {
   return (
-    <Grid className='h-screen flex items-center relative z-50'>
+    <Grid className='h-screen flex lg:items-center relative z-50'>
       <ScrollSpeed
         speed={1}
         toVars={{

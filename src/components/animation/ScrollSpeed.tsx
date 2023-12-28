@@ -9,9 +9,11 @@ type ScrollSpeedProps = {
   to?: number;
   fromVars?: gsap.TweenVars;
   toVars?: gsap.TweenVars;
+  desktopOnly?: boolean;
 };
 
 const ScrollSpeed = ({
+  desktopOnly = false,
   children,
   speed = 0,
   from,
@@ -46,28 +48,64 @@ const ScrollSpeed = ({
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.scroll-box',
-        {
-          y: compFrom,
-          scrollTrigger: fromScroll,
-          ...fromVar,
-        },
-        {
-          y: compTo,
-          scrollTrigger: {
-            trigger: '.scroll-speed-container',
-            scrub: 1,
-            // markers: true,
-            ...toScroll,
+      const mm = gsap.matchMedia();
+
+      mm.add('(min-width: 1024px)', () => {
+        gsap.fromTo(
+          '.scroll-box',
+          {
+            y: compFrom,
+            scrollTrigger: fromScroll,
+            ...fromVar,
           },
-          ease: 'Linear.easeNone',
-          ...toVar,
-        },
-      );
+          {
+            y: compTo,
+            scrollTrigger: {
+              trigger: '.scroll-speed-container',
+              scrub: 1,
+              // markers: true,
+              ...toScroll,
+            },
+            ease: 'Linear.easeNone',
+            ...toVar,
+          },
+        );
+      });
+
+      mm.add('(max-width: 1024px)', () => {
+        if (desktopOnly)
+          gsap.fromTo(
+            '.scroll-box',
+            {
+              y: compFrom,
+              scrollTrigger: fromScroll,
+              ...fromVar,
+            },
+            {
+              y: compTo,
+              scrollTrigger: {
+                trigger: '.scroll-speed-container',
+                scrub: 1,
+                // markers: true,
+                ...toScroll,
+              },
+              ease: 'Linear.easeNone',
+              ...toVar,
+            },
+          );
+      });
     });
     return () => ctx.revert();
-  }, [targetRef, compFrom, compTo, fromScroll, fromVar, toScroll, toVar]);
+  }, [
+    targetRef,
+    compFrom,
+    compTo,
+    fromScroll,
+    fromVar,
+    toScroll,
+    toVar,
+    desktopOnly,
+  ]);
 
   return (
     <div ref={targetRef}>
