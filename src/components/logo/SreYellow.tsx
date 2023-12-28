@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 
-function SreYellow() {
+function SreYellow(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
-      width='182'
-      height='65'
       fill='none'
       viewBox='0 0 182 65'
+      {...props}
     >
       <g filter='url(#filter0_i_2868_2796)'>
         <path

@@ -64,8 +64,8 @@ export default function SelectInput({
             readOnly
               ? 'cursor-not-allowed border-gray-300 bg-gray-100 focus:border-gray-300 focus:ring-0'
               : errors[id]
-              ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
-              : 'bg-surface-base focus:border-success-500 focus:ring-success-500 border-none',
+                ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
+                : 'bg-surface-base focus:border-success-500 focus:ring-success-500 border-none',
             'block w-full ring-slate-300 bg-typo-white p-1 py-1.5 ring-1 rounded-md',
             (value === '' || value === undefined) && 'text-gray-500',
           )}

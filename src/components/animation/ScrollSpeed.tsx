@@ -58,7 +58,7 @@ const ScrollSpeed = ({
           scrollTrigger: {
             trigger: '.scroll-speed-container',
             scrub: 1,
-            markers: true,
+            // markers: true,
             ...toScroll,
           },
           ease: 'Linear.easeNone',
