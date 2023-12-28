@@ -1,11 +1,6 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import {
-  DetailedHTMLProps,
-  HTMLAttributes,
-  useLayoutEffect,
-  useRef,
-} from 'react';
+import { useLayoutEffect, useRef } from 'react';
 
 import missionItems from '@/constant/mission';
 import clsxm from '@/lib/clsxm';
@@ -158,13 +153,19 @@ const Mission = () => {
   );
 };
 
-const MissionItem = ({
+interface MissionProps extends HTMLAttributes<HTMLDivElement> {
+  title: string;
+  desc: string;
+  number: string;
+}
+
+function MissionItem({
   title,
   desc,
   number,
   className,
   ...rest
-}: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) => {
+}: MissionProps) {
   return (
     <div
       className={clsxm('md:w-[660px] w-[80vw] mission-item', className)}
@@ -195,6 +196,6 @@ const MissionItem = ({
       </Typography>
     </div>
   );
-};
+}
 
 export default Mission;
