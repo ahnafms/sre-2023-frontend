@@ -41,11 +41,7 @@ const Description = () => {
             students as active learners in the Renewable Energy field. SRE ITS
             <span className='w-fit h-fit inline-block px-2 md:px-4 align-bottom'>
               {' '}
-              <YellowStar
-                className='animate-spin-16 w-8 md:w-10 lg:w-12'
-                height='auto'
-                width='auto'
-              />
+              <YellowStar className='animate-spin-16 w-8 md:w-10 lg:w-12 h-auto' />
             </span>
             is committed to spreading its wings and becoming trusted by the
             Indonesian government as a representative for spreading knowledge

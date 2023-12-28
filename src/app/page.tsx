@@ -167,6 +167,7 @@ export default function Home() {
         <div className='relative w-full h-full'>
           <Image
             src='/images/landing/hero-bg2.jpg'
+            sizes='(max-width: 1200px) 100vw, 1200px'
             alt='hero bg image'
             fill
             className='object-cover grayscale opacity-25'
@@ -216,7 +217,7 @@ const Earth = ({ animationClass, className = '' }: EarthProps) => {
           <Image
             src={EarthImage}
             className='object-contain animate-spin-96 opacity-50 lg:opacity-100'
-            sizes='1200px'
+            sizes='(max-width: 768px) 100vh, 1200px'
             fill
             alt='earth animation sre its'
           />

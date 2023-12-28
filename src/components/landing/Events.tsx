@@ -168,11 +168,7 @@ const Events = () => {
             weight='regular'
             className='md:text-h4 lg:text-h3 text-right text-primary-50 drop-shadow-text whitespace-normal w-fit'
           >
-            <CurlyArrow
-              className='absolute hidden lg:block -rotate-6 -top-40 left-0 h-40 w-auto'
-              width='auto'
-              height='auto'
-            />
+            <CurlyArrow className='absolute hidden lg:block -rotate-6 -top-40 left-0 h-40 w-auto' />
             Event&apos;s Spotlight
           </Typography>
           <Typography

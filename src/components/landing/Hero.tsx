@@ -28,11 +28,7 @@ const Hero = () => {
         rows='1_1'
         rowsMd='1_1'
       >
-        <YellowStar
-          className='animate-spin-16 w-12 md:w-14 lg:w-16'
-          height='auto'
-          width='auto'
-        />
+        <YellowStar className='animate-spin-16 w-12 md:w-14 lg:w-16' />
       </Cell>
       <Cell
         cols='1_full'
@@ -41,11 +37,7 @@ const Hero = () => {
         rows='4_1'
         rowsMd='1_1'
       >
-        <YellowStar
-          className='animate-spin-16 w-12 md:w-14 lg:w-16'
-          height='auto'
-          width='auto'
-        />
+        <YellowStar className='animate-spin-16 w-12 md:w-14 lg:w-16' />
       </Cell>
       <Cell cols='1_full' className='text-center'>
         <Typography
