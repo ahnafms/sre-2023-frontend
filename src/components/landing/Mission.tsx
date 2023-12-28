@@ -1,6 +1,11 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { useLayoutEffect, useRef } from 'react';
+import {
+  DetailedHTMLProps,
+  HTMLAttributes,
+  useLayoutEffect,
+  useRef,
+} from 'react';
 
 import missionItems from '@/constant/mission';
 import clsxm from '@/lib/clsxm';
@@ -153,7 +158,8 @@ const Mission = () => {
   );
 };
 
-interface MissionProps extends HTMLAttributes<HTMLDivElement> {
+interface MissionProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   title: string;
   desc: string;
   number: string;
