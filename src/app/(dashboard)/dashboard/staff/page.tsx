@@ -123,8 +123,8 @@ function DashboardStaffPage() {
           <Button
             variant='outline-primary'
             onClick={() => {
-              setUpdateModalOpen(true);
               setSelectedStaff(info.row.original);
+              setUpdateModalOpen(true);
             }}
           >
             Edit

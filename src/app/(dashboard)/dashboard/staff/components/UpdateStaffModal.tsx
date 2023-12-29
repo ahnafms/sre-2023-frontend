@@ -33,14 +33,15 @@ export default function UpdateStaffModal({
   setSelectedStaff,
   onSuccess,
 }: UpdateStaffModalProps) {
-  const methods = useForm<UpdateStaffRequest>({
-    defaultValues: selectedStaff,
-  });
+  const methods = useForm<UpdateStaffRequest>();
 
   const {
+    reset,
     handleSubmit,
     formState: { isDirty },
   } = methods;
+
+  React.useEffect(() => reset(selectedStaff), [reset, selectedStaff]);
 
   const { mutate: registerStaff, isPending } = useMutation<
     AxiosResponse<RegisterStaffResponse>,
