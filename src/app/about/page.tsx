@@ -10,6 +10,7 @@ import Button from '@/components/Button';
 import Cell from '@/components/Cell';
 import Grid from '@/components/Grid';
 import Typography from '@/components/Typography';
+import heroAboutItems from '@/constant/heroAboutItems';
 import clsxm from '@/lib/clsxm';
 
 import DivisionMember from './components/DivisionMember';
@@ -26,18 +27,6 @@ export default function About() {
       gsap.registerPlugin(ScrollTrigger);
       const heroCards = gsap.utils.toArray('.hero-card');
 
-      const height = () => {
-        const heroContainer =
-          document.querySelector<HTMLElement>('.hero-container');
-        const heroCard1 = document.querySelector<HTMLElement>('.hero-card-1');
-
-        if (heroContainer && heroCard1) {
-          return -(heroContainer.offsetHeight / 2 - heroCard1.offsetHeight / 2);
-        }
-
-        return 0;
-      };
-
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: '.hero-section',
@@ -50,96 +39,51 @@ export default function About() {
       });
 
       heroCards.forEach((_, index) => {
-        if (index === 0) {
-          tl.fromTo(
-            '.hero-card-' + (index + 1),
+        if (index < heroCards.length - 1) {
+          tl.to(
+            `.hero-card-${index + 1}`,
             {
-              opacity: '100%',
-              scale: 1,
-              y: 0,
-              ease: 'none',
-            },
-            {
-              opacity: '50%',
+              top: '-15%',
               scale: 0.75,
-              y: () => height(),
+              zIndex: 0,
+              opacity: 0.5,
             },
+            '>+0.1',
           );
-          tl.fromTo(
-            '.hero-card-' + (index + 2),
-            {
-              opacity: '50%',
-              scale: 0.75,
-              y: 0,
-              ease: 'none',
-            },
-            {
-              opacity: '100%',
-              scale: 1,
-              y: () => height(),
-            },
-            '<',
-          );
-          tl.fromTo(
-            '.hero-card-' + (index + 3),
-            {
-              opacity: '50%',
-              scale: 0.75,
-              y: 0,
-              ease: 'none',
-            },
-            {
-              scale: 0.75,
-              opacity: '50%',
-              y: () => height(),
-            },
-            '<',
-          );
-        } else if (index === 1) {
-          tl.fromTo(
-            '.hero-card-' + (index + 1),
-            {
-              opacity: '100%',
-              scale: 1,
-              y: height(),
-              ease: 'none',
-            },
-            {
-              opacity: '50%',
-              scale: 0.75,
-              y: height() * 2,
-            },
-          );
-          tl.fromTo(
-            '.hero-card-' + index,
-            {
-              opacity: '50%',
-              scale: 0.75,
-              y: height(),
-              ease: 'none',
-            },
-            {
-              opacity: '100%',
-              scale: 1,
-              y: height() * 2,
-            },
-            '<',
-          );
-          tl.fromTo(
-            '.hero-card-' + (index + 2),
-            {
-              opacity: '50%',
-              scale: 0.75,
-              y: height(),
-              ease: 'none',
-            },
-            {
-              scale: 1,
-              opacity: '100%',
-              y: height() * 2,
-            },
-            '<',
-          );
+
+          if (index < heroCards.length - 1)
+            tl.to(
+              `.hero-card-${index + 2}`,
+              {
+                top: '50%',
+                zIndex: 10,
+                scale: 1,
+                opacity: 1,
+              },
+              '<',
+            );
+
+          if (index < heroCards.length - 2)
+            tl.fromTo(
+              `.hero-card-${index + 3}`,
+              {
+                opacity: 0,
+              },
+              {
+                opacity: 0.5,
+              },
+              '<',
+            );
+
+          if (index) {
+            tl.to(
+              `.hero-card-${index}`,
+              {
+                opacity: 0,
+              },
+              '<',
+            );
+          }
         }
       });
     },
@@ -148,34 +92,51 @@ export default function About() {
 
   return (
     <main ref={comp}>
-      <section className='hero-section min-h-screen h-full flex flex-col justify-center items-center overflow-hidden relative py-20 md:py-0'>
+      <section className='hero-section min-h-[600px] h-screen flex flex-col justify-center items-center overflow-hidden relative'>
         <HeroBackground />
         <Grid className='z-[5]'>
-          <Cell
-            cols='1_full'
-            colsMd='2_10'
-            rows='1_1'
-            className='flex flex-col'
-          >
+          <Cell cols='1_full' rows='1_1' className='flex flex-col mt-20'>
             <Typography
               as='h1'
-              variant='h1'
+              variant='h5'
               font='anton'
               className={clsxm(
                 'text-primary-50 text-center',
-                'text-[32px] leading-[48px] md:text-[64px] md:leading-[84px] lg:text-[80px] lg:leading-[96px]',
+                'drop-shadow-text sm:text-h4 lg:text-h3 xl:text-h1',
               )}
             >
               Our Commitment to Sustainable Development Goals
             </Typography>
           </Cell>
         </Grid>
-        <div className='bg-primary-50 mx-auto w-[95%] lg:w-[82%] h-[583px] lg:h-[45vh] flex justify-center items-center overflow-hidden z-[3] mt-9 lg:mt-[5vh] drop-shadow-2xl rounded-2xl'>
-          <div className='hero-container flex flex-col gap-10 lg:w-[642px] w-[85%] rounded-xl self-start mt-[10vh]'>
-            {/* kalo udah ada datanya bisa jadiin swiperslidenya template */}
-            <HeroCard className='hero-card hero-card-1' />
-            <HeroCard className='hero-card hero-card-2' />
-            <HeroCard className='hero-card hero-card-3' />
+        <div className='bg-primary-50 mx-auto w-full rounded-none lg:w-[82%] h-[583px] lg:h-[45vh] flex justify-center items-center overflow-hidden z-[3] mt-9 lg:mt-[5vh] drop-shadow-2xl lg:rounded-2xl'>
+          <div className='hero-container h-[80%] lg:w-[642px] w-[300px] max-w-[85%] lg:h-full relative'>
+            {heroAboutItems.map(({ title, desc, icon }, idx) => {
+              if (idx == 0) {
+                return (
+                  <HeroCard
+                    key={idx}
+                    title={title}
+                    desc={desc}
+                    Icon={icon}
+                    className='hero-card hero-card-1 z-10 h-full w-full absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2'
+                  />
+                );
+              } else {
+                return (
+                  <HeroCard
+                    key={idx}
+                    title={title}
+                    desc={desc}
+                    Icon={icon}
+                    className={
+                      `hero-card-${idx + 1} ` +
+                      'hero-card z-0 scale-75 opacity-50 h-full w-full absolute -translate-x-1/2 -translate-y-1/2 top-[115%] left-1/2'
+                    }
+                  />
+                );
+              }
+            })}
           </div>
         </div>
       </section>

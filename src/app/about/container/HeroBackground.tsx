@@ -6,8 +6,10 @@ export default function HeroBackground() {
       <NextImage
         src='/images/about/paper4.png'
         alt='paper'
-        width={1441}
-        height={1031}
+        // width={1441}
+        // height={1031}
+        fill
+        sizes='(max-height: 768px) 100vh, 1200px'
         className='absolute z-[0] w-full top-0 bg-transparent'
       />
       <NextImage
