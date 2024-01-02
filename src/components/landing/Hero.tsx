@@ -5,7 +5,7 @@ import Typography from '../Typography';
 
 const Hero = () => {
   return (
-    <Grid className='pt-[20vh] relative z-20'>
+    <Grid className='pt-12 relative z-20'>
       <Cell
         cols='1_full'
         colsMd='3_8'

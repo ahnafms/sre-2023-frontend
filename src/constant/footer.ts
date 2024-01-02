@@ -19,10 +19,6 @@ export const footerLink: FooterLink[] = [
     name: 'Merchandise',
     href: '/coming-soon',
   },
-  {
-    name: 'Others',
-    href: '/coming-soon',
-  },
 ];
 
 type FooterSocialMedia = {

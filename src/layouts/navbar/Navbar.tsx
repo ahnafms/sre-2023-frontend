@@ -23,7 +23,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className='top-0 z-[101] duration-300 
+      className='top-0 z-[101] relative duration-300 
       shadow-xl ease-in-out my-6 mx-7 md:mx-10 
       lg:my-10 lg:max-w-none lg:mx-10 
       xl:mx-auto xl:max-w-[1240px] 
@@ -210,7 +210,7 @@ export default function Navbar() {
       {/* Mobile Side Navigations */}
       <div
         className={clsxm(
-          'fixed left-0 top-0 flex flex-col items-center pt-20',
+          'fixed left-0 top-0 flex flex-col items-center pt-20 z-[102]',
           'w-[80%] border-r-4 border-r-white min-h-screen px-4 pb-24 lg:hidden bg-secondary-50',
           'transition ease-in-out duration-300',
           isOpen ? 'translate-x-0' : '-translate-x-full',

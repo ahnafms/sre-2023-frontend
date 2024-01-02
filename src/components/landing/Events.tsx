@@ -87,7 +87,7 @@ const Events = () => {
   }, [comp]);
 
   return (
-    <div ref={comp} className='bg-secondary-70'>
+    <div ref={comp} className='bg-secondary-70 h-full'>
       <Grid className='h-full gsap-container'>
         <Cell cols='1_full' colsMd='1_7' colsLg='1_5'>
           <div className='flex flex-col justify-center items-center w-full h-full pt-12 pb-4'>

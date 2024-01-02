@@ -4,8 +4,8 @@ import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import { Anton, Epilogue } from 'next/font/google';
 
-import config from '@/constant/seo';
 import LenisScroll from '@/components/animation/LenisScroll';
+import config from '@/constant/seo';
 import clsxm from '@/lib/clsxm';
 import Providers from '@/providers';
 

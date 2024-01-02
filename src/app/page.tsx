@@ -9,6 +9,8 @@ import Events from '@/components/landing/Events';
 import Hero from '@/components/landing/Hero';
 import Mission from '@/components/landing/Mission';
 import Vision from '@/components/landing/Vision';
+import Footer from '@/layouts/Footer';
+import Navbar from '@/layouts/navbar/Navbar';
 import clsxm from '@/lib/clsxm';
 import EarthImage from '~/images/landing/sre-earth.png';
 
@@ -133,8 +135,8 @@ export default function Home() {
                 trigger: '.event',
                 scrub: 0.5,
                 markers,
-                start: '20% bottom',
-                end: '80% bottom',
+                start: '200px bottom',
+                end: '600px bottom',
               },
               bottom: '100vh',
             },
@@ -152,7 +154,7 @@ export default function Home() {
       <div className='top-0 z-10 w-full h-[300vh] lg:h-screen overflow-x-hidden overflow-y-visible absolute lg:fixed pointer-events-none'>
         <div className='w-full h-full relative'>
           <Earth
-            className='z-10 w-[150vh] lg:w-[50vw] bottom-[55%] lg:bottom-0 absolute lg:fixed'
+            className='z-10 w-[150vh] lg:w-[50vw] bottom-[55%] lg:-bottom-8 absolute lg:fixed'
             animationClass='animation-container'
           />
         </div>
@@ -179,6 +181,7 @@ export default function Home() {
       {/* Div wrapper for x hidden overflow exclude Events Section */}
       <div className='overflow-x-hidden overflow-y-clip'>
         <section className='h-screen hero relative z-10'>
+          <Navbar />
           <Hero />
         </section>
         <section className='h-screen description '>
@@ -191,9 +194,10 @@ export default function Home() {
           <Mission />
         </section>
       </div>
-      <section className='h-screen event'>
+      <section className='min-h-screen event'>
         <Events />
       </section>
+      <Footer />
     </main>
   );
 }
