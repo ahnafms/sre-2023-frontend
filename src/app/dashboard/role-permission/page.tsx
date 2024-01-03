@@ -11,6 +11,7 @@ import Button from '@/components/Button';
 import withAuth from '@/components/hoc/withAuth';
 import Table from '@/components/table/Table';
 import Typography from '@/components/Typography';
+import DashboardLayout from '@/layouts/dashboard/DashboardLayout';
 import api from '@/lib/api';
 import useDialogStore from '@/stores/useDialogStore';
 import { ApiError, ApiResponse } from '@/types/api';
@@ -153,50 +154,52 @@ function RolePermissionPage() {
   }
 
   return (
-    <section className='w-full h-full bg-typo-surface px-10 py-10 flex flex-col gap-4 items-start'>
-      <div>
-        <Typography variant='h6' className='text-typo-primary font-light'>
-          SRE ITS 2023
-        </Typography>
-        <Typography variant='h5' className='text-typo-primary' weight='bold'>
-          Role dan Authorization
-        </Typography>
-      </div>
-      <Table
-        className='text-black w-full'
-        isLoading={isLoading}
-        data={queryData?.data ?? []}
-        withFilter
-        withPaginationControl
-        columns={columns}
-        extraContent={
-          <>
-            <Button
-              leftIcon={BiPlusCircle}
-              variant='outline-primary'
-              onClick={() => setRegisterModalOpen(true)}
-            >
-              Tambah Role
-            </Button>
-            {
-              <RegisterRoleModal
-                onSuccess={refetchData}
-                setOpen={setRegisterModalOpen}
-                open={registerModalOpen}
-              />
-            }
-          </>
-        }
-      />
-      {selectedData && (
-        <EditRoleAuthModal
-          open={editModalOpen}
-          setOpen={setEditModalOpen}
-          defaultValues={selectedData}
-          onSuccess={refetchData}
-          queryDataPermission={queryDataPermissions?.data ?? []}
+    <DashboardLayout>
+      <section className='w-full h-full min-h-screen bg-typo-surface px-10 py-10 flex flex-col gap-4 items-start'>
+        <div>
+          <Typography variant='h6' className='text-typo-primary font-light'>
+            SRE ITS 2023
+          </Typography>
+          <Typography variant='h5' className='text-typo-primary' weight='bold'>
+            Role dan Authorization
+          </Typography>
+        </div>
+        <Table
+          className='text-black w-full'
+          isLoading={isLoading}
+          data={queryData?.data ?? []}
+          withFilter
+          withPaginationControl
+          columns={columns}
+          extraContent={
+            <>
+              <Button
+                leftIcon={BiPlusCircle}
+                variant='outline-primary'
+                onClick={() => setRegisterModalOpen(true)}
+              >
+                Tambah Role
+              </Button>
+              {
+                <RegisterRoleModal
+                  onSuccess={refetchData}
+                  setOpen={setRegisterModalOpen}
+                  open={registerModalOpen}
+                />
+              }
+            </>
+          }
         />
-      )}
-    </section>
+        {selectedData && (
+          <EditRoleAuthModal
+            open={editModalOpen}
+            setOpen={setEditModalOpen}
+            defaultValues={selectedData}
+            onSuccess={refetchData}
+            queryDataPermission={queryDataPermissions?.data ?? []}
+          />
+        )}
+      </section>
+    </DashboardLayout>
   );
 }

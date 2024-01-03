@@ -57,11 +57,6 @@ export default function withAuth<T>(
     }, [isAuthed]);
 
     React.useEffect(() => {
-      if (window.sessionStorage.getItem('redirected')) {
-        window.sessionStorage.removeItem('redirected');
-        return;
-      }
-
       if (
         isLoading ||
         permissions.includes('all') ||
@@ -74,9 +69,7 @@ export default function withAuth<T>(
         !isAuthed ||
         (user && !permissions.every(p => user.permission.includes(p)))
       ) {
-        router.replace('/login');
         toast.error('Anda tidak memiliki akses ke halaman ini');
-        window.sessionStorage.setItem('redirected', 'true');
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isAuthed, isLoading]);
@@ -87,6 +80,10 @@ export default function withAuth<T>(
     }, []);
 
     if (isLoading) return <Loading />;
+    else if (!isLoading && !isAuthed) {
+      router.replace('/login');
+      return;
+    }
     return <Component {...(props as T)} user={user} />;
   }
 

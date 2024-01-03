@@ -16,6 +16,7 @@ import IconButton from '@/components/IconButton';
 import ImagePreview from '@/components/ImagePreview';
 import Table from '@/components/table/Table';
 import Typography from '@/components/Typography';
+import DashboardLayout from '@/layouts/dashboard/DashboardLayout';
 import api from '@/lib/api';
 import useDialogStore from '@/stores/useDialogStore';
 import { ApiResponse } from '@/types/api';
@@ -141,48 +142,54 @@ function DashboardStaffPage() {
   ];
 
   return (
-    <div className='w-full bg-typo-surface px-10 py-10 min-h-screen flex flex-col gap-4 items-start'>
-      <div className='w-full'>
-        <Typography variant='h6' className='text-typo-primary font-light'>
-          SRE ITS 2023
-        </Typography>
-        <div className='flex justify-between items-center'>
-          <Typography variant='h5' className='text-typo-primary' weight='bold'>
-            Staff Database
+    <DashboardLayout>
+      <section className='w-full bg-typo-surface px-10 py-10 min-h-screen flex flex-col gap-4 items-start'>
+        <div className='w-full'>
+          <Typography variant='h6' className='text-typo-primary font-light'>
+            SRE ITS 2023
           </Typography>
-          <Button
-            leftIcon={BiPlusCircle}
-            variant='outline-primary'
-            onClick={() => setRegisterModalOpen(true)}
-          >
-            Tambah data Staff
-          </Button>
+          <div className='flex justify-between items-center'>
+            <Typography
+              variant='h5'
+              className='text-typo-primary'
+              weight='bold'
+            >
+              Staff Database
+            </Typography>
+            <Button
+              leftIcon={BiPlusCircle}
+              variant='outline-primary'
+              onClick={() => setRegisterModalOpen(true)}
+            >
+              Tambah data Staff
+            </Button>
+          </div>
         </div>
-      </div>
 
-      <Table
-        className='text-black w-full'
-        isLoading={isLoading}
-        data={staffsResponse?.data ?? []}
-        columns={columns}
-        withFilter
-      />
+        <Table
+          className='text-black w-full'
+          isLoading={isLoading}
+          data={staffsResponse?.data ?? []}
+          columns={columns}
+          withFilter
+        />
 
-      <RegisterStaffModal
-        open={registerModalOpen}
-        setOpen={setRegisterModalOpen}
-        onSuccess={refetchStaffs}
-      />
-
-      {selectedStaff && (
-        <UpdateStaffModal
-          open={updateModalOpen}
-          setOpen={setUpdateModalOpen}
-          selectedStaff={selectedStaff}
-          setSelectedStaff={setSelectedStaff}
+        <RegisterStaffModal
+          open={registerModalOpen}
+          setOpen={setRegisterModalOpen}
           onSuccess={refetchStaffs}
         />
-      )}
-    </div>
+
+        {selectedStaff && (
+          <UpdateStaffModal
+            open={updateModalOpen}
+            setOpen={setUpdateModalOpen}
+            selectedStaff={selectedStaff}
+            setSelectedStaff={setSelectedStaff}
+            onSuccess={refetchStaffs}
+          />
+        )}
+      </section>
+    </DashboardLayout>
   );
 }
