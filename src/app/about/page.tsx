@@ -1,10 +1,19 @@
 'use client';
 
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/thumbs';
+
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import NextImage from 'next/image';
+import Image from 'next/image';
 import * as React from 'react';
+import { BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs';
+import { Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Button from '@/components/Button';
 import Cell from '@/components/Cell';
@@ -143,7 +152,13 @@ export default function About() {
 
       <section className='bg-[#FFFFFF] min-h-screen h-full flex justify-center items-center overflow-hidden relative py-20 md:py-0'>
         <Grid className='z-[5]'>
-          <Cell colsMd='1_7' cols='1_full' className='flex flex-col'>
+          <Cell
+            colsLg='1_6'
+            colsMd='1_6'
+            cols='1_full'
+            colsSm='2_2'
+            className='md:flex flex-col'
+          >
             <Typography
               as='h1'
               variant='h1'
@@ -155,20 +170,61 @@ export default function About() {
             >
               What do they say about SRE?
             </Typography>
-            <NextImage
-              src='/images/about/foto1.png'
-              alt='foto sre'
-              width={1039}
-              height={807}
-              className='md:hidden mt-3 w-4/5 mx-auto'
-            />
+            <Swiper
+              modules={[Pagination]}
+              scrollbar={{ draggable: false }}
+              pagination={true}
+              centeredSlides={true}
+              loop={false}
+              className='md:!hidden'
+              breakpoints={{
+                0: {
+                  slidesPerView: 1,
+                  pagination: {
+                    el: '#swiper-pagination-bullet',
+                    bulletActiveClass:
+                      'swiper-pagination-bullet-active !bg-[#1C1C1E] !w-6 !rounded-3xl !transform !transition-all !duration-300 !ease-in-out',
+                    type: 'bullets',
+                  },
+                },
+              }}
+            >
+              <SwiperSlide className='h-full self-center'>
+                <Image
+                  className='m-auto'
+                  src='/images/about/foto1.png'
+                  alt='foto sre'
+                  objectFit='cover'
+                  width={500}
+                  height={500}
+                />
+              </SwiperSlide>
+              <SwiperSlide className='h-full'>
+                <Image
+                  className='m-auto'
+                  src='/images/about/foto1.png'
+                  alt='foto sre'
+                  width={500}
+                  height={500}
+                />
+              </SwiperSlide>
+              <SwiperSlide className='h-full'>
+                <Image
+                  className='m-auto'
+                  src='/images/about/foto1.png'
+                  alt='foto sre'
+                  width={500}
+                  height={500}
+                />
+              </SwiperSlide>
+            </Swiper>
             <Typography
               as='h4'
               variant='h4'
               font='epilogue'
               weight='bold'
               className={clsxm(
-                'text-primary-60 md:mt-5 mt-3 ml-[9%] md:ml-0',
+                'text-primary-60 md:mt-5 mt-3 md:ml-0',
                 'text-[24px] leading-[32px] md:text-[32px] md:leading-[48px] lg:text-[48px] lg:leading-[64px]',
               )}
             >
@@ -180,7 +236,7 @@ export default function About() {
               font='epilogue'
               weight='medium'
               className={clsxm(
-                'text-typo-dark ml-[9%] md:ml-0',
+                'text-typo-dark md:ml-0',
                 'text-[20px] leading-[24px] lg:text-[24px] lg:leading-[32px]',
               )}
             >
@@ -191,7 +247,7 @@ export default function About() {
               variant='t'
               font='epilogue'
               className={clsxm(
-                'text-typo-dark md:w-4/6 w-5/6 md:mt-5 mt-3 ml-[9%] md:ml-0',
+                'text-typo-dark md:w-4/6 w-5/6 md:mt-5 mt-3 md:ml-0',
                 'text-[14px] leading-[24px] md:text-[16px] md:leading-[24px] lg:text-[20px] lg:leading-[24px]',
               )}
             >
@@ -199,15 +255,85 @@ export default function About() {
               excellence. From seasoned experts to fresh innovators, we&apos;re
               the driving force behind our success. Welcome to our world!*
             </Typography>
+            <div id='swiper-pagination-bullet' />
           </Cell>
-          <Cell colsMd='8_5'>
-            <NextImage
-              src='/images/about/foto1.png'
-              alt='foto sre'
-              width={1039}
-              height={807}
-              className='hidden md:block'
-            />
+          <Cell
+            cols='1_full'
+            colsMd='7_full'
+            colsLg='8_5'
+            className='flex-row w-full items-center justify-center hidden md:flex md:gap-5 relative'
+          >
+            <button id='swiper-button-prev'>
+              <div
+                className={clsxm(
+                  'right-[5%] justify-center items-center w-10 h-10 rounded-full text-2xl hover:cursor-pointer md:flex hidden',
+                  'bg-typo-white border-[1px] border-typo-outline hover:bg-typo-outline text-[#9AA2B1] active:bg-typo-disabled',
+                )}
+              >
+                <BsArrowLeftShort />
+              </div>
+            </button>
+            <div className='swiper-container flex w-[90%] md:w-full items-center justify-center md:justify-evenly gap-10 h-full'>
+              <Swiper
+                modules={[Pagination, Navigation]}
+                scrollbar={{ draggable: false }}
+                pagination={true}
+                centeredSlides={true}
+                loop={false}
+                breakpoints={{
+                  1024: {
+                    slidesPerView: 1,
+                    spaceBetween: 100,
+                    navigation: {
+                      nextEl: '#swiper-button-next',
+                      prevEl: '#swiper-button-prev',
+                    },
+                    pagination: {
+                      el: '#swiper-pagination-bullet',
+                      bulletActiveClass:
+                        'swiper-pagination-bullet-active !bg-[#1C1C1E] !w-6 !rounded-3xl !transform !transition-all !duration-300 !ease-in-out',
+                      type: 'bullets',
+                    },
+                  },
+                }}
+              >
+                <SwiperSlide className='h-full self-center'>
+                  <Image
+                    src='/images/about/foto1.png'
+                    alt='foto sre'
+                    objectFit='cover'
+                    width={1000}
+                    height={1000}
+                  />
+                </SwiperSlide>
+                <SwiperSlide className='h-full'>
+                  <Image
+                    src='/images/about/foto1.png'
+                    alt='foto sre'
+                    width={1000}
+                    height={1000}
+                  />
+                </SwiperSlide>
+                <SwiperSlide className='h-full'>
+                  <Image
+                    src='/images/about/foto1.png'
+                    alt='foto sre'
+                    width={1000}
+                    height={1000}
+                  />
+                </SwiperSlide>
+              </Swiper>
+            </div>
+            <button id='swiper-button-next'>
+              <div
+                className={clsxm(
+                  'right-[5%] justify-center items-center w-10 h-10 rounded-full text-2xl hover:cursor-pointer md:flex hidden',
+                  'bg-typo-white border-[1px] border-typo-outline hover:bg-typo-outline text-[#9AA2B1] active:bg-typo-disabled',
+                )}
+              >
+                <BsArrowRightShort />
+              </div>
+            </button>
           </Cell>
         </Grid>
         <WhatDoBackground />
