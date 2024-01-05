@@ -2,6 +2,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
+import { useQuery } from '@tanstack/react-query';
 import * as React from 'react';
 import { BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs';
 import { Navigation, Pagination } from 'swiper/modules';
@@ -11,10 +12,15 @@ import Cell from '@/components/Cell';
 import Grid from '@/components/Grid';
 import Typography from '@/components/Typography';
 import clsxm from '@/lib/clsxm';
+import { ApiResponse } from '@/types/api';
+import { DivisionWithStaff } from '@/types/entities/division';
 
 import Card from './Card';
 
 export default function DivisionMember() {
+  const { data: queryStaff } = useQuery<ApiResponse<DivisionWithStaff>>({
+    queryKey: ['/staff?groupByDepartment=1'],
+  });
   return (
     <>
       <Grid>
@@ -76,18 +82,14 @@ export default function DivisionMember() {
                 },
               }}
             >
-              <SwiperSlide>
-                <Card />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Card />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Card />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Card />
-              </SwiperSlide>
+              {queryStaff &&
+                Object.keys(queryStaff.data).map((division, index) =>
+                  queryStaff.data[division].map(data => (
+                    <SwiperSlide key={index}>
+                      <Card data={data} />
+                    </SwiperSlide>
+                  )),
+                )}
             </Swiper>
           </div>
           <button id='swiper-button-next'>
