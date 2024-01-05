@@ -11,6 +11,7 @@ import Button from '@/components/Button';
 import withAuth from '@/components/hoc/withAuth';
 import Table from '@/components/table/Table';
 import Typography from '@/components/Typography';
+import DashboardLayout from '@/layouts/dashboard/DashboardLayout';
 import api from '@/lib/api';
 import useDialogStore from '@/stores/useDialogStore';
 import { ApiResponse } from '@/types/api';
@@ -113,52 +114,54 @@ function DashboardUserPage() {
     },
   ];
   return (
-    <section className='min-h-screen p-10 bg-typo-surface'>
-      <Typography variant='btn' font='epilogue' weight='medium'>
-        SRE ITS 2023
-      </Typography>
-      <Typography as='h5' variant='h5' font='epilogue' weight='semibold'>
-        User Database
-      </Typography>
+    <DashboardLayout>
+      <section className='w-full bg-typo-surface px-10 py-10 min-h-screen flex flex-col gap-4 items-start'>
+        <Typography variant='btn' font='epilogue' weight='medium'>
+          SRE ITS 2023
+        </Typography>
+        <Typography as='h5' variant='h5' font='epilogue' weight='semibold'>
+          User Database
+        </Typography>
 
-      <Table
-        className='text-black'
-        data={userResponse?.data ?? []}
-        columns={columns}
-        isLoading={isLoading}
-        extraContent={
-          <>
-            <Button
-              leftIcon={BiPlusCircle}
-              variant='outline-primary'
-              onClick={() => setRegisterModalOpen(true)}
-              className='z-40'
-            >
-              Tambah User
-            </Button>
-            {
-              <RegisterUserModal
-                onSuccess={refetchUser}
-                setOpen={setRegisterModalOpen}
-                open={registerModalOpen}
-              />
-            }
-          </>
-        }
-        withFilter
-        withPaginationControl
-        withPaginationCount
-      />
-
-      {selectedStaff && (
-        <UpdateUserModal
-          open={updateModalOpen}
-          setOpen={setUpdateModalOpen}
-          selectedUser={selectedStaff}
-          setSelectedUser={setSelectedStaff}
-          onSuccess={refetchUser}
+        <Table
+          className='text-black'
+          data={userResponse?.data ?? []}
+          columns={columns}
+          isLoading={isLoading}
+          extraContent={
+            <>
+              <Button
+                leftIcon={BiPlusCircle}
+                variant='outline-primary'
+                onClick={() => setRegisterModalOpen(true)}
+                className='z-40'
+              >
+                Tambah User
+              </Button>
+              {
+                <RegisterUserModal
+                  onSuccess={refetchUser}
+                  setOpen={setRegisterModalOpen}
+                  open={registerModalOpen}
+                />
+              }
+            </>
+          }
+          withFilter
+          withPaginationControl
+          withPaginationCount
         />
-      )}
-    </section>
+
+        {selectedStaff && (
+          <UpdateUserModal
+            open={updateModalOpen}
+            setOpen={setUpdateModalOpen}
+            selectedUser={selectedStaff}
+            setSelectedUser={setSelectedStaff}
+            onSuccess={refetchUser}
+          />
+        )}
+      </section>
+    </DashboardLayout>
   );
 }

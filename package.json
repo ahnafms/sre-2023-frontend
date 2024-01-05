@@ -12,6 +12,9 @@
     "format:write": "prettier -w . && eslint . --fix",
     "prepare": "husky install"
   },
+  "resolutions": {
+    "strip-ansi": "6.0.1"
+  },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@tanstack/react-query": "^5.4.3",
