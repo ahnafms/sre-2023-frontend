@@ -1,4 +1,6 @@
-export enum DivisionEnum {
+import { DivisionList } from '@/types/entities/division-list';
+
+export const Divisions: DivisionList = [
   'BoE',
   'Campaign \u0026 Education',
   'Competency Development',
@@ -12,6 +14,4 @@ export enum DivisionEnum {
   'Public Relation',
   'Research',
   'Sponsorship',
-}
-
-export type DivisionList = Array<keyof typeof DivisionEnum>;
+];

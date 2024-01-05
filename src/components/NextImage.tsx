@@ -47,7 +47,7 @@ export default function NextImage({
         className={clsxm(
           imgClassName,
           status === 'loading' &&
-            clsxm('animate-pulse bg-white', blurClassName),
+            clsxm('animate-pulse bg-red-50', blurClassName),
         )}
         src={serverStaticImg ? src : '/images' + src}
         width={width}

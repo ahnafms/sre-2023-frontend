@@ -14,10 +14,16 @@ import Typography from '@/components/Typography';
 import clsxm from '@/lib/clsxm';
 import { ApiResponse } from '@/types/api';
 import { DivisionWithStaff } from '@/types/entities/division';
+import { DivisionEnum } from '@/types/entities/division-list';
+import { Staff } from '@/types/entities/staff';
 
 import Card from './Card';
 
-export default function DivisionMember() {
+export default function DivisionMember({
+  division,
+}: {
+  division: keyof typeof DivisionEnum;
+}) {
   const { data: queryStaff } = useQuery<ApiResponse<DivisionWithStaff>>({
     queryKey: ['/staff?groupByDepartment=1'],
   });
@@ -34,7 +40,7 @@ export default function DivisionMember() {
               'text-[24px] leading-[32px] md:text-[32px] md:leading-[48px] lg:text-[64px] lg:leading-[84px]',
             )}
           >
-            Board of Executives
+            {division as React.ReactNode}
           </Typography>
         </Cell>
         {/* sisa membernya tinggal pake function map */}
@@ -73,6 +79,7 @@ export default function DivisionMember() {
                   },
                 },
                 1024: {
+                  initialSlide: 3,
                   slidesPerView: 3,
                   spaceBetween: 100,
                   navigation: {
@@ -83,12 +90,14 @@ export default function DivisionMember() {
               }}
             >
               {queryStaff &&
-                Object.keys(queryStaff.data).map((division, index) =>
-                  queryStaff.data[division].map(data => (
-                    <SwiperSlide key={index}>
-                      <Card data={data} />
-                    </SwiperSlide>
-                  )),
+                Object.keys(queryStaff.data).map(
+                  (_division, index) =>
+                    division === _division &&
+                    queryStaff.data[division].map((data: Staff) => (
+                      <SwiperSlide key={`${data.full_name}`}>
+                        <Card key={index} data={data} />
+                      </SwiperSlide>
+                    )),
                 )}
             </Swiper>
           </div>
