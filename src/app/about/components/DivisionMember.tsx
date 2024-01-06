@@ -63,22 +63,21 @@ export default function DivisionMember({
               scrollbar={{ draggable: false }}
               centeredSlides={true}
               loop={false}
+              className='w-full h-full'
               breakpoints={{
                 0: {
                   slidesPerView: 2,
                   spaceBetween: 75,
-                  pagination: { el: '#swiper-pagination' },
+                  pagination: {
+                    el: '#swiper-pagination-bullet-divisions',
+                    bulletActiveClass:
+                      'swiper-pagination-bullet-active !bg-[#1C1C1E] !w-6 !rounded-3xl !transform !transition-all !duration-300 !ease-in-out',
+                    type: 'bullets',
+                  },
                   centeredSlides: false,
                 },
                 768: {
-                  slidesPerView: 3,
-                  spaceBetween: 50,
-                  navigation: {
-                    nextEl: '#swiper-button-next',
-                    prevEl: '#swiper-button-prev',
-                  },
-                },
-                1024: {
+                  centeredSlides: true,
                   initialSlide: 3,
                   slidesPerView: 3,
                   spaceBetween: 100,
@@ -113,8 +112,8 @@ export default function DivisionMember({
           </button>
         </div>
         <div
-          id='swiper-pagination'
-          className='w-full flex justify-center items-center gap-1.5 mt-8 md:hidden'
+          id='swiper-pagination-bullet-divisions'
+          className='flex justify-center mt-10 gap-2 md:hidden'
         />
       </div>
     </>

@@ -67,7 +67,7 @@ export default function Division() {
           <Cell
             cols='1_4'
             colsMd='2_10'
-            className='flex flex-wrap lg:justify-center justify-between lg:gap-x-5 gap-y-4 '
+            className='flex flex-wrap lg:justify-center justify-between lg:gap-x-5 gap-y-4'
           >
             {Divisions.map((divisi, index) => (
               <Button
