@@ -228,7 +228,7 @@ export default function Navbar() {
         <nav className='w-full'>
           <ul className='flex flex-col items-center gap-6'>
             {landingNavigations.map(
-              nav =>
+              (nav, idx) =>
                 (nav.name === 'middleSections' &&
                   nav?.children?.map(_nav => (
                     <UnstyledLink key={`mobile-${_nav.name}`} href={_nav.href}>
@@ -242,7 +242,7 @@ export default function Navbar() {
                     </UnstyledLink>
                   ))) ||
                 (nav.name === 'More' && (
-                  <Menu className='relative text-center' as='div'>
+                  <Menu className='relative text-center' as='div' key={idx}>
                     <Menu.Button>
                       {({ open }) => (
                         <Typography

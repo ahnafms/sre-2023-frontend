@@ -27,6 +27,7 @@ export default function DivisionMember({
   const { data: queryStaff } = useQuery<ApiResponse<DivisionWithStaff>>({
     queryKey: ['/staff?groupByDepartment=1'],
   });
+
   return (
     <>
       <Grid>

@@ -2,13 +2,14 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import Image from 'next/image';
-import { useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 
 import Description from '@/components/landing/Description';
 import Events from '@/components/landing/Events';
 import Hero from '@/components/landing/Hero';
 import Mission from '@/components/landing/Mission';
 import Vision from '@/components/landing/Vision';
+import LoadingPage from '@/components/LoadingPage';
 import Footer from '@/layouts/Footer';
 import Navbar from '@/layouts/navbar/Navbar';
 import clsxm from '@/lib/clsxm';
@@ -141,6 +142,21 @@ export default function Home() {
               bottom: '100vh',
             },
           );
+
+          gsap.fromTo(
+            '.animation-container-2',
+            {},
+            {
+              scrollTrigger: {
+                trigger: '.footer-wrapper',
+                scrub: 0.5,
+                markers,
+                start: '20px bottom',
+                end: '200px bottom',
+              },
+              opacity: 0,
+            },
+          );
         },
         mainComp,
       );
@@ -149,56 +165,64 @@ export default function Home() {
     }, mainComp);
   }, [mainComp, markers]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, []);
+
   return (
-    <main className='relative bg-secondary-70' ref={mainComp}>
-      <div className='top-0 z-10 w-full h-[300vh] lg:h-screen overflow-x-hidden overflow-y-visible absolute lg:fixed pointer-events-none'>
-        <div className='w-full h-full relative'>
-          <Earth
-            className='z-10 w-[150vh] lg:w-[50vw] bottom-[55%] lg:-bottom-8 absolute lg:fixed'
-            animationClass='animation-container'
-          />
+    <LoadingPage>
+      <main className='relative bg-secondary-70' ref={mainComp}>
+        <div className='top-0 z-10 w-full h-[300vh] lg:h-screen overflow-x-hidden overflow-y-visible absolute lg:fixed pointer-events-none'>
+          <div className='w-full h-full relative'>
+            <Earth
+              className='z-10 w-[150vh] lg:w-[50vw] bottom-[55%] lg:-bottom-8 absolute lg:fixed'
+              animationClass='animation-container'
+            />
+          </div>
         </div>
-      </div>
-      <Earth
-        animationClass='animation-container-2'
-        className='left-auto -right-[200%] -bottom-4 hidden lg:block'
-      />
-      <div className='h-full w-full opacity-0 bg-secondary-70 absolute z-20 pointer-events-none green-overlay'></div>
+        <Earth
+          animationClass='animation-container-2'
+          className='left-auto -right-[200%] -bottom-4 hidden lg:block'
+        />
+        <div className='h-full w-full opacity-0 bg-secondary-70 absolute z-20 pointer-events-none green-overlay'></div>
 
-      <div className='absolute w-full h-[110vh] z-0 top-0 left-0'>
-        <div className='relative w-full h-full'>
-          <Image
-            src='/images/landing/hero-bg2.jpg'
-            sizes='(max-width: 1200px) 100vw, 1200px'
-            alt='hero bg image'
-            fill
-            className='object-cover grayscale opacity-25'
-          />
-          <div className='absolute bottom-0 w-full h-12 bg-gradient-to-t from-secondary-70 to-transparent'></div>
+        <div className='absolute w-full h-[110vh] z-0 top-0 left-0'>
+          <div className='relative w-full h-full'>
+            <Image
+              src='/images/landing/hero-bg2.jpg'
+              sizes='(max-width: 1200px) 100vw, 1200px'
+              alt='hero bg image'
+              fill
+              className='object-cover grayscale opacity-25'
+            />
+            <div className='absolute bottom-0 w-full h-12 bg-gradient-to-t from-secondary-70 to-transparent'></div>
+          </div>
         </div>
-      </div>
 
-      {/* Div wrapper for x hidden overflow exclude Events Section */}
-      <div className='overflow-x-hidden overflow-y-clip'>
-        <section className='h-screen hero relative z-10'>
-          <Navbar />
-          <Hero />
+        {/* Div wrapper for x hidden overflow exclude Events Section */}
+        <div className='overflow-x-hidden overflow-y-clip'>
+          <section className='h-screen hero relative z-10'>
+            <Navbar />
+            <Hero />
+          </section>
+          <section className='h-screen description '>
+            <Description />
+          </section>
+          <section className='min-h-screen vision pt-24'>
+            <Vision />
+          </section>
+          <section className='min-h-screen w-full overflow-hidden mission'>
+            <Mission />
+          </section>
+        </div>
+        <section className='min-h-screen event'>
+          <Events />
         </section>
-        <section className='h-screen description '>
-          <Description />
-        </section>
-        <section className='min-h-screen vision pt-24'>
-          <Vision />
-        </section>
-        <section className='min-h-screen w-full overflow-hidden mission'>
-          <Mission />
-        </section>
-      </div>
-      <section className='min-h-screen event'>
-        <Events />
-      </section>
-      <Footer />
-    </main>
+        <div className='footer-wrapper'>
+          <Footer />
+        </div>
+      </main>
+    </LoadingPage>
   );
 }
 

@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useState } from 'react';
 
 import Button from '@/components/Button';
@@ -61,13 +62,13 @@ export default function Division() {
                 'text-[20px] leading-[24px] md:text-[24px] md:leading-[32px] lg:text-[32px] lg:leading-[48px]',
               )}
             >
-              The Divisions
+              Departments
             </Typography>
           </Cell>
           <Cell
             cols='1_4'
             colsMd='2_10'
-            className='flex flex-wrap lg:justify-center justify-between lg:gap-x-5 gap-y-4'
+            className='flex flex-wrap lg:justify-center justify-between lg:gap-x-5 gap-y-4 gap-x-3'
           >
             {Divisions.map((divisi, index) => (
               <Button
@@ -75,7 +76,10 @@ export default function Division() {
                 key={index}
                 variant='outline-white'
                 size='sm'
-                className='py-2 px-4'
+                className={clsx(
+                  'py-2 px-4',
+                  divisi == division && 'bg-primary-50 border-none font-bold',
+                )}
               >
                 {divisi}
               </Button>

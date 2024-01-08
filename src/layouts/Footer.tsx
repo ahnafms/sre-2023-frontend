@@ -14,7 +14,9 @@ export default function Footer() {
   const nav = landingNavigations[2];
 
   return (
-    <footer className='w-full bg-[#0B7156] rounded-t-xl overflow-hidden'>
+    <footer
+      className={'w-full bg-[#0B7156] rounded-t-xl overflow-hidden -mt-2'}
+    >
       <div
         className={clsxm(
           "bg-[url('/images/footer/bg-footer.png')] bg-cover",

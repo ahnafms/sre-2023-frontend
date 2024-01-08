@@ -17,7 +17,7 @@ export default function HeroBackground() {
         alt='newspaper'
         width={233}
         height={635}
-        className='absolute w-[8%] z-[2] right-[5%]'
+        className='absolute w-[8%] z-[2] right-[5%] hidden lg:block'
       />
       <NextImage
         src='/images/about/newspaper2.png'
@@ -26,13 +26,16 @@ export default function HeroBackground() {
         height={253}
         className='absolute w-[20%] z-[2] left-[6%] bottom-[12%]'
       />
-      <NextImage
-        src='/images/about/solarpanel1.png'
-        alt='solarpanel'
-        width={2881}
-        height={1006}
-        className='absolute bottom-0 w-full z-[1]'
-      />
+      <div className='w-full h-[50vh] absolute bottom-0 z-[1]'>
+        <div className='relative w-full h-full'>
+          <NextImage
+            src='/images/about/solarpanel1.png'
+            alt='solarpanel'
+            fill
+            className='object-cover object-top z-[1]'
+          />
+        </div>
+      </div>
     </>
   );
 }
