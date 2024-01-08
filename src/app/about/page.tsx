@@ -8,7 +8,6 @@ import 'swiper/css/thumbs';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import NextImage from 'next/image';
 import Image from 'next/image';
 import * as React from 'react';
 import { BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs';
@@ -349,12 +348,12 @@ export default function About() {
           <section className='h-full flex flex-col justify-center items-center overflow-x-hidden relative pb-20 z-[5]'>
             <Division />
           </section>
-          <NextImage
+          <Image
             src='/images/about/paper5.png'
             alt='paper'
-            width={239}
-            height={1600}
-            className='absolute top-0 w-full z-[0]'
+            width={500}
+            height={5000}
+            className='absolute h-full top-0 w-full z-[0] bg-cover'
           />
         </section>
         <Footer />

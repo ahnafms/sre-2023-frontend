@@ -13,7 +13,9 @@ import { DivisionEnum } from '@/types/entities/division-list';
 import DivisionMember from './DivisionMember';
 
 export default function Division() {
-  const [division, setDivision] = useState<keyof typeof DivisionEnum>('BoE');
+  const [division, setDivision] = useState<keyof typeof DivisionEnum | null>(
+    null,
+  );
 
   return (
     <section className='overflow-hidden relative w-full'>
@@ -72,7 +74,10 @@ export default function Division() {
           >
             {Divisions.map((divisi, index) => (
               <Button
-                onClick={() => setDivision(divisi)}
+                onClick={() => {
+                  if (divisi === division) setDivision(null);
+                  else setDivision(divisi);
+                }}
                 key={index}
                 variant='outline-white'
                 size='sm'
@@ -87,7 +92,6 @@ export default function Division() {
           </Cell>
         </Grid>
       </section>
-
       <section className='h-full flex flex-col justify-center items-center overflow-x-hidden relative pb-20 z-[5]'>
         <DivisionMember division={division} />
       </section>

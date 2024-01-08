@@ -41,6 +41,7 @@ export default function Card({ data }: { data: Staff }) {
           src={data.image_path}
           className='object-cover object-top'
           alt={data.image_file_name}
+          sizes='(max-width:768px) 100vw, 50vw'
           fill
         />
       </div>
