@@ -1,7 +1,9 @@
 'use client';
 
 import { Menu, Transition } from '@headlessui/react';
+import clsx from 'clsx';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Fragment, useState } from 'react';
 import { FaBars, FaRegTimesCircle, FaRegUser } from 'react-icons/fa';
 import { HiChevronDown } from 'react-icons/hi';
@@ -16,6 +18,7 @@ import clsxm from '@/lib/clsxm';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const currentPath = usePathname();
 
   const showNav = () => {
     setIsOpen(!isOpen);
@@ -75,17 +78,22 @@ export default function Navbar() {
                     <Typography
                       color='white'
                       font='epilogue'
-                      className={`group-hover:text-white  
-                                 group-hover:border-b-[1px]  
-                                 focus:text-white  
-                                 focus:border-b-[1px]  
-                                 focus:outline-none  
-                                 transition-all  
-                                 ease-linear  
-                                 duration-300  
-                                 text-lg  
-                                 text-white  
-                                 hover:font-bold`}
+                      className={clsx(
+                        `group-hover:text-white  
+                        group-hover:border-b-[1px]  
+                        focus:text-white  
+                        focus:border-b-[1px]  
+                        focus:outline-none  
+                        transition-all  
+                        ease-linear  
+                        duration-300  
+                        text-lg  
+                        text-white  
+                        hover:border-b-2
+                        border-b-white
+                        `,
+                        currentPath == _nav.href && 'border-b-2 font-bold',
+                      )}
                     >
                       {_nav.name}
                     </Typography>
