@@ -81,26 +81,24 @@ const Mission = () => {
       );
 
       items.forEach((_, idx) => {
-        if (idx > 0) {
-          gsap.fromTo(
-            '.mission-' + (idx + 1),
-            {
-              opacity: '50%',
+        gsap.fromTo(
+          '.mission-' + (idx + 1),
+          {
+            opacity: '50%',
+          },
+          {
+            opacity: '100%',
+            scrollTrigger: {
+              containerAnimation: fakeScroll,
+              trigger: '.mission-' + (idx + 1),
+              start: 'left 50%',
+              end: '20% 50%',
+              scrub: 1,
+              invalidateOnRefresh: true,
+              // markers: true,
             },
-            {
-              opacity: '100%',
-              scrollTrigger: {
-                containerAnimation: fakeScroll,
-                trigger: '.mission-' + (idx + 1),
-                start: 'left 50%',
-                end: '20% 50%',
-                scrub: 1,
-                invalidateOnRefresh: true,
-                // markers: true,
-              },
-            },
-          );
-        }
+          },
+        );
       });
     }, comp);
 
