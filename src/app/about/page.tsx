@@ -19,17 +19,21 @@ import Grid from '@/components/Grid';
 import LoadingPage from '@/components/LoadingPage';
 import Typography from '@/components/Typography';
 import heroAboutItems from '@/constant/heroAboutItems';
+import testimonialItems from '@/constant/testimonial';
 import Footer from '@/layouts/Footer';
 import Navbar from '@/layouts/navbar/Navbar';
 import clsxm from '@/lib/clsxm';
+import { formatName } from '@/utilities/string';
 
 import Division from './components/Division';
 import HeroCard from './components/HeroCard';
+import TestimonialModalButton from './components/TestimonialModal';
 import HeroBackground from './container/HeroBackground';
 import WhatDoBackground from './container/WhatDoBackground';
 
 export default function About() {
   const comp = React.useRef(null);
+  const [testiIdx, setTestiIdx] = React.useState(0);
 
   useGSAP(
     () => {
@@ -181,6 +185,9 @@ export default function About() {
                 centeredSlides={true}
                 loop={false}
                 className='md:!hidden'
+                onActiveIndexChange={swiper => {
+                  setTestiIdx(swiper.activeIndex);
+                }}
                 breakpoints={{
                   0: {
                     slidesPerView: 1,
@@ -193,34 +200,17 @@ export default function About() {
                   },
                 }}
               >
-                <SwiperSlide className='h-full self-center'>
-                  <Image
-                    className='m-auto'
-                    src='/images/about/foto1.png'
-                    alt='foto sre'
-                    objectFit='cover'
-                    width={500}
-                    height={500}
-                  />
-                </SwiperSlide>
-                <SwiperSlide className='h-full'>
-                  <Image
-                    className='m-auto'
-                    src='/images/about/foto1.png'
-                    alt='foto sre'
-                    width={500}
-                    height={500}
-                  />
-                </SwiperSlide>
-                <SwiperSlide className='h-full'>
-                  <Image
-                    className='m-auto'
-                    src='/images/about/foto1.png'
-                    alt='foto sre'
-                    width={500}
-                    height={500}
-                  />
-                </SwiperSlide>
+                {testimonialItems.map((item, idx) => (
+                  <SwiperSlide className='h-full self-center' key={idx}>
+                    <Image
+                      className='m-auto object-cover'
+                      src={item.image}
+                      alt='foto sre'
+                      width={500}
+                      height={500}
+                    />
+                  </SwiperSlide>
+                ))}
               </Swiper>
               <Typography
                 as='h4'
@@ -232,7 +222,9 @@ export default function About() {
                   'text-[24px] leading-[32px] md:text-[32px] md:leading-[48px] lg:text-[48px] lg:leading-[64px]',
                 )}
               >
-                Fulan bin Fulan
+                {testimonialItems[testiIdx]?.name
+                  ? formatName(testimonialItems[testiIdx]?.name)
+                  : ''}
               </Typography>
               <Typography
                 as='h6'
@@ -244,10 +236,10 @@ export default function About() {
                   'text-[20px] leading-[24px] lg:text-[24px] lg:leading-[32px]',
                 )}
               >
-                SRE President 2022/2023
+                {testimonialItems[testiIdx].position ?? ''}
               </Typography>
               <Typography
-                as='p'
+                as='div'
                 variant='t'
                 font='epilogue'
                 className={clsxm(
@@ -255,10 +247,8 @@ export default function About() {
                   'text-[14px] leading-[24px] md:text-[16px] md:leading-[24px] lg:text-[20px] lg:leading-[24px]',
                 )}
               >
-                Discover our team - a talented, passionate group dedicated to
-                excellence. From seasoned experts to fresh innovators,
-                we&apos;re the driving force behind our success. Welcome to our
-                world!*
+                {testimonialItems[testiIdx].desc ?? ''}
+                <TestimonialModalButton testiIdx={testiIdx} />
               </Typography>
               <div id='swiper-pagination-bullet' />
             </Cell>
@@ -285,6 +275,9 @@ export default function About() {
                   pagination={true}
                   centeredSlides={true}
                   loop={false}
+                  onActiveIndexChange={swiper => {
+                    setTestiIdx(swiper.activeIndex);
+                  }}
                   breakpoints={{
                     1024: {
                       slidesPerView: 1,

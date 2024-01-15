@@ -93,8 +93,7 @@ export default function DivisionMember({
                         centeredSlides: false,
                       },
                       768: {
-                        centeredSlides: true,
-                        initialSlide: 3,
+                        initialSlide: 1,
                         slidesPerView: 3,
                         spaceBetween: 100,
                         navigation: {

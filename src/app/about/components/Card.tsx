@@ -5,27 +5,9 @@ import { BiLogoLinkedin } from 'react-icons/bi';
 import Typography from '@/components/Typography';
 import clsxm from '@/lib/clsxm';
 import { Staff } from '@/types/entities/staff';
+import { formatName } from '@/utilities/string';
 
 export default function Card({ data }: { data: Staff }) {
-  const formatName = (fullName: string) => {
-    const words = fullName.trimEnd().trimStart().split(' ');
-    if (words.length < 2) {
-      return fullName;
-    }
-
-    let name: string = '';
-
-    words.forEach((word, index) => {
-      if (index > 1) {
-        name += `${word[0]} `;
-        return;
-      }
-      name += `${word} `;
-    });
-
-    return name.trimStart();
-  };
-
   const position = (pos: string, division: string): string => {
     if (division == 'BoE' || pos == 'Director') {
       return pos;
@@ -71,12 +53,16 @@ export default function Card({ data }: { data: Staff }) {
         </Typography>
       </div>
       <div className='flex flex-row justify-center gap-2.5 lg:gap-4 mt-1.5 lg:mt-2'>
-        <div className='flex justify-center items-center lg:w-8 lg:h-8 w-4 h-4 rounded-full bg-typo-white hover:bg-typo-outline text-xs lg:text-base hover:cursor-pointer'>
-          <AiFillInstagram className='text-primary-50' />
-        </div>
-        <div className='flex justify-center items-center lg:w-8 lg:h-8 w-4 h-4 rounded-full bg-typo-white hover:bg-typo-outline text-xs lg:text-base hover:cursor-pointer'>
-          <BiLogoLinkedin className='text-primary-50' />
-        </div>
+        <a href={data.instagram} rel='noopener noreferrer' target='_blank'>
+          <div className='flex justify-center items-center lg:w-8 lg:h-8 w-4 h-4 rounded-full bg-typo-white hover:bg-typo-outline text-xs lg:text-base hover:cursor-pointer'>
+            <AiFillInstagram className='text-primary-50' />
+          </div>
+        </a>
+        <a href={data.linked_in} rel='noopener noreferrer' target='_blank'>
+          <div className='flex justify-center items-center lg:w-8 lg:h-8 w-4 h-4 rounded-full bg-typo-white hover:bg-typo-outline text-xs lg:text-base hover:cursor-pointer'>
+            <BiLogoLinkedin className='text-primary-50' />
+          </div>
+        </a>
       </div>
     </div>
   );
