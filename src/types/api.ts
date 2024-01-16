@@ -28,12 +28,19 @@ export type UninterceptedApiError = {
   message: string | Record<string, string[]>;
 };
 
-type PaginateData<Data> = {
-  content: Data;
+type PaginatedMeta = {
+  count: number;
+  page: number;
+  per_page: number;
+  max_page: number;
 };
 
-export interface PaginatedApiResponse<DataType> {
+export interface PaginatedApiResponse<
+  DataType,
+  MetaType extends PaginatedMeta = PaginatedMeta,
+> {
   code: number;
   success: string;
-  data: PaginateData<DataType>;
+  data: DataType;
+  meta: MetaType;
 }
