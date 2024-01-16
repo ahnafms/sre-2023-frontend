@@ -57,7 +57,7 @@ export default function About() {
             `.hero-card-${index + 1}`,
             {
               top: '-15%',
-              scale: 0.75,
+              scale: 0.9,
               zIndex: 0,
               opacity: 0.5,
             },
@@ -104,7 +104,7 @@ export default function About() {
   );
 
   return (
-    <LoadingPage time={2000}>
+    <LoadingPage time={1000}>
       <main ref={comp} className='bg-secondary-70'>
         <section className='hero-section min-h-[600px] h-screen overflow-hidden relative'>
           <Navbar />
@@ -147,7 +147,7 @@ export default function About() {
                         Icon={icon}
                         className={
                           `hero-card-${idx + 1} ` +
-                          'hero-card z-0 scale-75 opacity-50 h-full w-full absolute -translate-x-1/2 -translate-y-1/2 top-[115%] left-1/2'
+                          'hero-card z-0 scale-90 opacity-50 h-full w-full absolute -translate-x-1/2 -translate-y-1/2 top-[115%] left-1/2'
                         }
                       />
                     );
@@ -185,7 +185,7 @@ export default function About() {
                 centeredSlides={true}
                 loop={false}
                 className='md:!hidden'
-                onActiveIndexChange={swiper => {
+                onTransitionEnd={swiper => {
                   setTestiIdx(swiper.activeIndex);
                 }}
                 breakpoints={{
