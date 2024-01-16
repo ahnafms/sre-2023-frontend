@@ -77,9 +77,9 @@ export default function DivisionMember({
                   <Swiper
                     modules={[Pagination, Navigation]}
                     scrollbar={{ draggable: false }}
-                    centeredSlides={true}
                     loop={false}
                     className='w-full h-full'
+                    cssMode={true}
                     breakpoints={{
                       0: {
                         slidesPerView: 2,

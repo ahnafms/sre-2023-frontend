@@ -18,13 +18,13 @@ export default function Card({ data }: { data: Staff }) {
 
   return (
     <div className='w-[189px] h-[307px] lg:w-[296px] lg:h-[495px] bg-primary-50 flex flex-col rounded-lg'>
-      <div className='w-[160px] h-[201px] lg:w-[253px] lg:h-[326px] relative bg-typo-white lg:mx-5 lg:mt-5 mx-[14px] mt-2.5 rounded-md'>
+      <div className='w-[160px] h-[201px] lg:w-[253px] lg:h-[326px] bg-typo-white lg:mx-5 lg:mt-5 mx-[14px] mt-2.5 rounded-md overflow-hidden relative'>
         <Image
           src={data.image_path}
           className='object-cover object-top'
           alt={data.image_file_name}
-          sizes='(max-width:768px) 100vw, 50vw'
-          fill
+          width={260}
+          height={330}
         />
       </div>
       <div className='flex flex-col lg:mt-5 mt-3 lg:mx-5'>

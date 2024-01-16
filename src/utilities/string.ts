@@ -6,15 +6,24 @@ const formatName = (fullName: string) => {
 
   let name: string = '';
 
-  words.forEach((word, index) => {
-    if (index > 1) {
+  let charCount = 0;
+
+  words.forEach(word => {
+    if (charCount > 10) {
       name += `${word[0]} `;
       return;
     }
-    name += `${word} `;
+
+    charCount += word.length;
+
+    name += `${toCapitalCase(word)} `;
   });
 
   return name.trimStart();
 };
+
+function toCapitalCase(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
 
 export { formatName };

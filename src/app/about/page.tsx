@@ -57,7 +57,7 @@ export default function About() {
             `.hero-card-${index + 1}`,
             {
               top: '-15%',
-              scale: 0.75,
+              scale: 0.9,
               zIndex: 0,
               opacity: 0.5,
             },
@@ -104,8 +104,8 @@ export default function About() {
   );
 
   return (
-    <LoadingPage time={2000}>
-      <main ref={comp}>
+    <LoadingPage time={1000}>
+      <main ref={comp} className='bg-secondary-70'>
         <section className='hero-section min-h-[600px] h-screen overflow-hidden relative'>
           <Navbar />
           <HeroBackground />
@@ -147,7 +147,7 @@ export default function About() {
                         Icon={icon}
                         className={
                           `hero-card-${idx + 1} ` +
-                          'hero-card z-0 scale-75 opacity-50 h-full w-full absolute -translate-x-1/2 -translate-y-1/2 top-[115%] left-1/2'
+                          'hero-card z-0 scale-90 opacity-50 h-full w-full absolute -translate-x-1/2 -translate-y-1/2 top-[115%] left-1/2'
                         }
                       />
                     );
@@ -185,7 +185,7 @@ export default function About() {
                 centeredSlides={true}
                 loop={false}
                 className='md:!hidden'
-                onActiveIndexChange={swiper => {
+                onTransitionEnd={swiper => {
                   setTestiIdx(swiper.activeIndex);
                 }}
                 breakpoints={{
@@ -341,13 +341,14 @@ export default function About() {
           <section className='h-full flex flex-col justify-center items-center overflow-x-hidden relative pb-20 z-[5]'>
             <Division />
           </section>
-          <Image
-            src='/images/about/paper5.png'
-            alt='paper'
-            width={500}
-            height={5000}
-            className='absolute h-full top-0 w-full z-[0] bg-cover'
-          />
+          {/* TODO: Performance issue */}
+          {/* <Image */}
+          {/*   src='/images/about/paper5.png' */}
+          {/*   alt='paper' */}
+          {/*   width={500} */}
+          {/*   height={5000} */}
+          {/*   className='absolute h-full top-0 w-full z-[0] bg-cover' */}
+          {/* /> */}
         </section>
         <Footer />
       </main>

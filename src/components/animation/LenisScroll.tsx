@@ -42,7 +42,6 @@ export default function LenisScroll({ children }: { children: ReactNode }) {
       root
       options={{
         smoothWheel: isSmooth,
-        smoothTouch: isSmooth,
         direction: 'vertical',
         // lerp: 0.2,
         easing: (t: number) => (t == 1 ? 1 : 1 - Math.pow(2, -10 * t)),
