@@ -1,27 +1,27 @@
 'use client';
 
 import React from 'react';
-import { createEditor, Descendant } from 'slate';
-import { withHistory } from 'slate-history';
+import { BaseSelection, Descendant } from 'slate';
 import {
   Editable,
+  ReactEditor,
   RenderElementProps,
   RenderLeafProps,
   Slate,
-  withReact,
 } from 'slate-react';
 
 import SlateToolbar from '@/components/rich-text/Toolbar';
-import clsxm from '@/lib/clsxm';
 import { SlateElement, SlateLeaf } from '@/utilities/slate/SlateEditorUtil';
-import { withImages } from '@/utilities/slate/SlateImageUtil';
 
-const RichText = ({ initialValue }: { initialValue: Descendant[] }) => {
-  const editor = React.useMemo(
-    () => withImages(withHistory(withReact(createEditor()))),
-    [],
-  );
+type RichTextProps = {
+  editor: ReactEditor;
+  initialValue: Descendant[];
+  onChange?: ((value: Descendant[]) => void) | undefined;
+  onSelectionChange?: ((selection: BaseSelection) => void) | undefined;
+  onValueChange?: ((value: Descendant[]) => void) | undefined;
+};
 
+const RichText = ({ editor, initialValue, ...rest }: RichTextProps) => {
   const renderElement = React.useCallback(
     (props: RenderElementProps) => <SlateElement {...props} />,
     [],
@@ -33,17 +33,15 @@ const RichText = ({ initialValue }: { initialValue: Descendant[] }) => {
   );
 
   return (
-    <div className={clsxm('w-full h-full p-10')}>
-      <Slate editor={editor} initialValue={initialValue}>
-        <SlateToolbar />
-        <Editable
-          spellCheck
-          autoFocus
-          renderLeaf={renderLeaf}
-          renderElement={renderElement}
-        />
-      </Slate>
-    </div>
+    <Slate editor={editor} initialValue={initialValue} {...rest}>
+      <SlateToolbar />
+      <Editable
+        spellCheck
+        autoFocus
+        renderLeaf={renderLeaf}
+        renderElement={renderElement}
+      />
+    </Slate>
   );
 };
 

@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import escapeHTML from 'escape-html';
 import { Editor, Element as SlateElementProps, Transforms } from 'slate';
+import { Text } from 'slate';
 import { RenderElementProps, RenderLeafProps } from 'slate-react';
 
 import RichTextImage from '@/components/rich-text/Image';
@@ -139,5 +141,71 @@ export const toggleMark = (editor: Editor, format: keyof CustomText) => {
     Editor.removeMark(editor, format);
   } else {
     Editor.addMark(editor, format, true);
+  }
+};
+
+export const serialize = (node: any) => {
+  if (Text.isText(node)) {
+    let string = escapeHTML(node.text);
+    if (node.bold) {
+      string = `<strong>${string}</strong>`;
+    }
+    return string;
+  }
+
+  const children =
+    node.children.map((n: any) => serialize(n)).join('') || '&nbsp';
+
+  switch (node.type) {
+    case 'quote':
+      return `<blockquote><p>${children}</p></blockquote>`;
+    case 'paragraph':
+      return `<p>${children}</p>`;
+    case 'link':
+      return `<a href="${escapeHTML(node.url)}">${children}</a>`;
+    case 'heading-one':
+      return `
+        <h1 class='text-9xl'>
+          ${children}
+        </h1>
+      `;
+    case 'heading-two':
+      return `
+        <h2 class='text-[72px] leading-[90px]'>
+          ${children}
+        </h2>
+      `;
+    case 'heading-three':
+      return `
+        <h3 class='text-[64px] leading-[84px]'>
+          ${children}
+        </h3>
+      `;
+    case 'heading-four':
+      return `
+        <h4 class='text-[64px] leading-[84px]'>
+          ${children}
+        </h4>
+      `;
+    case 'heading-five':
+      return `
+        <h5 class='text-[32px] leading-[48px]'>
+${children}
+        </h5>
+      `;
+    case 'heading-six':
+      return `
+        <h6 class='text-[24px] leading-[32px]'>
+          ${children}
+        </h6>
+      `;
+    case 'bulleted-list':
+      return `<ul>${children}</ul>`;
+    case 'list-item':
+      return `<li>${children}</li>`;
+    case 'numbered-list':
+      return `<ol>${children}</ol>`;
+    default:
+      return `<p>${children}</p>`;
   }
 };
