@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Button from '@/components/Button';
 import Cell from '@/components/Cell';
@@ -16,6 +16,40 @@ export default function Division() {
   const [division, setDivision] = useState<keyof typeof DivisionEnum | null>(
     null,
   );
+
+  function handleShowDivision({
+    divisi,
+  }: {
+    divisi: keyof typeof DivisionEnum;
+  }) {
+    const isMobile = window.innerWidth <= 768;
+
+    setDivision(currentDivision =>
+      isMobile
+        ? currentDivision !== divisi
+          ? divisi
+          : currentDivision
+        : currentDivision === divisi
+          ? null
+          : divisi,
+    );
+  }
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width:768px)');
+    function closeAllDivisions() {
+      if (mediaQuery.matches) {
+        setDivision(prev => (prev === null ? 'BoE' : prev));
+      }
+    }
+
+    closeAllDivisions();
+
+    mediaQuery.addEventListener('change', closeAllDivisions);
+    return () => {
+      mediaQuery.removeEventListener('change', closeAllDivisions);
+    };
+  }, [division]);
 
   return (
     <section className='overflow-hidden relative w-full'>
@@ -74,10 +108,7 @@ export default function Division() {
           >
             {Divisions.map((divisi, index) => (
               <Button
-                onClick={() => {
-                  if (divisi === division) setDivision(null);
-                  else setDivision(divisi);
-                }}
+                onClick={() => handleShowDivision({ divisi })}
                 key={index}
                 variant='outline-white'
                 size='sm'

@@ -196,7 +196,7 @@ export default function DivisionMember({
             </button>
             <div
               id='swiper-pagination-bullet-divisions'
-              className='flex justify-center mt-10 gap-2 md:hidden'
+              className='flex justify-center px-10 flex-wrap mt-10 gap-2 md:hidden'
             />
           </div>
         )}
