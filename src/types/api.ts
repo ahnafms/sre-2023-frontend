@@ -44,3 +44,17 @@ export interface PaginatedApiResponse<
   data: DataType;
   meta: MetaType;
 }
+
+export type ApiResponseMeta<TData> = {
+  status: boolean;
+  message: string;
+  data: TData;
+  meta: Meta;
+};
+
+type Meta = {
+  page: number;
+  per_page: number;
+  max_page: number;
+  count: number;
+};
