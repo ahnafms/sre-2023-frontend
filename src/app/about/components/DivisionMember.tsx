@@ -93,7 +93,6 @@ export default function DivisionMember({
                         centeredSlides: false,
                       },
                       768: {
-                        initialSlide: 1,
                         slidesPerView: 3,
                         spaceBetween: 100,
                         navigation: {
@@ -145,7 +144,6 @@ export default function DivisionMember({
               <Swiper
                 modules={[Pagination, Navigation]}
                 scrollbar={{ draggable: false }}
-                centeredSlides={true}
                 loop={false}
                 className='w-full h-full'
                 cssMode={true}
@@ -159,11 +157,8 @@ export default function DivisionMember({
                         'swiper-pagination-bullet-active !bg-[#1C1C1E] !w-2 !md:w-6 !rounded-3xl !transform !transition-all !duration-300 !ease-in-out',
                       type: 'bullets',
                     },
-                    centeredSlides: false,
                   },
                   768: {
-                    centeredSlides: true,
-                    initialSlide: 3,
                     slidesPerView: 3,
                     spaceBetween: 100,
                     navigation: {
