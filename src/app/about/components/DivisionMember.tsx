@@ -148,6 +148,7 @@ export default function DivisionMember({
                 centeredSlides={true}
                 loop={false}
                 className='w-full h-full'
+                cssMode={true}
                 breakpoints={{
                   0: {
                     slidesPerView: 2,
