@@ -7,6 +7,7 @@ import {
 } from 'react-icons/hi';
 import { HiLightBulb } from 'react-icons/hi';
 import { ImTrophy } from 'react-icons/im';
+import { IoDocumentsOutline } from 'react-icons/io5';
 import { TbPaperclip } from 'react-icons/tb';
 
 import { Navigation } from '@/types/navigate';
@@ -46,6 +47,23 @@ export const navigations: Navigation[] = [
     exactMatch: true,
     icon: HiOutlineUsers,
     permissions: ['users.index'],
+  },
+  {
+    name: 'Document',
+    href: '#',
+    icon: IoDocumentsOutline,
+    children: [
+      {
+        name: 'Outlook',
+        href: '/dashboard/outlook',
+        permissions: ['users.index'],
+      },
+      {
+        name: 'Journal',
+        href: '/dashboard/journal',
+        permissions: ['users.index'],
+      },
+    ],
   },
   {
     name: 'CMS',
