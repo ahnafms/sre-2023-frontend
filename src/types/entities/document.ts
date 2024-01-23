@@ -1,4 +1,8 @@
-export type DocumentColumn = {
+export const documentVariants = ['outlook', 'jurnal'] as const;
+
+export type DocumentVariant = (typeof documentVariants)[number];
+
+export type Document = {
   id: string;
   title: string;
   description: string;
@@ -8,6 +12,8 @@ export type DocumentColumn = {
   cover_file_name: string;
   release_date: string;
 };
+
+export type DocumentColumn = Document;
 
 export type RegisterDocument = {
   title: string;

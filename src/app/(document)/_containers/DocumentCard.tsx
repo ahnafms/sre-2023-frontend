@@ -3,32 +3,47 @@ import Link from 'next/link';
 
 import Typography from '@/components/Typography';
 import clsxm from '@/lib/clsxm';
-import { Outlook } from '@/types/entities/outlook';
+import { Document, DocumentVariant } from '@/types/entities/document';
 
-export default function OutlookCard({
+type DocumentCardProps = Document & {
+  type: DocumentVariant;
+  withRecentBadge?: boolean;
+};
+
+export default function DocumentCard({
+  type,
+  withRecentBadge = false,
   id,
   title,
   description,
   release_date,
   cover_file_path,
-}: Outlook) {
+}: DocumentCardProps) {
   const releaseDate = new Date(release_date).toLocaleDateString('en-UK', {
     dateStyle: 'long',
   });
 
   return (
     <Link
-      href={`${id}`}
+      href={`/${type}/${id}`}
       target='_self'
       className={clsxm(
-        'block w-full p-6 space-y-2 md:space-y-8 rounded-xl md:rounded-3xl',
-        'bg-typo-white group-hover:bg-typo-outline transition-colors cursor-pointer',
+        'block w-full h-fit mt-auto p-6 space-y-2 md:space-y-8 rounded-xl md:rounded-3xl',
+        'bg-typo-white hover:bg-typo-outline transition-colors cursor-pointer',
       )}
     >
+      {withRecentBadge && (
+        <div className='flex items-center gap-1.5'>
+          <div className='bg-primary-50 w-3 h-6 md:h-8' />
+          <Typography variant='t' weight='semibold' color='dark'>
+            New Publication
+          </Typography>
+        </div>
+      )}
       <figure className='w-full aspect-video rounded-xl overflow-hidden'>
         <Image
           src={cover_file_path}
-          alt='Outlook Cover'
+          alt='Document Cover'
           width={1280}
           height={720}
           className='w-full h-full object-cover bg-typo-inline'
@@ -54,7 +69,7 @@ export default function OutlookCard({
         <Typography
           variant='c2'
           color='dark'
-          className='md:text-[18px] max-h-24 overflow-hidden'
+          className='md:text-[18px] h-12 md:h-24 overflow-hidden'
         >
           {description}
         </Typography>

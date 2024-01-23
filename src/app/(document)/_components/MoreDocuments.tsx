@@ -4,31 +4,39 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { LuChevronDown, LuChevronLeft, LuChevronRight } from 'react-icons/lu';
 
+import DocumentCard from '@/app/(document)/_containers/DocumentCard';
 import Button from '@/components/Button';
 import IconButton from '@/components/IconButton';
 import Typography from '@/components/Typography';
 import clsxm from '@/lib/clsxm';
 import { PaginatedApiResponse } from '@/types/api';
-import { Outlook } from '@/types/entities/outlook';
+import { Document, DocumentVariant } from '@/types/entities/document';
 
-import OutlookCard from '../components/OutlookCard';
-
-export default function MoreOutlooks({ id }: { id: string }) {
+export default function MoreDocuments({
+  id,
+  type,
+}: {
+  id: string;
+  type: DocumentVariant;
+}) {
   const [page, setPage] = React.useState(1);
   const [perPage, setPerPage] = React.useState(3);
 
-  const { data: outlooksResponse } = useQuery<PaginatedApiResponse<Outlook[]>>({
-    queryKey: [`/outlook?page=${page}&per_page=${perPage}`],
+  const { data: documentsResponse } = useQuery<
+    PaginatedApiResponse<Document[]>
+  >({
+    queryKey: [`/${type}?page=${page}&per_page=${perPage}`],
   });
 
-  const outlooks =
-    outlooksResponse?.data.filter(({ id: outlookId }) => outlookId != id) ?? [];
-  const outlooksMaxPage = outlooksResponse?.meta.max_page ?? 0;
-  const outlooksTotal = outlooksResponse?.meta.count ?? 0;
+  const documents =
+    documentsResponse?.data.filter(({ id: documentId }) => documentId != id) ??
+    [];
+  const documentsMaxPage = documentsResponse?.meta.max_page ?? 0;
+  const documentsTotal = documentsResponse?.meta.count ?? 0;
 
-  const canNextPage = page < outlooksMaxPage;
+  const canNextPage = page < documentsMaxPage;
   const canPrevPage = page > 1;
-  const canLoadMore = outlooks.length < outlooksTotal;
+  const canLoadMore = documents.length < documentsTotal - 1;
 
   const handleNextPage = () => {
     if (!canNextPage) return;
@@ -45,7 +53,12 @@ export default function MoreOutlooks({ id }: { id: string }) {
   };
 
   return (
-    <div className='space-y-6 md:space-y-8'>
+    <div
+      className={clsxm(
+        'space-y-6 md:space-y-8',
+        documents.length === 0 && 'hidden',
+      )}
+    >
       <div className='w-full flex justify-between items-center'>
         <Typography
           as='h3'
@@ -80,10 +93,8 @@ export default function MoreOutlooks({ id }: { id: string }) {
       </div>
 
       <div className='grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-6'>
-        {outlooks.map(outlook => (
-          <div key={outlook.id} className='group col-span-full md:col-span-1'>
-            <OutlookCard {...outlook} />
-          </div>
+        {documents.map(document => (
+          <DocumentCard key={document.id} type={type} {...document} />
         ))}
       </div>
 
