@@ -17,7 +17,7 @@ import { DivisionWithStaff } from '@/types/entities/division';
 import { DivisionEnum } from '@/types/entities/division-list';
 import { Staff } from '@/types/entities/staff';
 
-import Card from './Card';
+import Card from '../container/Card';
 
 export default function DivisionMember({
   division,
