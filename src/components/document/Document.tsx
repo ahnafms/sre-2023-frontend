@@ -5,7 +5,6 @@ import DashboardLayout from '@/layouts/dashboard/DashboardLayout';
 
 import DocumentTable from './DocumentTable';
 
-
 interface DocumentProps {
   type: string;
 }

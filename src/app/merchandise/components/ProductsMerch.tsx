@@ -86,27 +86,28 @@ export default function ProductsMerch() {
           </>
 
           {/* PRODUCTS EXAMPLE */}
+          {/* .sort((a, b) => (a.pin && !b.pin ? -1 : b.pin && !a.pin ? 1 : 0)) */}
           <div
             className={clsxm(
-              'pt-12 w-full h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-6 min-[500px]:px-16 sm:px-0',
+              'pt-12 w-full h-full flex flex-wrap justify-center gap-4 lg:gap-6 px-6 min-[500px]:px-16 sm:px-0',
             )}
           >
-            {datas.map((items, index) => (
-              <>
+            {datas.map((items, index) =>
+              (items.pin === false && items?.show === true) ||
+              items?.show === true ? (
                 <div
                   key={index}
-                  className='bg-white shadow-lg w-fit rounded-xl p-5 flex flex-col items-start'
+                  className='bg-white shadow-lg w-[340px] sm:w-[350px] md:w-[370px] rounded-xl p-5 flex flex-col justify-between items-start'
                 >
                   <NextImage
-                    // src={`/${items?.cover_filepath}`}
-                    src='/merchandise/photo_ex.svg'
+                    src={`https://api.sre-its.com/static/${items?.cover_filepath}`}
                     alt={`${items?.cover_filename}`}
                     width={147}
                     height={167}
                     className='xl:w-full'
                     priority
                   />
-                  <div>
+                  <div className='w-full'>
                     <Typography
                       font='epilogue'
                       weight='bold'
@@ -119,9 +120,7 @@ export default function ProductsMerch() {
                       weight='regular'
                       className='text-[16px] py-2'
                     >
-                      {
-                        'ini ambil data yang mana ya mas? soalnya untuk deskripsi kyknya masih belum ada 🙏'
-                      }
+                      {items?.description}
                     </Typography>
                     <Typography
                       font='epilogue'
@@ -130,24 +129,26 @@ export default function ProductsMerch() {
                     >
                       Rp{items?.price?.toLocaleString('id-ID')}
                     </Typography>
-                  </div>
-                  <Button
-                    className='w-full py-3 px-6 sm:px-4 sm:py-3 flex items-center z-10 bg-secondary-50 hover:bg-secondary-80'
-                    rightIcon={FaShoppingCart}
-                    rightIconClassName='text-[20px] md:text-[18px] text-[#fff]'
-                  >
-                    <Typography
-                      font='epilogue'
-                      weight='medium'
-                      color='white'
-                      className='text-[18px] md:text-[16px]'
+                    <Button
+                      className='w-full py-3 px-6 sm:px-4 sm:py-3 flex items-center z-10 bg-secondary-50 hover:bg-secondary-80'
+                      rightIcon={FaShoppingCart}
+                      rightIconClassName='text-[20px] md:text-[18px] text-[#fff]'
                     >
-                      Pesan Sekarang
-                    </Typography>
-                  </Button>
+                      <Typography
+                        font='epilogue'
+                        weight='medium'
+                        color='white'
+                        className='text-[18px] md:text-[16px]'
+                      >
+                        Pesan Sekarang
+                      </Typography>
+                    </Button>
+                  </div>
                 </div>
-              </>
-            ))}
+              ) : (
+                <></>
+              ),
+            )}
           </div>
         </div>
 

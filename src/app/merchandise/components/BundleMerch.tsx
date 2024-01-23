@@ -7,15 +7,46 @@ import 'swiper/css/navigation';
 import { useEffect, useState } from 'react';
 import React from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
+import { Swiper } from 'swiper';
 import { Autoplay, Pagination } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper as SwiperComponents, SwiperSlide } from 'swiper/react';
 
 import Button from '@/components/Button';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
+import { Merchandise } from '@/constant/merchandise';
+import api from '@/lib/api';
 import clsxm from '@/lib/clsxm';
+import { ApiReturn } from '@/types/api';
 
 export default function BundleMerch() {
+  const [datas, setDatas] = useState<Merchandise[]>([]);
+
+  const [centerCardIndex, setCenterCardIndex] = useState<number>(
+    Math.floor(datas.length / 2),
+  );
+
+  const handleSlideChange = (swiper: Swiper) => {
+    setCenterCardIndex(swiper.realIndex || 0);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get<ApiReturn<Merchandise[]>>(
+          '/merchandise/pinned',
+        );
+        const dataMerch = response.data?.data;
+        setDatas(dataMerch);
+        // console.log(dataMerch);
+      } catch (error) {
+        throw new Error();
+        // console.error('erroooorrrr', error);
+      }
+    };
+    fetchData();
+  }, []);
+
   const useWidth = () => {
     const [width, setWidth] = useState(0);
     const handleResize = () => setWidth(window.innerWidth);
@@ -79,11 +110,11 @@ export default function BundleMerch() {
         </div>
 
         {/* ================ CARD BUNDLE EXAMPLE =============== */}
-        <div className='min-[1101px]:hidden min-[425px]:px-[5%] min-[550px]:px-[10%] sm:px-[20%] md:px-[3%]'>
-          <Swiper
+        <div className='min-[425px]:px-[5%] min-[550px]:px-[10%] sm:px-[20%] md:px-[3%]'>
+          <SwiperComponents
             slidesPerView={
               size >= 1100 && size <= 2280
-                ? 2
+                ? 3
                 : size <= 1100 && size >= 768
                   ? 2
                   : 1
@@ -110,314 +141,68 @@ export default function BundleMerch() {
               } as string
             }
             className='mt-10 mb-5'
+            onSlideChange={swiper => handleSlideChange(swiper)}
           >
-            <SwiperSlide>
-              <div className='bg-white w-full mb-10 shadow-lg rounded-xl p-3 flex justify-between sm:flex-col sm:p-5 md:justify-around items-center gap-4 lg:gap-6'>
-                <NextImage
-                  src='/merchandise/photo_ex.svg'
-                  alt='photo'
-                  width={147}
-                  height={167}
-                  className='w-[70%] min-[425px]:w-[220px] sm:w-full sm:text-center'
-                  priority
-                />
-                <div className='w-full'>
-                  <Typography
-                    font='epilogue'
-                    weight='bold'
-                    className='text-[16px] sm:text-[20px] lg:text-[24px]'
+            {datas.map((items, index) =>
+              items?.pin === true && items?.show === true ? (
+                <SwiperSlide key={index}>
+                  <div
+                    className={`bg-white cursor-pointer w-full mb-16 shadow-lg rounded-xl p-3 flex justify-between sm:flex-col sm:p-5 md:justify-around xl:justify-end items-center gap-4 lg:gap-6 ${size >= 1100 && size <= 2280 ? 'relative' : ''} ${index === centerCardIndex + 1 && size >= 1100 && size <= 2280 ? '' : 'md:mb-8 xl:mb-16 xl:mt-24'}`}
                   >
-                    Bundling 1
-                  </Typography>
-                  <Typography
-                    font='epilogue'
-                    weight='regular'
-                    className='text-[14px] py-2 sm:text-[16px] lg:text-[18px]'
-                  >
-                    Lorem ipsum dolor sit amet
-                  </Typography>
-                  <div className='sm:flex sm:items-center sm:gap-3 sm:justify-between'>
-                    <Typography
-                      font='epilogue'
-                      weight='bold'
-                      className='text-[16px] pt-2 pb-3 sm:text-[20px] xl:text-[24px]'
-                    >
-                      Rp100.000
-                    </Typography>
-                    <Button
-                      className='w-full lg:w-fit py-2 px-3 max-[360px]:px-2 md:px-2 lg:px-3 xl:px-5 flex items-center z-10 bg-secondary-50 hover:bg-secondary-60 active:bg-secondary-70'
-                      rightIcon={FaShoppingCart}
-                      rightIconClassName='text-[18px] text-[#fff]'
-                    >
+                    <NextImage
+                      src={`https://api.sre-its.com/static/${items?.cover_filepath}`}
+                      alt={`${items?.cover_filename}`}
+                      width={147}
+                      height={167}
+                      className='w-[70%] min-[425px]:w-[220px] sm:w-full sm:text-center'
+                      priority
+                    />
+                    <div className='w-full'>
                       <Typography
                         font='epilogue'
-                        weight='medium'
-                        color='white'
-                        className='max-[360px]:text-[12px] text-[14px] sm:text-[16px] lg:text-[14px] xl:text-[16px]'
+                        weight='bold'
+                        className='text-[16px] sm:text-[20px] lg:text-[24px]'
                       >
-                        Pesan Sekarang
+                        {items.name}
                       </Typography>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className='bg-white w-full mb-10 shadow-lg rounded-xl p-3 flex justify-between sm:flex-col sm:p-5 md:justify-around items-center gap-4 lg:gap-6'>
-                <NextImage
-                  src='/merchandise/photo_ex.svg'
-                  alt='photo'
-                  width={147}
-                  height={167}
-                  className='w-[70%] min-[425px]:w-[220px] sm:w-full sm:text-center'
-                  priority
-                />
-                <div className='w-full'>
-                  <Typography
-                    font='epilogue'
-                    weight='bold'
-                    className='text-[16px] sm:text-[20px] lg:text-[24px]'
-                  >
-                    Bundling 2
-                  </Typography>
-                  <Typography
-                    font='epilogue'
-                    weight='regular'
-                    className='text-[14px] py-2 sm:text-[16px] lg:text-[18px]'
-                  >
-                    Lorem ipsum dolor sit amet
-                  </Typography>
-                  <div className='sm:flex sm:items-center sm:gap-3 sm:justify-between'>
-                    <Typography
-                      font='epilogue'
-                      weight='bold'
-                      className='text-[16px] pt-2 pb-3 sm:text-[20px] xl:text-[24px]'
-                    >
-                      Rp100.000
-                    </Typography>
-                    <Button
-                      className='w-full lg:w-fit py-2 px-3 max-[360px]:px-2 md:px-2 lg:px-3 xl:px-5 flex items-center z-10 bg-secondary-50 hover:bg-secondary-60 active:bg-secondary-70'
-                      rightIcon={FaShoppingCart}
-                      rightIconClassName='text-[18px] text-[#fff]'
-                    >
                       <Typography
                         font='epilogue'
-                        weight='medium'
-                        color='white'
-                        className='max-[360px]:text-[12px] text-[14px] sm:text-[16px] lg:text-[14px] xl:text-[16px]'
+                        weight='regular'
+                        className='text-[14px] py-2 sm:text-[16px] lg:text-[18px]'
                       >
-                        Pesan Sekarang
+                        {items.description}
                       </Typography>
-                    </Button>
+                      <div className='sm:flex sm:items-center sm:gap-3 sm:justify-between'>
+                        <Typography
+                          font='epilogue'
+                          weight='bold'
+                          className='text-[16px] pt-2 pb-3 sm:pt-0 sm:pb-0 sm:text-[20px] xl:text-[24px]'
+                        >
+                          Rp{items?.price?.toLocaleString('id-ID')}
+                        </Typography>
+                        <Button
+                          className='w-full lg:w-fit py-2 px-3 max-[360px]:px-2 md:px-2 lg:px-3 xl:px-5 flex items-center z-10 bg-secondary-50 hover:bg-secondary-60 active:bg-secondary-70'
+                          rightIcon={FaShoppingCart}
+                          rightIconClassName='text-[18px] text-[#fff]'
+                        >
+                          <Typography
+                            font='epilogue'
+                            weight='medium'
+                            color='white'
+                            className='max-[360px]:text-[12px] text-[14px] sm:text-[16px] lg:text-[14px] xl:text-[16px]'
+                          >
+                            Pesan Sekarang
+                          </Typography>
+                        </Button>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className='bg-white w-full mb-10 shadow-lg rounded-xl p-3 flex justify-between sm:flex-col sm:p-5 md:justify-around items-center gap-4 lg:gap-6'>
-                <NextImage
-                  src='/merchandise/photo_ex.svg'
-                  alt='photo'
-                  width={147}
-                  height={167}
-                  className='w-[70%] min-[425px]:w-[220px] sm:w-full sm:text-center'
-                  priority
-                />
-                <div className='w-full'>
-                  <Typography
-                    font='epilogue'
-                    weight='bold'
-                    className='text-[16px] sm:text-[20px] lg:text-[24px]'
-                  >
-                    Bundling 3
-                  </Typography>
-                  <Typography
-                    font='epilogue'
-                    weight='regular'
-                    className='text-[14px] py-2 sm:text-[16px] lg:text-[18px]'
-                  >
-                    Lorem ipsum dolor sit amet
-                  </Typography>
-                  <div className='sm:flex sm:items-center sm:gap-3 sm:justify-between'>
-                    <Typography
-                      font='epilogue'
-                      weight='bold'
-                      className='text-[16px] pt-2 pb-3 sm:text-[20px] xl:text-[24px]'
-                    >
-                      Rp100.000
-                    </Typography>
-                    <Button
-                      className='w-full lg:w-fit py-2 px-3 max-[360px]:px-2 md:px-2 lg:px-3 xl:px-5 flex items-center z-10 bg-secondary-50 hover:bg-secondary-60 active:bg-secondary-70'
-                      rightIcon={FaShoppingCart}
-                      rightIconClassName='text-[18px] text-[#fff]'
-                    >
-                      <Typography
-                        font='epilogue'
-                        weight='medium'
-                        color='white'
-                        className='max-[360px]:text-[12px] text-[14px] sm:text-[16px] lg:text-[14px] xl:text-[16px]'
-                      >
-                        Pesan Sekarang
-                      </Typography>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-          </Swiper>
-        </div>
-
-        {/* ================= MAX-[1100PX] ===================== */}
-        <div className='max-[1100px]:hidden grid grid-cols-3 gap-4 px-[3%] py-16 min-[1700px]:px-[12%]'>
-          <div className='bg-white w-full min-[1100px]:mt-20 shadow-lg rounded-xl p-3 flex justify-between flex-col sm:p-5 items-center gap-4 lg:gap-6'>
-            <NextImage
-              src='/merchandise/photo_ex.svg'
-              alt='photo'
-              width={147}
-              height={167}
-              className='w-[70%] min-[425px]:w-[220px] sm:w-full sm:text-center'
-              priority
-            />
-            <div className='w-full'>
-              <Typography
-                font='epilogue'
-                weight='bold'
-                className='text-[16px] sm:text-[20px] lg:text-[24px]'
-              >
-                Bundling 1
-              </Typography>
-              <Typography
-                font='epilogue'
-                weight='regular'
-                className='text-[14px] py-2 sm:text-[16px] lg:text-[18px]'
-              >
-                Lorem ipsum dolor sit amet
-              </Typography>
-              <div className='flex items-center gap-3 justify-between'>
-                <Typography
-                  font='epilogue'
-                  weight='bold'
-                  className='text-[16px] pt-2 sm:text-[20px] xl:text-[24px]'
-                >
-                  Rp100.000
-                </Typography>
-                <Button
-                  className='w-full lg:w-fit py-2 px-3 max-[360px]:px-2 md:px-2 lg:px-3 xl:px-5 flex items-center z-10 bg-secondary-50 hover:bg-secondary-60 active:bg-secondary-70'
-                  rightIcon={FaShoppingCart}
-                  rightIconClassName='text-[18px] text-[#fff]'
-                >
-                  <Typography
-                    font='epilogue'
-                    weight='medium'
-                    color='white'
-                    className='max-[360px]:text-[12px] text-[14px] sm:text-[16px] lg:text-[14px] xl:text-[16px]'
-                  >
-                    Pesan Sekarang
-                  </Typography>
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          <div className='bg-white w-full min-[1100px]:mb-20 shadow-lg rounded-xl p-3 flex justify-between flex-col sm:p-5 items-center gap-4 lg:gap-6'>
-            <NextImage
-              src='/merchandise/photo_ex.svg'
-              alt='photo'
-              width={147}
-              height={167}
-              className='w-[70%] min-[425px]:w-[220px] sm:w-full sm:text-center'
-              priority
-            />
-            <div className='w-full'>
-              <Typography
-                font='epilogue'
-                weight='bold'
-                className='text-[16px] sm:text-[20px] lg:text-[24px]'
-              >
-                Bundling 2
-              </Typography>
-              <Typography
-                font='epilogue'
-                weight='regular'
-                className='text-[14px] py-2 sm:text-[16px] lg:text-[18px]'
-              >
-                Lorem ipsum dolor sit amet
-              </Typography>
-              <div className='flex items-center gap-3 justify-between'>
-                <Typography
-                  font='epilogue'
-                  weight='bold'
-                  className='text-[16px] pt-2 sm:text-[20px] xl:text-[24px]'
-                >
-                  Rp100.000
-                </Typography>
-                <Button
-                  className='w-full lg:w-fit py-2 px-3 max-[360px]:px-2 md:px-2 lg:px-3 xl:px-5 flex items-center z-10 bg-secondary-50 hover:bg-secondary-60 active:bg-secondary-70'
-                  rightIcon={FaShoppingCart}
-                  rightIconClassName='text-[18px] text-[#fff]'
-                >
-                  <Typography
-                    font='epilogue'
-                    weight='medium'
-                    color='white'
-                    className='max-[360px]:text-[12px] text-[14px] sm:text-[16px] lg:text-[14px] xl:text-[16px]'
-                  >
-                    Pesan Sekarang
-                  </Typography>
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          <div className='bg-white w-full min-[1100px]:mt-20 shadow-lg rounded-xl p-3 flex justify-between flex-col sm:p-5 items-center gap-4 lg:gap-6'>
-            <NextImage
-              src='/merchandise/photo_ex.svg'
-              alt='photo'
-              width={147}
-              height={167}
-              className='w-[70%] min-[425px]:w-[220px] sm:w-full sm:text-center'
-              priority
-            />
-            <div className='w-full'>
-              <Typography
-                font='epilogue'
-                weight='bold'
-                className='text-[16px] sm:text-[20px] lg:text-[24px]'
-              >
-                Bundling 3
-              </Typography>
-              <Typography
-                font='epilogue'
-                weight='regular'
-                className='text-[14px] py-2 sm:text-[16px] lg:text-[18px]'
-              >
-                Lorem ipsum dolor sit amet
-              </Typography>
-              <div className='flex items-center gap-3 justify-between'>
-                <Typography
-                  font='epilogue'
-                  weight='bold'
-                  className='text-[16px] pt-2 sm:text-[20px] xl:text-[24px]'
-                >
-                  Rp100.000
-                </Typography>
-                <Button
-                  className='w-full lg:w-fit py-2 px-3 max-[360px]:px-2 md:px-2 lg:px-3 xl:px-5 flex items-center z-10 bg-secondary-50 hover:bg-secondary-60 active:bg-secondary-70'
-                  rightIcon={FaShoppingCart}
-                  rightIconClassName='text-[18px] text-[#fff]'
-                >
-                  <Typography
-                    font='epilogue'
-                    weight='medium'
-                    color='white'
-                    className='max-[360px]:text-[12px] text-[14px] sm:text-[16px] lg:text-[14px] xl:text-[16px]'
-                  >
-                    Pesan Sekarang
-                  </Typography>
-                </Button>
-              </div>
-            </div>
-          </div>
+                </SwiperSlide>
+              ) : (
+                <></>
+              ),
+            )}
+          </SwiperComponents>
         </div>
       </div>
     </>
