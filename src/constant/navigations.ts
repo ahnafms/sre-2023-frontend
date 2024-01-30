@@ -1,5 +1,4 @@
-import { BsDatabase } from 'react-icons/bs';
-import { BsCalendar2Fill } from 'react-icons/bs';
+import { BsCalendar2Fill, BsDatabase } from 'react-icons/bs';
 import {
   HiOutlineHome,
   HiOutlineShieldCheck,
@@ -8,6 +7,7 @@ import {
 import { HiLightBulb } from 'react-icons/hi';
 import { ImTrophy } from 'react-icons/im';
 import { IoDocumentsOutline } from 'react-icons/io5';
+import { RiArticleLine } from 'react-icons/ri';
 import { TbPaperclip } from 'react-icons/tb';
 
 import { Navigation } from '@/types/navigate';
@@ -61,6 +61,28 @@ export const navigations: Navigation[] = [
       {
         name: 'Journal',
         href: '/dashboard/journal',
+        permissions: ['users.index'],
+      },
+    ],
+  },
+  {
+    name: 'Article',
+    href: '#',
+    icon: RiArticleLine,
+    children: [
+      {
+        name: 'Event',
+        href: '/dashboard/event',
+        permissions: ['users.index'],
+      },
+      {
+        name: 'Akademia',
+        href: '/dashboard/akademia',
+        permissions: ['users.index'],
+      },
+      {
+        name: 'Achievement',
+        href: '/dashboard/achievement',
         permissions: ['users.index'],
       },
     ],
