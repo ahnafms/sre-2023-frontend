@@ -98,6 +98,11 @@ export const navigations: Navigation[] = [
         permissions: ['users.index'],
       },
       {
+        name: 'Merchandise',
+        href: '/dashboard/cms/merchandise',
+        permissions: ['users.index'],
+      },
+      {
         name: 'Roles',
         href: '/dashboard/cms/staff',
         permissions: [

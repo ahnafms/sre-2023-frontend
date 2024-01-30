@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { AiFillInstagram } from 'react-icons/ai';
 import { FaShoppingCart } from 'react-icons/fa';
@@ -42,7 +43,7 @@ export default function ProductsMerch() {
           alt='logo'
           width={2000}
           height={1400}
-          className='absolute -left-48 sm:left-0 max-[1556px]:w-[1556px]'
+          className='max-md:hidden absolute -left-48 sm:left-0 max-[1556px]:w-[1556px]'
           priority
         />
         <div className={clsxm('w-full h-full py-10 relative')}>
@@ -50,11 +51,11 @@ export default function ProductsMerch() {
           <>
             <div className='relative flex items-center justify-center gap-2 sm:px-10'>
               <NextImage
-                src='/merchandise/spiral_left.svg'
+                src='/merchandise/spiral.png'
                 alt='logo'
                 width={63}
                 height={54}
-                className='pt-2 w-[36px] h-[31px] sm:w-[44px] sm:h-[40px] lg:w-[63px] lg:h-[54px]'
+                className='scale-x-[-1] pt-2 w-[36px] h-[31px] sm:w-[44px] sm:h-[40px] lg:w-[63px] lg:h-[54px]'
                 priority
               />
               <Typography
@@ -66,7 +67,7 @@ export default function ProductsMerch() {
                 our products
               </Typography>
               <NextImage
-                src='/merchandise/spiral_right.svg'
+                src='/merchandise/spiral.png'
                 alt='logo'
                 width={63}
                 height={54}
@@ -97,15 +98,14 @@ export default function ProductsMerch() {
               items?.show === true ? (
                 <div
                   key={index}
-                  className='bg-white shadow-lg w-[340px] sm:w-[350px] md:w-[370px] rounded-xl p-5 flex flex-col justify-between items-start'
+                  className='bg-white shadow-lg w-[340px] sm:w-[350px] md:w-[320px] lg:w-[350px] 2xl:w-[380px] rounded-xl p-5 flex flex-col justify-between items-center'
                 >
-                  <NextImage
-                    src={`https://api.sre-its.com/static/${items?.cover_filepath}`}
+                  <Image
+                    src={`${items.url + items?.cover_filepath}`}
                     alt={`${items?.cover_filename}`}
                     width={147}
                     height={167}
-                    className='xl:w-full'
-                    priority
+                    className='min-[425px]:w-[160px] xl:w-[70%] text-center'
                   />
                   <div className='w-full'>
                     <Typography
@@ -162,7 +162,7 @@ export default function ProductsMerch() {
             {/* get our merchandise */}
             <div className='w-full flex justify-center'>
               <NextImage
-                src='/merchandise/circle.svg'
+                src='/merchandise/circle.png'
                 alt='logo'
                 width={131}
                 height={63}
@@ -181,7 +181,7 @@ export default function ProductsMerch() {
                   Merchandise at
                 </Typography>
                 <NextImage
-                  src='/merchandise/line.svg'
+                  src='/merchandise/line.png'
                   alt='logo'
                   width={353}
                   height={16}
@@ -235,11 +235,11 @@ export default function ProductsMerch() {
             </div>
           </div>
           <NextImage
-            src='/merchandise/windmills.svg'
+            src='/merchandise/windmills.png'
             alt='logo'
             width={277}
             height={355}
-            className='absolute -bottom-1 right-0 xl:w-[277px] xl:h-[305px] w-[206px] h-[224px]'
+            className='absolute -bottom-1 xl:-bottom-3 right-0 xl:w-[277px] xl:h-[305px] w-[206px] h-[224px]'
             priority
           />
         </div>

@@ -12,6 +12,16 @@ import Typography from '@/components/Typography';
 import clsxm from '@/lib/clsxm';
 
 export default function HeaderMerch() {
+  const paginationStyle = {
+    '--swiper-pagination-color': '#E8BA00',
+    '--swiper-pagination-bullet-inactive-color': '#E9EBF8',
+    '--swiper-pagination-bullet-inactive-opacity': '1',
+    '--swiper-pagination-bullet-height': '6px',
+    '--swiper-pagination-bullet-width': '38px',
+    '--swiper-pagination-bullet-border-radius': '30px',
+    '--swiper-pagination-bullet-horizontal-gap': '2px',
+  } as React.CSSProperties;
+
   return (
     <>
       <div
@@ -37,17 +47,7 @@ export default function HeaderMerch() {
             disableOnInteraction: false,
           }}
           modules={[Autoplay, Pagination]}
-          // @ts-expect-error: Swiper styles not recognized by TypeScript
-          style={{
-              '--swiper-pagination-color': '#E8BA00',
-              '--swiper-pagination-bullet-inactive-color': '#E9EBF8',
-              '--swiper-pagination-bullet-inactive-opacity': '1',
-              '--swiper-pagination-bullet-height': '6px',
-              '--swiper-pagination-bullet-width': '38px',
-              '--swiper-pagination-bullet-border-radius': '30px',
-              '--swiper-pagination-bullet-horizontal-gap': '2px',
-            } as string
-          }
+          style={paginationStyle}
           className=''
         >
           {/* FOR EXAMPLE */}

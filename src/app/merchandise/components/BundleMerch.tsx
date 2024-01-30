@@ -4,8 +4,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-import { useEffect, useState } from 'react';
-import React from 'react';
+import Image from 'next/image';
+import React, { useEffect, useRef, useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { Swiper } from 'swiper';
 import { Autoplay, Pagination } from 'swiper/modules';
@@ -15,11 +15,14 @@ import Button from '@/components/Button';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 import { Merchandise } from '@/constant/merchandise';
+import useComponentResize from '@/hooks/useComponentResize';
 import api from '@/lib/api';
 import clsxm from '@/lib/clsxm';
 import { ApiReturn } from '@/types/api';
 
 export default function BundleMerch() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { width: containerWidth } = useComponentResize(containerRef);
   const [datas, setDatas] = useState<Merchandise[]>([]);
 
   const [centerCardIndex, setCenterCardIndex] = useState<number>(
@@ -47,31 +50,31 @@ export default function BundleMerch() {
     fetchData();
   }, []);
 
-  const useWidth = () => {
-    const [width, setWidth] = useState(0);
-    const handleResize = () => setWidth(window.innerWidth);
-    useEffect(() => {
-      handleResize();
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
-    return width;
-  };
-
-  const size = useWidth();
+  const paginationStyle = {
+    '--swiper-pagination-color': '#E8BA00',
+    '--swiper-pagination-bullet-inactive-color': '#FFFFFF',
+    '--swiper-pagination-bullet-inactive-opacity': '1',
+    '--swiper-pagination-bullet-height': '6px',
+    '--swiper-pagination-bullet-width': '38px',
+    '--swiper-pagination-bullet-border-radius': '30px',
+    '--swiper-pagination-bullet-horizontal-gap': '2px',
+  } as React.CSSProperties;
 
   return (
     <>
-      <div className={clsxm('w-full h-full bg-tertiary-10 py-10 px-4')}>
+      <div
+        className={clsxm('w-full h-full bg-tertiary-10 py-10 px-4')}
+        ref={containerRef}
+      >
         {/* ================ TITLE =============== */}
         <div className='relative flex flex-col items-center sm:px-8'>
           <div className='flex items-center justify-center gap-1'>
             <NextImage
-              src='/merchandise/quote_left.svg'
+              src='/merchandise/quote.png'
               alt='logo'
               width={50}
               height={52}
-              className='pb-6 w-[26px] h-[27] sm:w-[35px] sm:h-[36px] sm:pb-20 xl:w-[50px] xl:h-[52px] xl:pb-32'
+              className='scale-x-[-1] pb-6 w-[26px] h-[27] sm:w-[35px] sm:h-[36px] sm:pb-20 xl:w-[50px] xl:h-[52px] xl:pb-32'
               priority
             />
             <Typography
@@ -82,7 +85,7 @@ export default function BundleMerch() {
               our special bundle
             </Typography>
             <NextImage
-              src='/merchandise/quote_right.svg'
+              src='/merchandise/quote.png'
               alt='logo'
               width={50}
               height={52}
@@ -91,7 +94,7 @@ export default function BundleMerch() {
             />
           </div>
           <NextImage
-            src='/merchandise/line.svg'
+            src='/merchandise/line.png'
             alt='line'
             width={467}
             height={20}
@@ -112,34 +115,31 @@ export default function BundleMerch() {
         {/* ================ CARD BUNDLE EXAMPLE =============== */}
         <div className='min-[425px]:px-[5%] min-[550px]:px-[10%] sm:px-[20%] md:px-[3%]'>
           <SwiperComponents
-            slidesPerView={
-              size >= 1100 && size <= 2280
-                ? 3
-                : size <= 1100 && size >= 768
-                  ? 2
-                  : 1
-            }
+            slidesPerView={1}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+                spaceBetween: 10,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              1100: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+            }}
             pagination={{
               dynamicBullets: true,
             }}
-            spaceBetween={size >= 800 ? 20 : 10}
             loop={true}
             autoplay={{
               delay: 2500,
               disableOnInteraction: true,
             }}
             modules={[Autoplay, Pagination]}
-            // @ts-expect-error: Swiper styles not recognized by TypeScript
-            style={{
-                '--swiper-pagination-color': '#E8BA00',
-                '--swiper-pagination-bullet-inactive-color': '#FFFFFF',
-                '--swiper-pagination-bullet-inactive-opacity': '1',
-                '--swiper-pagination-bullet-height': '6px',
-                '--swiper-pagination-bullet-width': '38px',
-                '--swiper-pagination-bullet-border-radius': '30px',
-                '--swiper-pagination-bullet-horizontal-gap': '2px',
-              } as string
-            }
+            style={paginationStyle}
             className='mt-10 mb-5'
             onSlideChange={swiper => handleSlideChange(swiper)}
           >
@@ -147,17 +147,16 @@ export default function BundleMerch() {
               items?.pin === true && items?.show === true ? (
                 <SwiperSlide key={index}>
                   <div
-                    className={`bg-white cursor-pointer w-full mb-16 shadow-lg rounded-xl p-3 flex justify-between sm:flex-col sm:p-5 md:justify-around xl:justify-end items-center gap-4 lg:gap-6 ${size >= 1100 && size <= 2280 ? 'relative' : ''} ${index === centerCardIndex + 1 && size >= 1100 && size <= 2280 ? '' : 'md:mb-8 xl:mb-16 xl:mt-24'}`}
+                    className={`bg-white cursor-pointer w-full mb-16 shadow-lg rounded-xl p-3 flex justify-between sm:flex-col sm:p-5 md:justify-between items-center md:h-[450px] xl:h-[450px] 2xl:h-[480px] gap-4 lg:gap-6 ${Number(containerWidth) >= 1083 ? 'relative' : ''} ${index === centerCardIndex + 1 && Number(containerWidth) >= 1083 ? '' : 'lg:my-12 xl:my-20'}`}
                   >
-                    <NextImage
-                      src={`https://api.sre-its.com/static/${items?.cover_filepath}`}
+                    <Image
+                      src={`${items.url + items?.cover_filepath}`}
                       alt={`${items?.cover_filename}`}
                       width={147}
                       height={167}
-                      className='w-[70%] min-[425px]:w-[220px] sm:w-full sm:text-center'
-                      priority
+                      className='w-[40%] min-[425px]:w-[150px] sm:w-[55%] sm:text-center'
                     />
-                    <div className='w-full'>
+                    <div className='w-full h-fit'>
                       <Typography
                         font='epilogue'
                         weight='bold'
@@ -168,7 +167,7 @@ export default function BundleMerch() {
                       <Typography
                         font='epilogue'
                         weight='regular'
-                        className='text-[14px] py-2 sm:text-[16px] lg:text-[18px]'
+                        className='text-[14px] py-2 sm:text-[16px] xl:text-[18px]'
                       >
                         {items.description}
                       </Typography>

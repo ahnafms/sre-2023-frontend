@@ -26,7 +26,7 @@ export default function Navigation({ className, ...rest }: NavigationProps) {
       {...rest}
     >
       <Logo className='w-32 md:pt-3 py-8 self-center' />
-      <div className='space-y-5 w-[85%] sm:px-0 px-10 sm:w-[40%] md:w-64 lg:w-full'>
+      <div className='space-y-5 w-[85%] sm:px-0 px-10 sm:w-[40%] md:w-64 lg:w-full overflow-auto pb-16'>
         {navigations.map(nav =>
           nav.children ? (
             <NestedNavigation navigation={nav} key={nav.name} />
@@ -34,6 +34,16 @@ export default function Navigation({ className, ...rest }: NavigationProps) {
             <NavigationLink key={nav.name} navigation={nav} />
           ),
         )}
+        <style jsx>{`
+          ::-webkit-scrollbar {
+            width: 8px;
+          }
+
+          ::-webkit-scrollbar-thumb {
+            background-color: white;
+            border-radius: 50px;
+          }
+        `}</style>
       </div>
     </nav>
   );
