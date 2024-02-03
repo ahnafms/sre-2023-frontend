@@ -4,15 +4,15 @@ import type { Metadata } from 'next';
 
 const config: Metadata = {
   metadataBase: new URL('https://www.sre-its.com'),
-  title: { default: 'SRE ITS 2023', template: '%s | SRE ITS 2023' },
+  title: { default: 'SRE ITS', template: '%s | SRE ITS' },
   description:
     'SRE ITS exist to develop innovation, exchange ideas, and facilitate students as active learners in the Renewable Energy field.',
   openGraph: {
     url: 'https://sre-its.com',
-    title: 'SRE ITS 2023',
+    title: 'SRE ITS',
     description:
       'SRE ITS exist to develop innovation, exchange ideas, and facilitate students as active learners in the Renewable Energy field.',
-    siteName: 'SRE ITS 2023',
+    siteName: 'SRE ITS',
     images: [{ url: '/images/og.jpeg' }],
     type: 'website',
     locale: 'in_ID',
@@ -20,7 +20,7 @@ const config: Metadata = {
   twitter: {
     card: 'summary_large_image',
     creator: '@sre_its',
-    title: 'SRE ITS 2023',
+    title: 'SRE ITS',
     description:
       'SRE ITS exist to develop innovation, exchange ideas, and facilitate students as active learners in the Renewable Energy field.',
     site: 'https://twitter.com/sre_its',

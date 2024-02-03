@@ -1,7 +1,9 @@
 'use client';
 
 import { Menu, Transition } from '@headlessui/react';
+import clsx from 'clsx';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Fragment, useState } from 'react';
 import { FaBars, FaRegTimesCircle, FaRegUser } from 'react-icons/fa';
 import { HiChevronDown } from 'react-icons/hi';
@@ -16,6 +18,7 @@ import clsxm from '@/lib/clsxm';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const currentPath = usePathname();
 
   const showNav = () => {
     setIsOpen(!isOpen);
@@ -23,7 +26,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className='top-0 z-[101] duration-300 
+      className='top-0 z-[101] relative duration-300 
       shadow-xl ease-in-out my-6 mx-7 md:mx-10 
       lg:my-10 lg:max-w-none lg:mx-10 
       xl:mx-auto xl:max-w-[1240px] 
@@ -75,17 +78,22 @@ export default function Navbar() {
                     <Typography
                       color='white'
                       font='epilogue'
-                      className={`group-hover:text-white  
-                                 group-hover:border-b-[1px]  
-                                 focus:text-white  
-                                 focus:border-b-[1px]  
-                                 focus:outline-none  
-                                 transition-all  
-                                 ease-linear  
-                                 duration-300  
-                                 text-lg  
-                                 text-white  
-                                 hover:font-bold`}
+                      className={clsx(
+                        `group-hover:text-white  
+                        group-hover:border-b-[1px]  
+                        focus:text-white  
+                        focus:border-b-[1px]  
+                        focus:outline-none  
+                        transition-all  
+                        ease-linear  
+                        duration-300  
+                        text-lg  
+                        text-white  
+                        hover:border-b-2
+                        border-b-white
+                        `,
+                        currentPath == _nav.href && 'border-b-2 font-bold',
+                      )}
                     >
                       {_nav.name}
                     </Typography>
@@ -210,7 +218,7 @@ export default function Navbar() {
       {/* Mobile Side Navigations */}
       <div
         className={clsxm(
-          'fixed left-0 top-0 flex flex-col items-center pt-20',
+          'fixed left-0 top-0 flex flex-col items-center pt-20 z-[102]',
           'w-[80%] border-r-4 border-r-white min-h-screen px-4 pb-24 lg:hidden bg-secondary-50',
           'transition ease-in-out duration-300',
           isOpen ? 'translate-x-0' : '-translate-x-full',
@@ -228,7 +236,7 @@ export default function Navbar() {
         <nav className='w-full'>
           <ul className='flex flex-col items-center gap-6'>
             {landingNavigations.map(
-              nav =>
+              (nav, idx) =>
                 (nav.name === 'middleSections' &&
                   nav?.children?.map(_nav => (
                     <UnstyledLink key={`mobile-${_nav.name}`} href={_nav.href}>
@@ -242,7 +250,7 @@ export default function Navbar() {
                     </UnstyledLink>
                   ))) ||
                 (nav.name === 'More' && (
-                  <Menu className='relative text-center' as='div'>
+                  <Menu className='relative text-center' as='div' key={idx}>
                     <Menu.Button>
                       {({ open }) => (
                         <Typography

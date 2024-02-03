@@ -73,7 +73,7 @@ export default function LoginForm() {
         <Button
           type='submit'
           variant='success'
-          className='w-full bg-secondary-50 hover:bg-secondary-60 active:bg-secondary-70'
+          className='w-full bg-secondary-50 hover:bg-secondary-60 active:bg-secondary-70 py-2 md:py-0'
           textClassName='text-white'
           isLoading={isPending}
         >

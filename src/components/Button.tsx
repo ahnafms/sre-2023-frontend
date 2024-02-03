@@ -16,6 +16,7 @@ enum ButtonVariant {
   'outline-danger',
   'outline-success',
   'outline-black',
+  'outline-white',
 }
 
 enum ButtonSize {
@@ -164,6 +165,15 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               'bg-transparent',
               'hover:bg-black-50',
               'active:border-white active:text-white',
+              'shadow-black-100 hover:shadow-black-200 hover:shadow-40 disabled:hover:shadow-black-100',
+              'disabled:bg-black-50 disabled:brightness-90 disabled:hover:bg-transparent',
+            ],
+            variant === 'outline-white' && [
+              'text-typo-white',
+              'border border-typo-white',
+              'bg-transparent',
+              'hover:bg-typo-white-50',
+              'active:border-black active:text-black',
               'shadow-black-100 hover:shadow-black-200 hover:shadow-40 disabled:hover:shadow-black-100',
               'disabled:bg-black-50 disabled:brightness-90 disabled:hover:bg-transparent',
             ],

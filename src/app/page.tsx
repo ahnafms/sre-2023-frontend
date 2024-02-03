@@ -1,113 +1,256 @@
+'use client';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
 import Image from 'next/image';
+import { useEffect, useLayoutEffect, useRef } from 'react';
+
+import Description from '@/components/landing/Description';
+import Events from '@/components/landing/Events';
+import Hero from '@/components/landing/Hero';
+import Mission from '@/components/landing/Mission';
+import Vision from '@/components/landing/Vision';
+import LoadingPage from '@/components/LoadingPage';
+import Footer from '@/layouts/Footer';
+import Navbar from '@/layouts/navbar/Navbar';
+import clsxm from '@/lib/clsxm';
+import EarthImage from '~/images/landing/sre-earth.png';
 
 export default function Home() {
+  const mainComp = useRef(null);
+  gsap.registerPlugin(ScrollTrigger);
+
+  const markers = false;
+  const vh = (coef: number) => window.innerHeight * (coef / 100);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        '(min-width: 1024px)',
+        () => {
+          gsap.to('.green-overlay', {
+            opacity: 0,
+          });
+
+          gsap.fromTo(
+            '.green-overlay',
+            {
+              opacity: '0%',
+            },
+            {
+              scrollTrigger: {
+                trigger: '.description',
+                scrub: 0.5,
+                markers,
+                start: '20% bottom',
+                end: '50% bottom',
+              },
+              opacity: '50%',
+            },
+          );
+
+          gsap.fromTo(
+            '.green-overlay',
+            {
+              opacity: '50%',
+            },
+            {
+              scrollTrigger: {
+                trigger: '.description',
+                scrub: 0.5,
+                markers,
+                start: '90% bottom',
+                end: '160% bottom',
+              },
+              opacity: '0%',
+            },
+          );
+          gsap.fromTo(
+            '.animation-container',
+            {},
+            {
+              scrollTrigger: {
+                trigger: '.description',
+                scrub: 0.5,
+                markers,
+                start: '20% bottom',
+                end: '80% bottom',
+              },
+              bottom: '50%',
+              scale: 2.3,
+            },
+          );
+
+          gsap.fromTo(
+            '.animation-container',
+            {},
+            {
+              scrollTrigger: {
+                trigger: '.vision',
+                scrub: 0.5,
+                markers,
+                start: '10% bottom',
+                end: '80% bottom',
+              },
+              scale: 0.9,
+              left: '10vw',
+            },
+          );
+
+          gsap.fromTo(
+            '.animation-container-2',
+            {},
+            {
+              scrollTrigger: {
+                trigger: '.mission',
+                scrub: 0.5,
+                markers,
+                start: 'top bottom',
+                end: vh(80) + ' bottom',
+              },
+              left: '90vw',
+            },
+          );
+
+          gsap.fromTo(
+            '.animation-container',
+            {},
+            {
+              scrollTrigger: {
+                trigger: '.mission',
+                scrub: 0.5,
+                markers,
+                start: vh(20) + ' bottom',
+                end: vh(80) + ' bottom',
+              },
+              left: '-50vw',
+            },
+          );
+
+          gsap.fromTo(
+            '.animation-container-2',
+            {},
+            {
+              scrollTrigger: {
+                trigger: '.event',
+                scrub: 0.5,
+                markers,
+                start: '200px bottom',
+                end: '600px bottom',
+              },
+              bottom: '100vh',
+            },
+          );
+
+          gsap.fromTo(
+            '.animation-container-2',
+            {},
+            {
+              scrollTrigger: {
+                trigger: '.footer-wrapper',
+                scrub: 0.5,
+                markers,
+                start: '20px bottom',
+                end: '200px bottom',
+              },
+              opacity: 0,
+            },
+          );
+        },
+        mainComp,
+      );
+
+      return () => ctx.revert();
+    }, mainComp);
+  }, [mainComp, markers]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, []);
+
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-      <div className='z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex'>
-        <p className='fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30'>
-          Get started by editing&nbsp;
-          <code className='font-mono font-bold'>src/app/page.tsx</code>
-        </p>
-        <div className='fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none'>
-          <a
-            className='pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0'
-            href='https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            By{' '}
-            <Image
-              src='/vercel.svg'
-              alt='Vercel Logo'
-              className='dark:invert'
-              width={100}
-              height={24}
-              priority
+    <LoadingPage>
+      <main className='relative bg-secondary-70' ref={mainComp}>
+        <div className='top-0 z-10 w-full h-[300vh] lg:h-screen overflow-x-hidden overflow-y-visible absolute lg:fixed pointer-events-none'>
+          <div className='w-full h-full relative'>
+            <Earth
+              className='z-10 w-[150vh] lg:w-[50vw] bottom-[55%] lg:-bottom-8 absolute lg:fixed'
+              animationClass='animation-container'
             />
-          </a>
+          </div>
         </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className='relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert'
-          src='/next.svg'
-          alt='Next.js Logo'
-          width={180}
-          height={37}
-          priority
+        <Earth
+          animationClass='animation-container-2'
+          className='left-auto -right-[200%] -bottom-4 hidden lg:block'
         />
-      </div>
+        <div className='h-full w-full opacity-0 bg-secondary-70 absolute z-20 pointer-events-none green-overlay'></div>
 
-      <div className='mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left'>
-        <a
-          href='https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
-          className='group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className='inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none'>
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+        <div className='absolute w-full h-[110vh] z-0 top-0 left-0'>
+          <div className='relative w-full h-full'>
+            <Image
+              src='/images/landing/hero-bg2.jpg'
+              sizes='(max-width: 1200px) 100vw, 1200px'
+              alt='hero bg image'
+              fill
+              className='object-cover grayscale opacity-25'
+            />
+            <div className='absolute bottom-0 w-full h-12 bg-gradient-to-t from-secondary-70 to-transparent'></div>
+          </div>
+        </div>
 
-        <a
-          href='https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app'
-          className='group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className='inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none'>
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href='https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
-          className='group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className='inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none'>
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href='https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
-          className='group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className='inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none'>
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+        {/* Div wrapper for x hidden overflow exclude Events Section */}
+        <div className='overflow-x-hidden overflow-y-clip'>
+          <section className='h-screen hero relative z-10'>
+            <Navbar />
+            <Hero />
+          </section>
+          <section className='h-screen description '>
+            <Description />
+          </section>
+          <section className='min-h-screen vision pt-24'>
+            <Vision />
+          </section>
+          <section className='min-h-screen w-full overflow-hidden mission'>
+            <Mission />
+          </section>
+        </div>
+        <section className='min-h-screen event'>
+          <Events />
+        </section>
+        <div className='footer-wrapper'>
+          <Footer />
+        </div>
+      </main>
+    </LoadingPage>
   );
 }
+
+type EarthProps = {
+  className?: string;
+  animationClass: string;
+};
+
+const Earth = ({ animationClass, className = '' }: EarthProps) => {
+  return (
+    <div
+      className={clsxm(
+        'fixed w-[50vw] min-w-[800px] aspect-square bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2',
+        className,
+        animationClass,
+      )}
+    >
+      <div className='border-[3px] w-full h-full border-dashed border-white rounded-full p-2'>
+        <div className=' relative w-full h-full bg-secondary-70 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] rounded-full bg-none'>
+          <Image
+            src={EarthImage}
+            className='object-contain animate-spin-96 opacity-50 lg:opacity-100'
+            sizes='(max-width: 768px) 100vh, 1200px'
+            fill
+            alt='earth animation sre its'
+          />
+        </div>
+      </div>
+    </div>
+  );
+};

@@ -9,3 +9,7 @@ ul > li {
 ol > li {
   list-style: decimal;
 }
+
+/* div, p, li, ul, section { */
+/*   border: 1px solid red; */
+/* } */

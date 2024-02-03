@@ -128,6 +128,14 @@ const config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         404: "url('/images/404/bg404.png')",
       },
+
+      dropShadow: {
+        text: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+      },
+      animation: {
+        'spin-16': 'spin 16s linear infinite',
+        'spin-96': 'spin 96s linear infinite',
+      },
     },
   },
   plugins: [
