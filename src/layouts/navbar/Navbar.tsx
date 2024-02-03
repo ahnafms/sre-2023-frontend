@@ -310,7 +310,7 @@ export default function Navbar() {
         <div className='flex mt-8'>
           <Button
             size='base'
-            className='bg-primary-50 py-2 px-12 rounded-md flex items-center text-[18px] hover:bg-primary-60 z-50 text-white'
+            className='bg-primary-50 py-2 px-12 rounded-md flex items-center text-[18px] hover:bg-primary-60 active:bg-primary-70 z-50 text-white'
           >
             <UnstyledLink href='/login'>Login</UnstyledLink>
           </Button>

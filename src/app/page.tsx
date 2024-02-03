@@ -201,7 +201,7 @@ export default function Home() {
 
         {/* Div wrapper for x hidden overflow exclude Events Section */}
         <div className='overflow-x-hidden overflow-y-clip'>
-          <section className='h-screen hero relative z-10'>
+          <section className='h-screen hero relative z-[102]'>
             <Navbar />
             <Hero />
           </section>

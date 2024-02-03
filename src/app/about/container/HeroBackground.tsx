@@ -24,7 +24,7 @@ export default function HeroBackground() {
         alt='newspaper'
         width={676}
         height={253}
-        className='absolute w-[20%] z-[2] left-[6%] bottom-[12%]'
+        className='absolute w-[20%] z-[2] left-[6%] sm:bottom-[12%] bottom-[22.5%]'
       />
       <div className='w-full h-[50vh] absolute bottom-0 z-[1]'>
         <div className='relative w-full h-full'>
