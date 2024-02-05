@@ -2,8 +2,11 @@ import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { ApiError } from 'next/dist/server/api-utils';
 import { serialize } from 'object-to-formdata';
+import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { Descendant } from 'slate';
 
+import useRichText from '@/hooks/useRichText';
 import api from '@/lib/api';
 import useDialogStore from '@/stores/useDialogStore';
 import { ApiResponse } from '@/types/api';
@@ -12,7 +15,12 @@ import { ArticleColumn, EditArticle } from '@/types/entities/dashboardArticle';
 import Button from '../Button';
 import Checkbox from '../form/CheckBox';
 import Input from '../form/Input';
+import RichText from '../rich-text/RichText';
 import Typography from '../Typography';
+
+const initialValue: Descendant[] = [
+  { type: 'paragraph', children: [{ text: '' }] },
+];
 
 export default function EditArticleForm({
   defaultValue,
@@ -25,6 +33,18 @@ export default function EditArticleForm({
   onSuccess: () => void;
   articleType: string;
 }) {
+  const editor = useRichText();
+  const [content, setContent] = useState<Descendant[]>(
+    defaultValue?.content?.[0].data || initialValue,
+  );
+
+  const getContent = (value: Descendant[]) => {
+    // let html: string = '';
+    // value.forEach(node => {
+    //   html += serialize(node);
+    // });
+    setContent(value);
+  };
   const { mutate: updateDocument } = useMutation<
     unknown,
     AxiosError<ApiError>,
@@ -67,6 +87,7 @@ export default function EditArticleForm({
       : undefined;
     const body = {
       ...data,
+      content: JSON.stringify({ data: content }),
       release_date: formattedReleaseDate,
       cover: data.cover?.[0] ?? undefined,
     };
@@ -84,6 +105,15 @@ export default function EditArticleForm({
         <Input id='title' label='Title' />
         <Input id='description' label='Description' />
         <Input id='time_to_read' type='number' label='Time to read' />
+        <RichText
+          id={'content'}
+          label='Content'
+          className='h-60 overflow-y-auto'
+          placeholder='write contents here!'
+          editor={editor}
+          onValueChange={getContent}
+          initialValue={defaultValue?.content?.[0].data || initialValue}
+        />
         <Checkbox id='pin' label='Pin' name='pin' />
         <Checkbox id='show' label='Show' name='show' />
 

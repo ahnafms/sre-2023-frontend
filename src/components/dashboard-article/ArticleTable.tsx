@@ -99,7 +99,13 @@ export default function ArticleTable({ articleType }: { articleType: string }) {
         return value.includes(row.getValue(id));
       },
       cell: info => {
-        return <input type='checkbox' checked={info.row.original.pin} />;
+        return (
+          <input
+            readOnly={true}
+            type='checkbox'
+            checked={info.row.original.pin}
+          />
+        );
       },
     },
     {
@@ -109,7 +115,13 @@ export default function ArticleTable({ articleType }: { articleType: string }) {
         return value.includes(row.getValue(id));
       },
       cell: info => {
-        return <input type='checkbox' checked={info.row.original.show} />;
+        return (
+          <input
+            readOnly={true}
+            type='checkbox'
+            checked={info.row.original.show}
+          />
+        );
       },
     },
     {

@@ -21,7 +21,7 @@ export default function EditArticleModal({
   type: string;
 }) {
   return (
-    <Modal open={open} setOpen={setOpen}>
+    <Modal modalContainerClassName='lg:max-w-7xl' open={open} setOpen={setOpen}>
       <Modal.Title className='font-semibold flex flex-col gap-4'>
         <div className='relative'>
           <div className='w-13 h-13 p-3 rounded-full bg-secondary-10 w-fit'>

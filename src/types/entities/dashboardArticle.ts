@@ -1,7 +1,8 @@
+import { Descendant } from 'slate';
 export type ArticleColumn = {
   id: string;
   title: string;
-  content?: ArticleContent[];
+  content?: { data: Descendant[] }[];
   time_to_read: number;
   release_date: string;
   description: string;
@@ -11,14 +12,9 @@ export type ArticleColumn = {
   pin: boolean;
 };
 
-type ArticleContent = {
-  id: string;
-  name: string;
-};
-
 export type RegisterArticle = {
   title: string;
-  content: ArticleContent[];
+  content: Descendant[];
   time_to_read: number;
   release_date: string;
   description: string;
@@ -28,7 +24,7 @@ export type RegisterArticle = {
 export type EditArticle = {
   title?: string;
   cover?: FileList;
-  content?: ArticleContent[];
+  content?: { data: Descendant[] }[];
   time_to_read?: number;
   release_date?: string;
   description?: string;

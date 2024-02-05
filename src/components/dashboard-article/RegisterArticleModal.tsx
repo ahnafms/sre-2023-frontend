@@ -2,9 +2,12 @@ import { useMutation } from '@tanstack/react-query';
 import { AxiosError, AxiosResponse } from 'axios';
 import { ApiError } from 'next/dist/server/api-utils';
 import { serialize } from 'object-to-formdata';
+import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { HiPencilAlt } from 'react-icons/hi';
+import { Descendant } from 'slate';
 
+import useRichText from '@/hooks/useRichText';
 import api from '@/lib/api';
 import useDialogStore from '@/stores/useDialogStore';
 import {
@@ -13,9 +16,15 @@ import {
 } from '@/types/entities/dashboardArticle';
 
 import Button from '../Button';
+import Checkbox from '../form/CheckBox';
 import Input from '../form/Input';
 import Modal from '../modal/Modal';
+import RichText from '../rich-text/RichText';
 import Typography from '../Typography';
+
+const initialValue: Descendant[] = [
+  { type: 'paragraph', children: [{ text: '' }] },
+];
 
 export default function RegisterArticleModal({
   onSuccess,
@@ -28,6 +37,18 @@ export default function RegisterArticleModal({
   open: boolean;
   type: string;
 }) {
+  const editor = useRichText();
+
+  const [content, setContent] = useState<Descendant[]>();
+
+  const getContent = (value: Descendant[]) => {
+    // let html: string = '';
+    // value.forEach(node => {
+    //   html += serialize(node);
+    // });
+    setContent(value);
+  };
+
   const { mutate: registerArticle } = useMutation<
     AxiosResponse<ArticleColumn>,
     AxiosError<ApiError>,
@@ -37,7 +58,7 @@ export default function RegisterArticleModal({
       api.post(`/${type}`, data, {
         toastify: true,
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': '',
         },
       }),
     onSuccess: () => onSuccess(),
@@ -58,6 +79,7 @@ export default function RegisterArticleModal({
       : undefined;
     const body = {
       ...data,
+      content: JSON.stringify({ data: content }),
       release_date: formattedReleaseDate,
       cover: data.cover?.[0] ?? undefined,
     };
@@ -67,11 +89,14 @@ export default function RegisterArticleModal({
       description: `This data will be created. You’ll be able to edit this data and update new changes.`,
       submitText: 'Confirm',
       variant: 'success',
-    }).then(() => registerArticle(serialize(body)));
+    }).then(() => {
+      registerArticle(serialize(body));
+      setContent(initialValue);
+    });
   };
 
   return (
-    <Modal open={open} setOpen={setOpen}>
+    <Modal modalContainerClassName='lg:max-w-7xl' open={open} setOpen={setOpen}>
       <Modal.Title className='font-semibold flex flex-col gap-4'>
         <div className='relative'>
           <div className='w-13 h-13 p-3 rounded-full bg-secondary-10 w-fit'>
@@ -89,16 +114,24 @@ export default function RegisterArticleModal({
       </Modal.Title>
       <Modal.Body>
         <FormProvider {...methods}>
-          <form onSubmit={handleSubmit(onSubmit)} className='space-y-3'>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className='space-y-3 lg:max-w-[1230px]'
+          >
             <Input
               id='title'
               label='Title'
+              placeholder='insert title'
               validation={{ required: 'Title is required!' }}
             />
-            <Input
-              id='content'
+            <RichText
+              id={'content'}
               label='Content'
-              validation={{ required: 'Content is required!' }}
+              className='h-60 overflow-y-auto'
+              placeholder='write contents here!'
+              editor={editor}
+              onValueChange={getContent}
+              initialValue={initialValue}
             />
             <Input
               id='description'
@@ -136,6 +169,8 @@ export default function RegisterArticleModal({
               maxSize={1000000}
               validation={{ required: 'Cover is required!' }}
             />
+            <Checkbox id='show' label='Show' name='show' />
+            <Checkbox id='pin' label='Pin' name='pin' />
             <div className='!mt-6 flex flex-col-reverse sm:flex-row  items-center gap-3'>
               <Button
                 className='relative w-full'
