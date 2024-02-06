@@ -5,8 +5,10 @@ import { LuClock4 } from 'react-icons/lu';
 import {
   ArticleDetailType,
   FormatDate,
-} from '@/app/sandbox/article-detail/hooks/ArticleDetail';
+} from '@/components/article-detail/hooks/ArticleDetail';
+import useRichText from '@/hooks/useRichText';
 
+import RichText from '../rich-text/RichText';
 import Typography from '../Typography';
 
 // ! DELETE THIS
@@ -17,6 +19,7 @@ export default function ArticleDetailPost({
 }: {
   articleData: ArticleDetailType;
 }) {
+  const editor = useRichText();
   return (
     <section className='bg-white px-12 md:px-[107px] pt-16 pb-14 md:pt-16 md:pb-16'>
       <Typography
@@ -55,40 +58,12 @@ export default function ArticleDetailPost({
         </Typography>
       </div>
 
-      <Typography
-        as='p'
-        variant='c1'
-        weight='regular'
-        className='text-tertiary-100 text-justify pt-8 pb-12 md:pt-16 md:pb-20 md:text-2xl'
-      >
-        {articleData.description}
-        <br />
-        <br /> {/* DELETE THIS */}
-        DELETE THIS!!! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-        Aspernatur eos magni nihil odit eaque repellendus commodi molestiae
-        animi consectetur asperiores fuga odio, cupiditate neque in totam error
-        illo incidunt dignissimos, suscipit sint! Voluptatibus deleniti quis,
-        voluptas quibusdam sint animi facilis nobis officiis consequuntur
-        similique velit minima natus, dolorem sequi eaque soluta eligendi
-        laborum fugit atque in quam, amet debitis fugiat error. Culpa, vero enim
-        perspiciatis architecto animi eius eveniet dolor ex alias porro
-        exercitationem impedit corporis, ad quia. Architecto id fuga quasi
-        voluptas at vel reprehenderit nobis labore pariatur amet sequi, maxime
-        rerum ipsa autem odit possimus distinctio facere cupiditate!
-        <br />
-        <br /> {/* DELETE THIS */}
-        DELETE THIS!!! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-        Aspernatur eos magni nihil odit eaque repellendus commodi molestiae
-        animi consectetur asperiores fuga odio, cupiditate neque in totam error
-        illo incidunt dignissimos, suscipit sint! Voluptatibus deleniti quis,
-        voluptas quibusdam sint animi facilis nobis officiis consequuntur
-        similique velit minima natus, dolorem sequi eaque soluta eligendi
-        laborum fugit atque in quam, amet debitis fugiat error. Culpa, vero enim
-        perspiciatis architecto animi eius eveniet dolor ex alias porro
-        exercitationem impedit corporis, ad quia. Architecto id fuga quasi
-        voluptas at vel reprehenderit nobis labore pariatur amet sequi, maxime
-        rerum ipsa autem odit possimus distinctio facere cupiditate!
-      </Typography>
+      <RichText
+        editor={editor}
+        className='ring-0 pt-16 pb-20'
+        initialValue={articleData.content[0].data}
+        readOnly
+      />
 
       <div className='flex flex-wrap gap-2 md:gap-3 '>
         {DummyBadge.map((badge, index) => (

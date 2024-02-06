@@ -19,10 +19,11 @@ import Typography from '../Typography';
 type RichTextProps = {
   editor: ReactEditor;
   initialValue: Descendant[];
-  placeholder: string;
+  placeholder?: string;
   id?: string;
   label?: string;
   className?: string;
+  readOnly?: boolean;
   onChange?: ((value: Descendant[]) => void) | undefined;
   onSelectionChange?: ((selection: BaseSelection) => void) | undefined;
   onValueChange?: ((value: Descendant[]) => void) | undefined;
@@ -35,6 +36,7 @@ const RichText = ({
   className,
   initialValue,
   placeholder,
+  readOnly,
   ...rest
 }: RichTextProps) => {
   const renderElement = React.useCallback(
@@ -61,7 +63,7 @@ const RichText = ({
           {label}
         </Typography>
       )}
-      <SlateToolbar />
+      {!readOnly && <SlateToolbar />}
       <Editable
         id={id}
         renderLeaf={renderLeaf}
@@ -88,6 +90,7 @@ const RichText = ({
         )}
         spellCheck
         autoFocus
+        readOnly
       />
     </Slate>
   );

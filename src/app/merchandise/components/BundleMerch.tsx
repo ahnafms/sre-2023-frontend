@@ -147,7 +147,14 @@ export default function BundleMerch() {
               items?.pin === true && items?.show === true ? (
                 <SwiperSlide key={index}>
                   <div
-                    className={`bg-white cursor-pointer w-full mb-16 shadow-lg rounded-xl p-3 flex justify-between sm:flex-col sm:p-5 md:justify-between items-center md:h-[450px] xl:h-[450px] 2xl:h-[480px] gap-4 lg:gap-6 ${Number(containerWidth) >= 1083 ? 'relative' : ''} ${index === centerCardIndex + 1 && Number(containerWidth) >= 1083 ? '' : 'lg:my-12 xl:my-20'}`}
+                    className={`bg-white cursor-pointer w-full mb-16 shadow-lg rounded-xl p-3 flex justify-between sm:flex-col sm:p-5 md:justify-between items-center md:h-[450px] xl:h-[450px] 2xl:h-[480px] gap-4 lg:gap-6 ${
+                      Number(containerWidth) >= 1083 ? 'relative' : ''
+                    } ${
+                      index === centerCardIndex + 1 &&
+                      Number(containerWidth) >= 1083
+                        ? ''
+                        : 'lg:my-12 xl:my-20'
+                    }`}
                   >
                     <Image
                       src={`${items.url + items?.cover_filepath}`}

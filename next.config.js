@@ -11,6 +11,11 @@ const nextConfig = {
         hostname: 'api.sre-its.com',
         pathname: '/static/**/*',
       },
+      {
+        protocol: 'https',
+        hostname: 'api.sre-its.com',
+        pathname: '/storage/**/*',
+      },
     ],
   },
 };

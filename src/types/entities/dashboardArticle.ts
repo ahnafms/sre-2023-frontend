@@ -2,7 +2,7 @@ import { Descendant } from 'slate';
 export type ArticleColumn = {
   id: string;
   title: string;
-  content?: { data: Descendant[] }[];
+  content: { data: Descendant[] }[];
   time_to_read: number;
   release_date: string;
   description: string;

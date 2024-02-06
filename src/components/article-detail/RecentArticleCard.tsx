@@ -1,72 +1,84 @@
-import Image from 'next/image';
-import React from 'react';
+import { usePathname } from 'next/navigation';
 
-import { RecentArticleType } from '@/app/sandbox/article-detail/content/recent-article';
+import { ArticleProps } from '@/components/article/hooks/useArticle';
+import UnstyledLink from '@/components/links/UnstyledLink';
+import NextImage from '@/components/NextImage';
+import Typography from '@/components/Typography';
+import { baseURL } from '@/lib/api';
 import clsxm from '@/lib/clsxm';
 
-import Typography from '../Typography';
+export type ArticleSmallProps = {
+  data: ArticleProps;
+};
 
-export default function RecentArticleCard({
-  dataArticle,
-}: {
-  dataArticle: RecentArticleType;
-}) {
+export default function ArticleSmall({ data }: ArticleSmallProps) {
+  const date = new Date();
+  const release_date = new Date(data.release_date);
+  const diffTime = Math.abs(release_date.getTime() - date.getTime());
+  const days = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  const path = usePathname();
+  const pathSplit = path.split('/');
+  const link = `/${pathSplit[1]}/${data.id}`;
+
   return (
-    <div className='bg-white rounded-2xl w-[264px] md:w-[397px] mx-auto'>
-      <div className='px-4 pt-4 pb-11 md:px-[14px] md:pb-8 '>
-        <Image
-          src={dataArticle.img}
-          alt='recent article image'
-          width={734}
-          height={600}
-          className='w-[234px] h-[191px] md:w-[367px] md:h-[300px] mx-auto'
+    <UnstyledLink href={link}>
+      <div className='pt-4 px-4 pb-7 bg-white w-min rounded-[20px] hover:bg-slate-100 hover:cursor-pointer'>
+        <NextImage
+          src={`${baseURL?.slice(0, -4)}/static/${data.cover_filepath}`}
+          alt={data.cover_filename}
+          width={367}
+          height={300}
+          serverStaticImg
+          className='lg:w-[367px] w-[234px] h-[191px] lg:h-[300px] overflow-hidden rounded-[20px]'
         />
-        <div
-          className={clsxm(
-            'bg-secondary-10 py-[6px] px-5 md:px-4 rounded-3xl w-fit',
-            'mt-6 mb-3',
-          )}
-        >
+        <div className='mt-6 lg:mt-4'>
+          <div className='px-2 py-1.5 bg-secondary-10 w-fit rounded-2xl'>
+            <Typography
+              as='p'
+              variant='p'
+              font='epilogue'
+              weight='semibold'
+              className={clsxm('text-secondary-60', 'text-sm leading-6')}
+            >
+              Reneweable Energy
+            </Typography>
+          </div>
           <Typography
-            as='p'
-            variant='c1'
-            weight='semibold'
+            as='h3'
+            variant='h5'
             font='epilogue'
-            className='text-[#0F936D] md:text-lg'
+            weight='bold'
+            className={clsxm(
+              'text-typo-dark mt-3',
+              'text-base leading-6 lg:text-xl',
+            )}
           >
-            {dataArticle.badge}
-          </Typography>
-        </div>
-        <div className='grid gap-2 md:px-[15px]'>
-          <Typography
-            as='p'
-            variant='bt'
-            weight='semibold'
-            font='epilogue'
-            className='text-tertiary-100 md:text-xl text-justify'
-          >
-            {dataArticle.title}
+            {data.title}
           </Typography>
           <Typography
-            as='p'
-            variant='c1'
+            as='h4'
+            variant='t'
+            font='epilogue'
             weight='medium'
-            font='epilogue'
-            className='text-tertiary-100 md:text-[20px] md:leading-[24px] text-justify'
+            className={clsxm(
+              'text-typo-dark mt-2',
+              'lg:text-base leading-6 text-sm',
+            )}
           >
-            {dataArticle.desc}
+            {data.description}
           </Typography>
           <Typography
             as='p'
-            variant='c1'
-            weight='regular'
+            variant='c2'
             font='epilogue'
-            className='text-tertiary-70 md:text-lg'
+            weight='regular'
+            className={clsxm('text-tertiary-70 mt-2', 'text-sm leading-6')}
           >
-            {dataArticle.day + ' days ago'}
+            {days} days ago
           </Typography>
         </div>
       </div>
-    </div>
+    </UnstyledLink>
   );
 }
