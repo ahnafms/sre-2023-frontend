@@ -39,7 +39,7 @@ const Sponsor = () => {
           font='anton'
           variant='h6'
           color='white'
-          className='drop-shadow-text md:text-h6'
+          className='drop-shadow-text md:text-h4'
         >
           Sepuluh Nopember Institute of Technology
         </Typography>
