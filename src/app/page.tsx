@@ -8,6 +8,7 @@ import Description from '@/components/landing/Description';
 import Events from '@/components/landing/Events';
 import Hero from '@/components/landing/Hero';
 import Mission from '@/components/landing/Mission';
+import Sponsor from '@/components/landing/Sponsor';
 import Vision from '@/components/landing/Vision';
 import LoadingPage from '@/components/LoadingPage';
 import Footer from '@/layouts/Footer';
@@ -148,6 +149,22 @@ export default function Home() {
             {},
             {
               scrollTrigger: {
+                trigger: '.sponsor',
+                scrub: 0.5,
+                markers,
+                start: '400px bottom',
+                end: '800px bottom',
+              },
+              bottom: '60vh',
+              left: '50vw',
+            },
+          );
+
+          gsap.fromTo(
+            '.animation-container-2',
+            {},
+            {
+              scrollTrigger: {
                 trigger: '.footer-wrapper',
                 scrub: 0.5,
                 markers,
@@ -182,7 +199,7 @@ export default function Home() {
         </div>
         <Earth
           animationClass='animation-container-2'
-          className='left-auto -right-[200%] -bottom-4 hidden lg:block'
+          className='left-auto -right-[200%] -bottom-4 hidden lg:block z-10'
         />
         <div className='h-full w-full opacity-0 bg-secondary-70 absolute z-20 pointer-events-none green-overlay'></div>
 
@@ -215,10 +232,17 @@ export default function Home() {
             <Mission />
           </section>
         </div>
-        <section className='min-h-screen event'>
+        <section className='min-h-screen event pb-32'>
           <Events />
         </section>
-        <div className='footer-wrapper'>
+        <section className='min-h-screen sponsor pb-32 relative'>
+          <Earth
+            animationClass='animation-container-3'
+            className='absolute left-[50vw] top-[35vh] bottom-auto -translate-y-1/2 w-[110vw] max-w-[70vh] min-w-[200px] block lg:hidden z-10'
+          />
+          <Sponsor />
+        </section>
+        <div className='footer-wrapper relative z-50'>
           <Footer />
         </div>
       </main>
