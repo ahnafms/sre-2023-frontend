@@ -69,7 +69,7 @@ export default function DocumentPage({
             weight='regular'
             color='white'
             font='anton'
-            className='md:text-[72px] md:leading-[90px] w-full text-center drop-shadow-lg'
+            className='md:text-[72px] md:leading-[90px] w-full text-center drop-shadow-lg capitalize'
           >
             {title}
           </Typography>

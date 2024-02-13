@@ -14,9 +14,7 @@ export default function Footer() {
   const nav = landingNavigations[2];
 
   return (
-    <footer
-      className={'w-full bg-[#0B7156] rounded-t-xl overflow-hidden -mt-2'}
-    >
+    <footer className={'w-full bg-[#0B7156] rounded-t-xl -mt-2'}>
       <div
         className={clsxm(
           "bg-[url('/images/footer/bg-footer.png')] bg-cover",
@@ -87,7 +85,7 @@ export default function Footer() {
                 w-[200px] shadow-80 bg-secondary-80 
                 origin-top-right divide-y divide-gray-100 shadow-lg
                 ring-1 ring-black ring-opacity-5 focus:outline-none
-                flex flex-col rounded-[20px] overflow-hidden
+                flex flex-col rounded-[20px] overflow-hidden z-50
                 '
               >
                 <Menu.Item

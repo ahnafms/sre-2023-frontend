@@ -185,8 +185,10 @@ export default function Navbar() {
                                 variant='btn'
                                 className='flex items-center gap-3'
                               >
-                                <div className='mb-2 text-xl'>
-                                  {_nav.icon && <_nav.icon />}
+                                <div className='text-xl w-5 h-5'>
+                                  {_nav.icon && (
+                                    <_nav.icon className='w-full h-full' />
+                                  )}
                                 </div>
                                 {_nav.name}
                               </Typography>
@@ -218,120 +220,142 @@ export default function Navbar() {
       {/* Mobile Side Navigations */}
       <div
         className={clsxm(
-          'fixed left-0 top-0 flex flex-col items-center pt-20 z-[102]',
-          'w-[80%] border-r-4 border-r-white min-h-screen px-4 pb-24 lg:hidden bg-secondary-50',
-          'transition ease-in-out duration-300',
+          'fixed left-0 top-0 z-[102]',
+          'w-[80%] border-r-4 border-r-white h-screen lg:hidden bg-secondary-50',
+          'transition ease-in-out duration-300 overflow-hidden',
           isOpen ? 'translate-x-0' : '-translate-x-full',
         )}
       >
-        <UnstyledLink href='/'>
-          <NextImage
-            src='/navbar/sreLogo3.png'
-            alt='logo'
-            width={136}
-            height={84}
-            className='w-full pb-10 inline-block lg:hidden'
-          />
-        </UnstyledLink>
-        <nav className='w-full'>
-          <ul className='flex flex-col items-center gap-6'>
-            {landingNavigations.map(
-              (nav, idx) =>
-                (nav.name === 'middleSections' &&
-                  nav?.children?.map(_nav => (
-                    <UnstyledLink key={`mobile-${_nav.name}`} href={_nav.href}>
-                      <Typography
-                        weight='bold'
-                        font='epilogue'
-                        className='text-white max-md:text-[18px]'
+        <div className='w-full h-full relative flex flex-col items-center py-20 px-4 pb-24 overflow-auto no-scroll'>
+          <UnstyledLink href='/'>
+            <NextImage
+              src='/navbar/sreLogo3.png'
+              alt='logo'
+              width={136}
+              height={84}
+              className='w-full pb-10 inline-block lg:hidden'
+            />
+          </UnstyledLink>
+          <nav className='w-full relative z-50'>
+            <ul className='flex flex-col items-center gap-6'>
+              {landingNavigations.map(
+                (nav, idx) =>
+                  (nav.name === 'middleSections' &&
+                    nav?.children?.map(_nav => (
+                      <UnstyledLink
+                        key={`mobile-${_nav.name}`}
+                        href={_nav.href}
                       >
-                        {_nav.name}
-                      </Typography>
-                    </UnstyledLink>
-                  ))) ||
-                (nav.name === 'More' && (
-                  <Menu className='relative text-center' as='div' key={idx}>
-                    <Menu.Button>
-                      {({ open }) => (
                         <Typography
                           weight='bold'
                           font='epilogue'
-                          className='text-white flex items-center text-center gap-2 max-md:text-[18px]'
+                          className='text-white max-md:text-[18px]'
                         >
-                          {nav.name}
-                          <HiChevronDown
-                            className={clsxm(
-                              'max-md:text-[24px] transition ease-in-out duration-200',
-                              open && 'rotate-180',
-                            )}
-                          />
+                          {_nav.name}
                         </Typography>
-                      )}
-                    </Menu.Button>
-                    <Transition
-                      as={Fragment}
-                      enter='transition ease-out duration-100'
-                      enterFrom='transform opacity-0 scale-95'
-                      enterTo='transform opacity-100 scale-100'
-                      leave='transition ease-in duration-75'
-                      leaveFrom='transform opacity-100 scale-100'
-                      leaveTo='transform opacity-0 scale-95'
-                    >
-                      <Menu.Items
-                        className={clsxm(
-                          'shadow-80 w-full origin-top mt-1',
-                          'flex flex-col ',
-                          ' focus:outline-none',
-                        )}
-                      >
-                        {nav?.children?.map(_nav => (
-                          <Menu.Item
-                            key={`mobile-${_nav.name}`}
-                            as='button'
-                            className='flex'
+                      </UnstyledLink>
+                    ))) ||
+                  (nav.name === 'More' && (
+                    <Menu className='relative text-center' as='div' key={idx}>
+                      <Menu.Button>
+                        {({ open }) => (
+                          <Typography
+                            weight='bold'
+                            font='epilogue'
+                            className='text-white flex items-center text-center gap-2 max-md:text-[18px]'
                           >
-                            <UnstyledLink
-                              href={_nav.href}
+                            {nav.name}
+                            <HiChevronDown
                               className={clsxm(
-                                'px-[22px] py-2 text-start text-[16px] max-w-xs rounded-xl font-medium text-secondary-90',
+                                'max-md:text-[24px] transition ease-in-out duration-200',
+                                open && 'rotate-180',
                               )}
+                            />
+                          </Typography>
+                        )}
+                      </Menu.Button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-100'
+                        enterFrom='transform opacity-0 scale-95'
+                        enterTo='transform opacity-100 scale-100'
+                        leave='transition ease-in duration-75'
+                        leaveFrom='transform opacity-100 scale-100'
+                        leaveTo='transform opacity-0 scale-95'
+                      >
+                        <Menu.Items
+                          className={clsxm(
+                            'shadow-80 w-full origin-top mt-4',
+                            'flex flex-col ',
+                            'focus:outline-none',
+                          )}
+                        >
+                          {nav?.children?.map(_nav => (
+                            <Menu.Item
+                              key={`mobile-${_nav.name}`}
+                              as='button'
+                              className='flex justify-center'
                             >
-                              {_nav.name}
-                            </UnstyledLink>
-                          </Menu.Item>
-                        ))}
-                      </Menu.Items>
-                    </Transition>
-                  </Menu>
-                )),
-            )}
-          </ul>
-        </nav>
-        <div className='flex mt-8'>
-          <Button
-            size='base'
-            className='bg-primary-50 py-2 px-12 rounded-md flex items-center text-[18px] hover:bg-primary-60 active:bg-primary-70 z-50 text-white'
+                              <UnstyledLink
+                                href={_nav.href}
+                                className={clsxm(
+                                  'px-[22px] py-2 text-[16px] max-w-xs rounded-xl font-medium text-secondary-90',
+                                )}
+                              >
+                                <Typography
+                                  font='epilogue'
+                                  className='flex items-center text-center gap-2 max-md:text-[18px]'
+                                >
+                                  {_nav.name}
+                                </Typography>
+                              </UnstyledLink>
+                            </Menu.Item>
+                          ))}
+                        </Menu.Items>
+                      </Transition>
+                    </Menu>
+                  )),
+              )}
+            </ul>
+          </nav>
+          <div className='flex mt-8'>
+            <Button
+              size='base'
+              className='bg-primary-50 py-2 px-12 rounded-md flex items-center text-[18px] hover:bg-primary-60 active:bg-primary-70 z-50 text-white'
+            >
+              <UnstyledLink href='/login'>Login</UnstyledLink>
+            </Button>
+          </div>
+          <div
+            onClick={showNav}
+            className='relative z-50 bottom-[0rem] left-0 transform cursor-pointer text-white text-[34px] top-10'
           >
-            <UnstyledLink href='/login'>Login</UnstyledLink>
-          </Button>
+            <FaRegTimesCircle />
+          </div>
         </div>
-        <div
-          onClick={showNav}
-          className='relative z-50 bottom-[0rem] left-0 transform cursor-pointer text-white text-[34px] top-10'
-        >
-          <FaRegTimesCircle />
-        </div>
-        <div className='absolute -bottom-10 md:-bottom-40 w-full'>
+        <div className='absolute z-10 bottom-0 w-full overflow-hidden'>
           <Image
             src={'/images/navbar/bg_navbar_mobile.png'}
             alt='background'
             width={500}
             height={500}
             sizes='100vw'
-            className='w-full bg-cover'
+            className='w-full bg-covertranslate-y-10 md:translate-y-36 opacity-50'
           />
         </div>
       </div>
+      <style jsx>{`
+        .no-scroll::-webkit-scrollbar {
+          width:width: 0;
+          height: 0; 8px;
+        }
+
+        .no-scroll {
+            overflow-y: scroll;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+      `}</style>
     </nav>
   );
 }

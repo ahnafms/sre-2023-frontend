@@ -12,7 +12,7 @@ import RichText from '../rich-text/RichText';
 import Typography from '../Typography';
 
 // ! DELETE THIS
-const DummyBadge = ['Energy', 'Renewable Energy', 'Renewable Energy'];
+// const DummyBadge = ['Energy', 'Renewable Energy', 'Renewable Energy'];
 
 export default function ArticleDetailPost({
   articleData,
@@ -65,24 +65,25 @@ export default function ArticleDetailPost({
         readOnly
       />
 
-      <div className='flex flex-wrap gap-2 md:gap-3 '>
-        {DummyBadge.map((badge, index) => (
-          <div
-            key={index}
-            className='bg-secondary-10 py-[6px] px-5 md:px-4 rounded-3xl w-fit'
-          >
-            <Typography
-              as='p'
-              variant='c1'
-              weight='semibold'
-              font='epilogue'
-              className='text-[#0F936D] md:text-lg'
-            >
-              {badge}
-            </Typography>
-          </div>
-        ))}
-      </div>
+      {/* TODO : Next development */}
+      {/* <div className='flex flex-wrap gap-2 md:gap-3 '> */}
+      {/*   {DummyBadge.map((badge, index) => ( */}
+      {/*     <div */}
+      {/*       key={index} */}
+      {/*       className='bg-secondary-10 py-[6px] px-5 md:px-4 rounded-3xl w-fit' */}
+      {/*     > */}
+      {/*       <Typography */}
+      {/*         as='p' */}
+      {/*         variant='c1' */}
+      {/*         weight='semibold' */}
+      {/*         font='epilogue' */}
+      {/*         className='text-[#0F936D] md:text-lg' */}
+      {/*       > */}
+      {/*         {badge} */}
+      {/*       </Typography> */}
+      {/*     </div> */}
+      {/*   ))} */}
+      {/* </div> */}
     </section>
   );
 }

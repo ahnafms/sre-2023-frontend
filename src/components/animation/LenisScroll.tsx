@@ -1,24 +1,27 @@
 'use client';
 import { LenisInstance, ReactLenis } from '@studio-freight/react-lenis';
 import gsap from 'gsap';
+import { usePathname } from 'next/navigation';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 
 import useWindowResize from '@/hooks/useWindowdResize';
 
 export default function LenisScroll({ children }: { children: ReactNode }) {
   const [isSmooth, setSmooth] = useState(true);
+  const path = usePathname();
+  const isDashboard = path.startsWith('/dashboard');
 
   const { windowWidth } = useWindowResize();
 
   useEffect(() => {
     if (windowWidth) {
-      if (windowWidth < 768 && windowWidth) {
+      if ((windowWidth < 768 && windowWidth) || isDashboard) {
         setSmooth(false);
       } else {
         setSmooth(true);
       }
     }
-  }, [windowWidth]);
+  }, [windowWidth, isDashboard]);
 
   const lenisRef = useRef();
 

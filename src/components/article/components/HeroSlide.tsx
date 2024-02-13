@@ -1,7 +1,7 @@
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 import UnstyledLink from '@/components/links/UnstyledLink';
-import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 import { baseURL } from '@/lib/api';
 import clsxm from '@/lib/clsxm';
@@ -17,11 +17,18 @@ export default function HeroSlide({ data }: HeroSlideProps) {
   return (
     <UnstyledLink href={path + '/' + data.id}>
       <div
-        style={{
-          backgroundImage: `url(${baseURL?.slice(0, -4)}/static/${data.cover_filepath})`,
-        }}
-        className={`h-[844px] lg:h-[810px] lg:w-[1343px] bg-cover lg:rounded-[50px] relative flex items-center mx-auto`}
+        // style={{
+        //   backgroundImage: `url()`,
+        // }}
+        className={`min-h-[600px] h-[95vh] w-full bg-cover lg:rounded-[50px] overflow-hidden relative flex items-center mx-auto bg-white`}
       >
+        <Image
+          src={`${baseURL?.slice(0, -4)}/static/${data.cover_filepath}`}
+          alt={data.title}
+          fill
+          sizes='90vw'
+          className='object-cover'
+        />
         <div className='z-[5] px-4 lg:px-0 lg:pl-12 lg:w-[870px] mt-80'>
           <div className='bg-primary-40 w-32 flex items-center justify-center'>
             <Typography
@@ -59,14 +66,7 @@ export default function HeroSlide({ data }: HeroSlideProps) {
             {data.description}
           </Typography>
         </div>
-        <div className='absolute bottom-0 z-[1] w-[1343px] h-[362px] lg:rounded-b-[50px] overflow-hidden'>
-          <NextImage
-            src='/article/gradient.png'
-            alt='gradient'
-            width={1343}
-            height={362}
-          />
-        </div>
+        <div className='absolute bottom-0 z-[1] w-full h-[362px] bg-gradient-to-t from-secondary-60 to-transparent'></div>
       </div>
     </UnstyledLink>
   );

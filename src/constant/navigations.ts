@@ -1,13 +1,13 @@
-import { BsCalendar2Fill, BsDatabase } from 'react-icons/bs';
+import { BiSolidBook, BiSolidBulb } from 'react-icons/bi';
+import { BsDatabase, BsFillCalendarFill } from 'react-icons/bs';
 import {
   HiOutlineHome,
   HiOutlineShieldCheck,
   HiOutlineUsers,
 } from 'react-icons/hi';
-import { HiLightBulb } from 'react-icons/hi';
 import { ImTrophy } from 'react-icons/im';
 import { IoDocumentsOutline } from 'react-icons/io5';
-import { RiArticleLine } from 'react-icons/ri';
+import { RiArticleLine, RiBookletFill } from 'react-icons/ri';
 import { TbPaperclip } from 'react-icons/tb';
 
 import { Navigation } from '@/types/navigate';
@@ -146,14 +146,24 @@ export const landingNavigations: Navigation[] = [
     href: '#',
     children: [
       {
-        name: 'SRE Outlook',
+        name: 'Outlook',
         href: '/outlook',
-        icon: BsCalendar2Fill,
+        icon: RiBookletFill,
       },
       {
-        name: 'SRE Insight',
-        href: '/insight',
-        icon: HiLightBulb,
+        name: 'Journal',
+        href: '/jurnal',
+        icon: BiSolidBook,
+      },
+      {
+        name: 'Akademia',
+        href: '/akademia',
+        icon: BiSolidBulb,
+      },
+      {
+        name: 'Our Event',
+        href: '/event',
+        icon: BsFillCalendarFill,
       },
       {
         name: 'Achievement',
