@@ -1,6 +1,6 @@
 import React from 'react';
 
-import DocumentBackground from '@/app/(document)/_containers/DocumentBackground';
+import DocumentBackground from '@/app/(landing)/(document)/_containers/DocumentBackground';
 import Footer from '@/layouts/Footer';
 import Navbar from '@/layouts/navbar/Navbar';
 

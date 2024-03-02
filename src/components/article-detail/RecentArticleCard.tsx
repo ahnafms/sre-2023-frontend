@@ -1,8 +1,8 @@
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 import { ArticleProps } from '@/components/article/hooks/useArticle';
 import UnstyledLink from '@/components/links/UnstyledLink';
-import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 import { baseURL } from '@/lib/api';
 import clsxm from '@/lib/clsxm';
@@ -24,26 +24,26 @@ export default function ArticleSmall({ data }: ArticleSmallProps) {
   return (
     <UnstyledLink href={link}>
       <div className='pt-4 px-4 pb-7 bg-white w-min rounded-[20px] hover:bg-slate-100 hover:cursor-pointer'>
-        <NextImage
-          src={`${baseURL?.slice(0, -4)}/static/${data.cover_filepath}`}
-          alt={data.cover_filename}
-          width={367}
-          height={300}
-          serverStaticImg
-          className='lg:w-[367px] w-[234px] h-[191px] lg:h-[300px] overflow-hidden rounded-[20px]'
-        />
-        <div className='mt-6 lg:mt-4'>
-          <div className='px-2 py-1.5 bg-secondary-10 w-fit rounded-2xl'>
-            <Typography
-              as='p'
-              variant='p'
-              font='epilogue'
-              weight='semibold'
-              className={clsxm('text-secondary-60', 'text-sm leading-6')}
-            >
-              Reneweable Energy
-            </Typography>
-          </div>
+        <div className='w-[234px] md:w-[367px] h-[191px] md:h-[300px] rounded-[20px] overflow-hidden relative'>
+          <Image
+            src={`${baseURL?.slice(0, -4)}/static/${data.cover_filepath}`}
+            alt={data.cover_filename}
+            className='object-cover'
+            fill
+          />
+        </div>
+        <div className='mt-6 lg:mt-6'>
+          {/* <div className='px-2 py-1.5 bg-secondary-10 w-fit rounded-2xl'> */}
+          {/*   <Typography */}
+          {/*     as='p' */}
+          {/*     variant='p' */}
+          {/*     font='epilogue' */}
+          {/*     weight='semibold' */}
+          {/*     className={clsxm('text-secondary-60', 'text-sm leading-6')} */}
+          {/*   > */}
+          {/*     Reneweable Energy */}
+          {/*   </Typography> */}
+          {/* </div> */}
           <Typography
             as='h3'
             variant='h5'

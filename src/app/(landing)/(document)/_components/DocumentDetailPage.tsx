@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 
-import MoreDocuments from '@/app/(document)/_components/MoreDocuments';
+import MoreDocuments from '@/app/(landing)/(document)/_components/MoreDocuments';
 import Cell from '@/components/Cell';
 import Grid from '@/components/Grid';
 import PdfViewer from '@/components/pdf-viewer/PdfViewer';

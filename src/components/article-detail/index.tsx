@@ -112,8 +112,13 @@ export default function ArticleDetailPage({
             className='mySwiper max-w-[1440px]'
           >
             {recentArticle?.data.map((article, index) => (
-              <SwiperSlide key={index}>
-                <ArticleSmall data={article} />
+              <SwiperSlide
+                style={{ display: 'flex', justifyContent: 'center' }}
+                key={index}
+              >
+                <div className='w-fit'>
+                  <ArticleSmall data={article} />
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>

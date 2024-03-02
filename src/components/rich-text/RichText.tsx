@@ -36,7 +36,7 @@ const RichText = ({
   className,
   initialValue,
   placeholder,
-  readOnly,
+  readOnly = false,
   ...rest
 }: RichTextProps) => {
   const renderElement = React.useCallback(
@@ -90,7 +90,7 @@ const RichText = ({
         )}
         spellCheck
         autoFocus
-        readOnly
+        readOnly={readOnly}
       />
     </Slate>
   );

@@ -5,7 +5,7 @@ import React from 'react';
 import { IoChevronDown } from 'react-icons/io5';
 import { LuSearch } from 'react-icons/lu';
 
-import DocumentCard from '@/app/(document)/_containers/DocumentCard';
+import DocumentCard from '@/app/(landing)/(document)/_containers/DocumentCard';
 import Button from '@/components/Button';
 import Cell from '@/components/Cell';
 import Grid from '@/components/Grid';

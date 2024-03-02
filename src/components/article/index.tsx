@@ -81,7 +81,7 @@ export default function ArticleHome({ params }: { params: { type: string } }) {
               <Typography>No Content Available</Typography>
             ) : (
               <>
-                <div className='lg:grid-cols-2 min-[1480px]:grid-cols-3 hidden justify-items-center gap-y-11 lg:grid'>
+                <div className='lg:grid-cols-2 xl:grid-cols-3 hidden justify-items-center gap-y-11 lg:grid'>
                   {data.data.map((article, index) => (
                     <ArticleSmall key={index} data={article} />
                   ))}

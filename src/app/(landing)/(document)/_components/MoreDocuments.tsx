@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { LuChevronDown, LuChevronLeft, LuChevronRight } from 'react-icons/lu';
 
-import DocumentCard from '@/app/(document)/_containers/DocumentCard';
+import DocumentCard from '@/app/(landing)/(document)/_containers/DocumentCard';
 import Button from '@/components/Button';
 import IconButton from '@/components/IconButton';
 import Typography from '@/components/Typography';

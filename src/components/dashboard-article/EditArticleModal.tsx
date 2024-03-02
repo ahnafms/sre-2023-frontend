@@ -1,6 +1,8 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { HiPencilAlt } from 'react-icons/hi';
 
+import { ApiResponse } from '@/types/api';
 import { ArticleColumn } from '@/types/entities/dashboardArticle';
 
 import Modal from '../modal/Modal';
@@ -20,6 +22,9 @@ export default function EditArticleModal({
   open: boolean;
   type: string;
 }) {
+  const { data: articleData } = useQuery<ApiResponse<ArticleColumn>>({
+    queryKey: [`/${type}/${defaultValues.id}`],
+  });
   return (
     <Modal modalContainerClassName='lg:max-w-7xl' open={open} setOpen={setOpen}>
       <Modal.Title className='font-semibold flex flex-col gap-4'>
@@ -38,10 +43,10 @@ export default function EditArticleModal({
         </div>
       </Modal.Title>
       <Modal.Body>
-        {defaultValues && (
+        {articleData && (
           <EditArticleForm
             articleType={type}
-            defaultValue={defaultValues}
+            defaultValue={articleData.data}
             setOpen={setOpen}
             onSuccess={onSuccess}
           />

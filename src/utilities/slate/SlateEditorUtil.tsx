@@ -5,8 +5,9 @@ import { Editor, Element as SlateElementProps, Transforms } from 'slate';
 import { Text } from 'slate';
 import { RenderElementProps, RenderLeafProps } from 'slate-react';
 
-import RichTextImage from '@/components/rich-text/Image';
 import { CustomElement, CustomText } from '@/types/rich-text';
+
+import { Link } from './link';
 
 const LIST_TYPES = ['numbered-list', 'bulleted-list'];
 
@@ -56,13 +57,7 @@ export const SlateElement = (props: RenderElementProps) => {
     case 'numbered-list':
       return <ol {...attributes}>{children}</ol>;
     case 'link':
-      return (
-        <a {...attributes} href={element.url}>
-          {children}
-        </a>
-      );
-    case 'image':
-      return <RichTextImage {...props} />;
+      return <Link {...props} />;
     default:
       return <p {...attributes}>{children}</p>;
   }

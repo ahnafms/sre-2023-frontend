@@ -113,6 +113,7 @@ export default function EditArticleForm({
           editor={editor}
           onValueChange={getContent}
           initialValue={defaultValue?.content?.[0].data || initialValue}
+          readOnly={false}
         />
         <Checkbox id='pin' label='Pin' name='pin' />
         <Checkbox id='show' label='Show' name='show' />
