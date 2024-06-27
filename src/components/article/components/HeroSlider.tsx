@@ -32,7 +32,7 @@ export default function HeroSlider({ data }: HeroSliderProps) {
         slidesPerView={1}
         spaceBetween={50}
         centeredSlides={true}
-        className='flex items-center justify-center'
+        className='flex items-center justify-center w-full'
         pagination={{ clickable: true }}
         style={paginationStyle}
       >

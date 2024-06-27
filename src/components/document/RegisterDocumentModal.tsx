@@ -122,7 +122,7 @@ export default function RegisterDocumentModal({
               label='Cover'
               type='file'
               accept='.png, .jpg, .jpeg'
-              maxSize={1000000}
+              maxSize={100 * 1000 * 1000}
               validation={{ required: 'Cover is required!' }}
             />
             <Input
@@ -130,7 +130,7 @@ export default function RegisterDocumentModal({
               label='Document'
               type='file'
               accept='.pdf'
-              maxSize={1000000}
+              maxSize={100 * 1000 * 1000}
               validation={{ required: 'Document is required!' }}
             />
             <div className='!mt-6 flex flex-col-reverse sm:flex-row  items-center gap-3'>
