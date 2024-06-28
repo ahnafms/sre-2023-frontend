@@ -124,7 +124,7 @@ function DashboardUserPage() {
         </Typography>
 
         <Table
-          className='text-black'
+          className='text-black w-full'
           data={userResponse?.data ?? []}
           columns={columns}
           isLoading={isLoading}
@@ -134,7 +134,7 @@ function DashboardUserPage() {
                 leftIcon={BiPlusCircle}
                 variant='outline-primary'
                 onClick={() => setRegisterModalOpen(true)}
-                className='z-40'
+                className='z-40 mt-3 md:mt-0'
               >
                 Tambah User
               </Button>

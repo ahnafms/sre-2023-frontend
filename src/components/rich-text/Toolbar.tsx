@@ -1,8 +1,4 @@
-import {
-  AiOutlineLink,
-  AiOutlineOrderedList,
-  AiOutlineUnorderedList,
-} from 'react-icons/ai';
+import { AiOutlineOrderedList, AiOutlineUnorderedList } from 'react-icons/ai';
 import {
   LuHeading1,
   LuHeading2,
@@ -15,6 +11,8 @@ import {
 import BlockButton from '@/components/rich-text/BlockButton';
 import MarkButton from '@/components/rich-text/MarkButton';
 import clsxm from '@/lib/clsxm';
+
+import LinkButton from './LinkButton';
 
 type SlateToolbarProps = {
   className?: string;
@@ -32,7 +30,7 @@ export default function SlateToolbar({ className }: SlateToolbarProps) {
       <BlockButton format='heading-four' Icon={LuHeading4} />
       <BlockButton format='heading-five' Icon={LuHeading5} />
       <BlockButton format='heading-six' Icon={LuHeading6} />
-      <BlockButton format='link' Icon={AiOutlineLink} />
+      <LinkButton />
     </div>
   );
 }

@@ -5,7 +5,7 @@ import { ApiError, ApiResponse } from '@/types/api';
 
 import { getToken } from './cookies';
 
-const baseURL =
+export const baseURL =
   process.env.NODE_ENV === 'development'
     ? process.env.NEXT_PUBLIC_DEVELOPMENT_API_URL
     : process.env.NEXT_PUBLIC_PRODUCTION_API_URL;

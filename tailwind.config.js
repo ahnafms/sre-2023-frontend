@@ -127,6 +127,10 @@ const config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         404: "url('/images/404/bg404.png')",
+        'hero-article': 'url("/images/article/windmill.png")',
+        'hero-article-mobile': 'url("/images/article/windmill1.png")',
+        'hero-article1': 'url("/images/article/hero.png")',
+        articlebg: 'url("/images/article/bg.png")',
       },
 
       dropShadow: {

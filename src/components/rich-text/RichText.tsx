@@ -1,27 +1,44 @@
 'use client';
 
 import React from 'react';
-import { createEditor, Descendant } from 'slate';
-import { withHistory } from 'slate-history';
+import { BaseSelection, Descendant } from 'slate';
 import {
   Editable,
+  ReactEditor,
   RenderElementProps,
   RenderLeafProps,
   Slate,
-  withReact,
 } from 'slate-react';
 
 import SlateToolbar from '@/components/rich-text/Toolbar';
 import clsxm from '@/lib/clsxm';
 import { SlateElement, SlateLeaf } from '@/utilities/slate/SlateEditorUtil';
-import { withImages } from '@/utilities/slate/SlateImageUtil';
 
-const RichText = ({ initialValue }: { initialValue: Descendant[] }) => {
-  const editor = React.useMemo(
-    () => withImages(withHistory(withReact(createEditor()))),
-    [],
-  );
+import Typography from '../Typography';
 
+type RichTextProps = {
+  editor: ReactEditor;
+  initialValue: Descendant[];
+  placeholder?: string;
+  id?: string;
+  label?: string;
+  className?: string;
+  readOnly?: boolean;
+  onChange?: ((value: Descendant[]) => void) | undefined;
+  onSelectionChange?: ((selection: BaseSelection) => void) | undefined;
+  onValueChange?: ((value: Descendant[]) => void) | undefined;
+};
+
+const RichText = ({
+  id,
+  label,
+  editor,
+  className,
+  initialValue,
+  placeholder,
+  readOnly = false,
+  ...rest
+}: RichTextProps) => {
   const renderElement = React.useCallback(
     (props: RenderElementProps) => <SlateElement {...props} />,
     [],
@@ -33,17 +50,49 @@ const RichText = ({ initialValue }: { initialValue: Descendant[] }) => {
   );
 
   return (
-    <div className={clsxm('w-full h-full p-10')}>
-      <Slate editor={editor} initialValue={initialValue}>
-        <SlateToolbar />
-        <Editable
-          spellCheck
-          autoFocus
-          renderLeaf={renderLeaf}
-          renderElement={renderElement}
-        />
-      </Slate>
-    </div>
+    <Slate editor={editor} initialValue={initialValue} {...rest}>
+      {label && (
+        <Typography
+          as='label'
+          htmlFor={id}
+          variant='c2'
+          weight='semibold'
+          color='input'
+          className='w-full'
+        >
+          {label}
+        </Typography>
+      )}
+      {!readOnly && <SlateToolbar />}
+      <Editable
+        id={id}
+        renderLeaf={renderLeaf}
+        renderElement={renderElement}
+        placeholder={placeholder}
+        renderPlaceholder={props => (
+          <span
+            {...props.attributes}
+            style={{
+              ...props.attributes.style,
+              position: 'absolute',
+              top: '',
+            }}
+          >
+            {props.children}
+          </span>
+        )}
+        className={clsxm(
+          'w-full px-3 py-1.5 rounded-lg',
+          'outline-none ring-1 ring-inset ring-typo-inline',
+          'text-c2 text-typo-input placeholder:text-typo-icon',
+          'focus:ring-1 focus:ring-inset focus:ring-success-40',
+          className,
+        )}
+        spellCheck
+        autoFocus
+        readOnly={readOnly}
+      />
+    </Slate>
   );
 };
 

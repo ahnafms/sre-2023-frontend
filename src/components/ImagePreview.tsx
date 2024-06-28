@@ -39,7 +39,7 @@ function ImagePreview({
       <Button
         leftIcon={leftIcon}
         leftIconClassName='text-secondary-50'
-        className='relative'
+        className='relative max-w-full justify-start overflow-hidden'
         variant='outline-primary'
         onClick={() => setOpen(true)}
         {...props}

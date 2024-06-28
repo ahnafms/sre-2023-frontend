@@ -15,19 +15,17 @@ declare module 'slate' {
 
 type ParagraphElement = { type: 'paragraph'; children: CustomText[] };
 
-type LinkElement = { type: 'link'; url: string; children: CustomText[] };
+export type LinkElement = {
+  type: 'link';
+  href: string;
+  children: CustomText[];
+};
 
 type BulletedListElement = { type: 'bulleted-list'; children: CustomText[] };
 
 type ListItemElement = { type: 'list-item'; children: CustomText[] };
 
 type NumberedListElement = { type: 'numbered-list'; children: CustomText[] };
-
-export type ImageElement = {
-  type: 'image';
-  url: string;
-  children: CustomText[];
-};
 
 type HeadingOneElement = {
   type: 'heading-one';
@@ -75,5 +73,4 @@ export type CustomElement =
   | LinkElement
   | BulletedListElement
   | ListItemElement
-  | NumberedListElement
-  | ImageElement;
+  | NumberedListElement;

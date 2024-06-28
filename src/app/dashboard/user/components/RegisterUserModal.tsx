@@ -106,8 +106,8 @@ export default function RegisterUserModal({
               validation={{
                 required: 'Email is required!',
                 pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@gmail\.com$/,
-                  message: 'Must follow this format: test@gmail.com',
+                  value: /^\S+@\S+\.\S+$/,
+                  message: 'Must follow this format: test@example.com',
                 },
               }}
             />
