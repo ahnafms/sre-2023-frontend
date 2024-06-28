@@ -31,6 +31,8 @@ const PdfViewer = React.forwardRef<
 >(({ className, ...props }, ref) => {
   const [pageNumber, setPageNumber] = React.useState(1);
   const [numPages, setNumPages] = React.useState(0);
+  const [loading, setLoading] = React.useState(0);
+  const [fileSize, setFileSIze] = React.useState(0);
 
   const containerRef = React.useRef<HTMLDivElement>(null);
   const { width: containerWidth } = useComponentResize(containerRef);
@@ -144,10 +146,15 @@ const PdfViewer = React.forwardRef<
             color='white'
             className='flex items-center gap-2'
           >
-            Loading document <LuLoader2 className='animate-spin w-4 h-4' />
+            Loading document {loading}% ({fileSize} MB)
+            <LuLoader2 className='animate-spin w-4 h-4' />
           </Typography>
         }
         {...props}
+        onLoadProgress={({ loaded, total }) => {
+          setLoading(Math.round(loaded / total) * 100);
+          setFileSIze(Math.round(total / 1000000));
+        }}
         onLoadSuccess={handleDocumentLoadSuccess}
         className='w-full flex gap-2'
       >

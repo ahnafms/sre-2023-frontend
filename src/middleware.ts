@@ -14,10 +14,11 @@ export function middleware(request: NextRequest) {
 // NOTE : comment one of the paths for displaying in production
 export const config = {
   matcher: [
-    '/outlook/:path*',
-    '/jurnal/:path*',
+    // '/outlook/:path*',
+    // '/jurnal/:path*',
     '/akademia/:path*',
     '/event/:path*',
     '/achievement/:path*',
+    '/merchandise',
   ],
 };
