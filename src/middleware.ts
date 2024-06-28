@@ -20,5 +20,6 @@ export const config = {
     '/event/:path*',
     '/achievement/:path*',
     '/merchandise',
+    '/contact',
   ],
 };
